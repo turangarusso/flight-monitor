@@ -1,6 +1,5 @@
-Run del 2026-10-25 15:12 UTC
+Run del 2026-10-25 15:23 UTC
 
 [avvisi]
 sources.wizzair: Wizz search non disponibile (HTTP 429 su https://be.wizzair.com/29.22.0/Api/search/search): uso il calendario
-sources.wizzair: Wizz TIA: HTTP 503 su https://be.wizzair.com/29.22.0/Api/search/timetable
 
