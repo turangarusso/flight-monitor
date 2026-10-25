@@ -8,7 +8,10 @@
     "amount": 19.99,
     "currencyCode": "EUR"
    },
-   "priceType": "price"
+   "priceType": "price",
+   "departureDates": [
+    "2026-11-13T19:00:00"
+   ]
   },
   {
    "departureStation": "NAP",
@@ -18,7 +21,10 @@
     "amount": 9.99,
     "currencyCode": "EUR"
    },
-   "priceType": "price"
+   "priceType": "price",
+   "departureDates": [
+    "2026-11-14T08:00:00"
+   ]
   },
   {
    "departureStation": "NAP",
@@ -28,7 +34,10 @@
     "amount": 5.0,
     "currencyCode": "EUR"
    },
-   "priceType": "price"
+   "priceType": "price",
+   "departureDates": [
+    "2026-11-18T08:00:00"
+   ]
   },
   {
    "departureStation": "NAP",
@@ -50,7 +59,10 @@
     "amount": 8000,
     "currencyCode": "HUF"
    },
-   "priceType": "price"
+   "priceType": "price",
+   "departureDates": [
+    "2026-11-15T18:00:00"
+   ]
   },
   {
    "departureStation": "BUD",
@@ -60,7 +72,10 @@
     "amount": 12000,
     "currencyCode": "HUF"
    },
-   "priceType": "price"
+   "priceType": "price",
+   "departureDates": [
+    "2026-11-16T07:00:00"
+   ]
   }
  ]
 }

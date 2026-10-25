@@ -3,21 +3,56 @@
   {
    "outbound": {
     "departureAirport": {
-     "iataCode": "NAP",
-     "name": "Napoli"
+     "iataCode": "NAP"
+    },
+    "arrivalAirport": {
+     "iataCode": "LTN",
+     "name": "Londra Luton",
+     "city": {
+      "name": "Londra"
+     }
+    },
+    "departureDate": "2027-01-16T20:05:00",
+    "arrivalDate": "2027-01-16T22:00:00",
+    "price": {
+     "value": 24.99
+    }
+   },
+   "inbound": {
+    "departureAirport": {
+     "iataCode": "LTN"
+    },
+    "arrivalAirport": {
+     "iataCode": "NAP"
+    },
+    "departureDate": "2027-01-17T06:00:00",
+    "arrivalDate": "2027-01-17T09:40:00",
+    "price": {
+     "value": 30.0
+    }
+   },
+   "summary": {
+    "price": {
+     "value": 54.99
+    }
+   }
+  },
+  {
+   "outbound": {
+    "departureAirport": {
+     "iataCode": "NAP"
     },
     "arrivalAirport": {
      "iataCode": "BCN",
      "name": "Barcellona El Prat",
      "city": {
-      "name": "Barcellona",
-      "code": "BARCELONA"
+      "name": "Barcellona"
      }
     },
-    "departureDate": "2026-11-13T06:30:00",
+    "departureDate": "2027-01-15T18:30:00",
+    "arrivalDate": "2027-01-15T20:30:00",
     "price": {
-     "value": 14.99,
-     "currencyCode": "EUR"
+     "value": 14.99
     }
    },
    "inbound": {
@@ -27,52 +62,15 @@
     "arrivalAirport": {
      "iataCode": "NAP"
     },
-    "departureDate": "2026-11-15T21:10:00",
+    "departureDate": "2027-01-17T21:10:00",
+    "arrivalDate": "2027-01-17T23:00:00",
     "price": {
-     "value": 15.0,
-     "currencyCode": "EUR"
+     "value": 15.0
     }
    },
    "summary": {
     "price": {
-     "value": 29.99,
-     "currencyCode": "EUR"
-    },
-    "tripDurationDays": 2
-   }
-  },
-  {
-   "outbound": {
-    "departureAirport": {
-     "iataCode": "NAP"
-    },
-    "arrivalAirport": {
-     "iataCode": "STN",
-     "name": "Londra Stansted",
-     "city": {
-      "name": "Londra"
-     }
-    },
-    "departureDate": "2026-11-14T07:00:00",
-    "price": {
-     "value": 30.0
-    }
-   },
-   "inbound": {
-    "departureAirport": {
-     "iataCode": "STN"
-    },
-    "arrivalAirport": {
-     "iataCode": "NAP"
-    },
-    "departureDate": "2026-11-16T10:00:00",
-    "price": {
-     "value": 25.5
-    }
-   },
-   "summary": {
-    "price": {
-     "value": 55.5
+     "value": 29.99
     }
    }
   },
@@ -81,7 +79,5 @@
     "broken": true
    }
   }
- ],
- "nextPage": null,
- "size": 3
+ ]
 }

@@ -13,13 +13,21 @@ DATA = Path(__file__).parent / "data"
 PRICES = DATA / "prices.csv"
 STATE = DATA / "alerted.json"
 
+ERRORS = DATA / "last_errors.txt"
+
 FIELDS = ["checked_at", "source", "airline", "origin", "dest", "dest_city",
-          "out_date", "in_date", "price_pp", "link"]
+          "out_date", "in_date", "price_pp", "link", "out_dep", "out_arr", "in_dep", "in_arr"]
 
 
 def append_prices(offers: list[Offer], path: Path | None = None) -> None:
     path = path or PRICES
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists():
+        with path.open(encoding="utf-8") as f:
+            header = f.readline().strip().split(",")
+        if header != FIELDS:
+            # formato vecchio: lo archivia e ricomincia
+            path.rename(path.with_name(path.stem + "_v1" + path.suffix))
     new = not path.exists()
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     with path.open("a", newline="", encoding="utf-8") as f:
@@ -28,6 +36,15 @@ def append_prices(offers: list[Offer], path: Path | None = None) -> None:
             w.writeheader()
         for o in offers:
             w.writerow({"checked_at": now, **o.as_row()})
+
+
+def write_errors(errors: dict[str, str], path: Path | None = None) -> None:
+    """Ultimi errori per fonte, leggibili dal repo senza aprire i log di Actions."""
+    path = path or ERRORS
+    path.parent.mkdir(parents=True, exist_ok=True)
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    body = "".join(f"[{name}]\n{err}\n\n" for name, err in errors.items()) or "Nessun errore\n"
+    path.write_text(f"Run del {now}\n\n{body}", "utf-8")
 
 
 def load_state(path: Path | None = None) -> dict:

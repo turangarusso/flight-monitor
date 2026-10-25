@@ -10,6 +10,19 @@ inbound_days: [SUN, MON]
 min_nights: 1
 max_nights: 3
 
+# Orari: scarta i weekend in cui resti troppo poco a destinazione
+time_rules:
+  # ore minime tra l'atterraggio all'andata e il decollo del ritorno
+  min_hours_at_destination: 30
+  # orario massimo di atterraggio all'andata, per giorno di partenza
+  outbound_arrive_by:
+    FRI: "23:59"   # venerdì sera va bene
+    SAT: "14:00"
+  # orario minimo di partenza del ritorno, per giorno
+  inbound_depart_after:
+    SUN: "14:00"
+    MON: "00:00"   # nessun limite
+
 # Numero di passeggeri (per i link di prenotazione e il totale)
 adults: 2
 
@@ -33,34 +46,36 @@ sources:
     # Se l'API blocca le richieste dirette, riprova tramite browser headless
     playwright_fallback: true
     sleep_seconds: 1.5
+    # durata stimata del volo, usata solo se Wizz non restituisce l'orario di arrivo
+    estimated_flight_hours: 3
 
   google_flights:
     enabled: true
-    # Quanti weekend (ven→dom) controllare per ogni destinazione
-    weekends: 8
-    sleep_seconds: 3
-    # Destinazioni da controllare (Google Flights non supporta "ovunque").
+    # Quanti weekend controllare per ogni destinazione (4 ricerche a weekend)
+    weekends: 6
+    sleep_seconds: 2
+    # Destinazioni da controllare (codice IATA: nome), Google Flights non supporta "ovunque".
     # Soprattutto rotte easyJet / Volotea / Vueling / ITA da Napoli.
     destinations:
-      - LGW   # Londra Gatwick
-      - AMS   # Amsterdam
-      - CDG   # Parigi CDG
-      - ORY   # Parigi Orly
-      - NCE   # Nizza
-      - GVA   # Ginevra
-      - BSL   # Basilea
-      - BER   # Berlino
-      - BCN   # Barcellona
-      - LIS   # Lisbona
-      - NTE   # Nantes
-      - BOD   # Bordeaux
-      - ATH   # Atene
-      - VCE   # Venezia
-      - TRN   # Torino
-      - MXP   # Milano Malpensa
-      - LIN   # Milano Linate
-      - PMO   # Palermo
-      - CTA   # Catania
-      - CAG   # Cagliari
-      - OLB   # Olbia
-      - MLA   # Malta
+      LGW: Londra Gatwick
+      AMS: Amsterdam
+      CDG: Parigi CDG
+      ORY: Parigi Orly
+      NCE: Nizza
+      GVA: Ginevra
+      BSL: Basilea
+      BER: Berlino
+      BCN: Barcellona
+      LIS: Lisbona
+      NTE: Nantes
+      BOD: Bordeaux
+      ATH: Atene
+      VCE: Venezia
+      TRN: Torino
+      MXP: Milano Malpensa
+      LIN: Milano Linate
+      PMO: Palermo
+      CTA: Catania
+      CAG: Cagliari
+      OLB: Olbia
+      MLA: Malta

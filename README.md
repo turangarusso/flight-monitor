@@ -8,6 +8,12 @@ Controlla in automatico i voli A/R da Napoli (NAP) per i weekend (partenza ven/s
 Fonti: **Ryanair** (tutte le destinazioni), **Wizz Air** (tutte le rotte da NAP), **Google Flights** (easyJet, Volotea, ITA…, su una lista di destinazioni in `config.yaml`).
 Gira gratis su GitHub Actions 3 volte al giorno. Lo storico prezzi viene salvato in `data/prices.csv`.
 
+Scarta i weekend con orari inutilizzabili: almeno **30 ore a destinazione**, andata del sabato che atterra entro le 14, ritorno della domenica che parte dopo le 14 (tutto modificabile in `config.yaml` → `time_rules`). Se il volo più economico ha orari brutti, cerca gli altri voli dello stesso giorno.
+
+Le offerte in **Italia** arrivano in un messaggio separato da quelle all'**estero**. Ogni destinazione occupa una sola riga (la data più economica, con "+N altre date").
+
+Se una fonte non funziona, l'errore viene salvato in `data/last_errors.txt`.
+
 Avvisa solo per offerte **nuove**, **scese di almeno 3 €** o al **minimo storico** di una destinazione, quindi non riceve duplicati.
 
 ## Setup (5 minuti)

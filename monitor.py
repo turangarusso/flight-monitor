@@ -12,6 +12,7 @@ import argparse
 import importlib
 import logging
 import sys
+import traceback
 from pathlib import Path
 
 import yaml
@@ -42,7 +43,7 @@ def main(argv: list[str] | None = None) -> int:
     wanted = enabled if args.sources == "all" else [s.strip() for s in args.sources.split(",")]
 
     state = storage.load_state()
-    offers, warnings = [], []
+    offers, warnings, errors = [], [], {}
     for name in wanted:
         try:
             found = importlib.import_module(f"sources.{name}").fetch(cfg)
@@ -51,6 +52,7 @@ def main(argv: list[str] | None = None) -> int:
             state["failures"][name] = 0
         except Exception as e:  # noqa: BLE001 - una fonte rotta non blocca le altre
             log.exception("%s fallita", name)
+            errors[name] = traceback.format_exc(limit=4)
             fails = state["failures"].get(name, 0) + 1
             state["failures"][name] = fails
             if fails >= cfg["alerts"]["failure_alert_after"]:
@@ -71,6 +73,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     storage.append_prices(offers)
+    storage.write_errors(errors)
     if messages:
         notify.send(messages)
     storage.save_state(state)

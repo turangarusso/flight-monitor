@@ -1,0 +1,62 @@
+{
+ "outboundFlights": [
+  {
+   "departureDateTime": "2027-01-16T09:00:00",
+   "arrivalDateTime": "2027-01-16T11:00:00",
+   "fares": [
+    {
+     "bundle": "basic",
+     "wdc": false,
+     "basePrice": {
+      "amount": 29.99,
+      "currencyCode": "EUR"
+     },
+     "discountedPrice": {
+      "amount": 29.99,
+      "currencyCode": "EUR"
+     }
+    },
+    {
+     "bundle": "basic",
+     "wdc": true,
+     "basePrice": {
+      "amount": 19.99,
+      "currencyCode": "EUR"
+     },
+     "discountedPrice": {
+      "amount": 19.99,
+      "currencyCode": "EUR"
+     }
+    },
+    {
+     "bundle": "middle",
+     "wdc": false,
+     "basePrice": {
+      "amount": 59,
+      "currencyCode": "EUR"
+     }
+    }
+   ]
+  }
+ ],
+ "returnFlights": [
+  {
+   "departureDateTime": "2027-01-17T18:00:00",
+   "arrivalDateTime": "2027-01-17T20:00:00",
+   "fares": [
+    {
+     "bundle": "basic",
+     "wdc": false,
+     "basePrice": {
+      "amount": 8000,
+      "currencyCode": "HUF"
+     },
+     "discountedPrice": {
+      "amount": 8000,
+      "currencyCode": "HUF"
+     }
+    }
+   ]
+  }
+ ]
+}

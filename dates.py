@@ -51,6 +51,16 @@ def search_range(cfg: dict, today: date | None = None) -> tuple[date, date]:
     return today + timedelta(days=1), add_months(today, cfg["months_ahead"])
 
 
+def fridays(start: date, end: date) -> list[date]:
+    """Tutti i venerdì tra start ed end (i weekend da controllare)."""
+    first = start + timedelta(days=(4 - start.weekday()) % 7)
+    out = []
+    while first <= end:
+        out.append(first)
+        first += timedelta(weeks=1)
+    return out
+
+
 def upcoming_fri_sun(n: int, today: date | None = None) -> list[tuple[date, date]]:
     """I prossimi `n` weekend come coppie (venerdì, domenica)."""
     today = today or date.today()

@@ -3,7 +3,9 @@
 1. legge la versione corrente dell'API da wizzair.com/buildnumber
 2. scarica la mappa rotte e trova le destinazioni servite da NAP
 3. per ogni destinazione chiede il calendario prezzi (andata e ritorno)
-4. combina andate ven/sab con ritorni dom/lun
+   e trova i weekend con prezzo minimo sotto soglia
+4. per quei weekend chiede tutti i voli con orari (search/search) e
+   sceglie la combinazione più economica con orari utilizzabili
 
 Se le richieste dirette vengono bloccate (403/429), riprova da un browser
 headless (Playwright) che esegue le stesse chiamate con i cookie del sito.
@@ -18,9 +20,10 @@ import time
 from datetime import date, datetime, timedelta
 
 import fx
+from combos import best_combos
 from dates import is_weekend_trip, search_range, windows
 from http_utils import HttpError, make_session, request_json
-from models import Offer
+from models import Leg, Offer
 
 log = logging.getLogger(__name__)
 
@@ -102,55 +105,107 @@ def destinations(route_map: dict, origin: str) -> dict[str, str]:
     return {}
 
 
-def _daily_prices(flights: list[dict]) -> dict[date, float]:
-    """Prezzo minimo per giorno, convertito in EUR."""
-    out: dict[date, float] = {}
+def _dt(s: str) -> datetime:
+    return datetime.fromisoformat(s[:19])
+
+
+def _eur(price: dict | None) -> float | None:
+    if not price or not price.get("amount") or price["amount"] <= 0:
+        return None
+    return fx.to_eur(float(price["amount"]), price.get("currencyCode", "EUR"))
+
+
+def timetable_legs(flights: list[dict], est_hours: float) -> list[Leg]:
+    """Calendario -> un volo per giorno al prezzo minimo.
+
+    Il calendario non dà l'orario di arrivo: lo stima con la durata media.
+    """
+    legs = []
     for f in flights or []:
-        price = f.get("price") or {}
-        amount = price.get("amount") or 0
-        if amount <= 0 or f.get("priceType") == "soldOut":
+        eur = _eur(f.get("price"))
+        if eur is None or f.get("priceType") == "soldOut":
             continue
-        eur = fx.to_eur(float(amount), price.get("currencyCode", "EUR"))
-        if eur is None:
-            continue
-        d = datetime.fromisoformat(f["departureDate"][:19]).date()
-        out[d] = min(eur, out.get(d, eur))
-    return out
+        times = f.get("departureDates") or [f["departureDate"]]
+        for t in times:
+            dep = _dt(t)
+            legs.append(Leg(dep, dep + timedelta(hours=est_hours), eur, "Wizz Air"))
+    return legs
 
 
-def combine(dest: str, city: str, timetable: dict, cfg: dict) -> list[Offer]:
-    outs = _daily_prices(timetable.get("outboundFlights"))
-    rets = _daily_prices(timetable.get("returnFlights"))
-    offers = []
-    for out_d, p_out in outs.items():
-        for in_d, p_in in rets.items():
-            if is_weekend_trip(out_d, in_d, cfg):
-                offers.append(
-                    Offer(
-                        source="wizzair",
-                        airline="Wizz Air",
-                        origin=cfg["origin"],
-                        dest=dest,
-                        dest_city=city,
-                        out_date=out_d,
-                        in_date=in_d,
-                        price_pp=round(p_out + p_in, 2),
-                        link=(
-                            f"{SITE}/it-it/booking/select-flight/{cfg['origin']}/{dest}/"
-                            f"{out_d.isoformat()}/{in_d.isoformat()}/{cfg['adults']}/0/0/null"
-                        ),
-                    )
-                )
-    return offers
+def search_legs(flights: list[dict]) -> list[Leg]:
+    """Risposta search/search -> tutti i voli con la tariffa base più bassa (no WDC)."""
+    legs = []
+    for f in flights or []:
+        prices = []
+        for fare in f.get("fares") or []:
+            if fare.get("wdc") or (fare.get("bundle") or "basic").lower() != "basic":
+                continue
+            eur = _eur(fare.get("discountedPrice")) or _eur(fare.get("basePrice"))
+            if eur is not None:
+                prices.append(eur)
+        if prices and f.get("departureDateTime") and f.get("arrivalDateTime"):
+            legs.append(Leg(_dt(f["departureDateTime"]), _dt(f["arrivalDateTime"]), min(prices), "Wizz Air"))
+    return legs
+
+
+def candidate_weekends(timetable: dict, cfg: dict) -> list[date]:
+    """Venerdì dei weekend in cui il prezzo minimo A/R è sotto soglia (orari esclusi)."""
+    outs = timetable_legs(timetable.get("outboundFlights"), 0)
+    ins = timetable_legs(timetable.get("returnFlights"), 0)
+    good = cfg["thresholds"]["good"]
+    out = set()
+    for o in outs:
+        for i in ins:
+            if o.price + i.price <= good and is_weekend_trip(o.dep.date(), i.dep.date(), cfg):
+                out.add(o.dep.date() - timedelta(days=(o.dep.weekday() - 4) % 7))
+    return sorted(out)
+
+
+def to_offers(dest: str, city: str, combos, cfg: dict) -> list[Offer]:
+    return [
+        Offer(
+            source="wizzair",
+            airline="Wizz Air",
+            origin=cfg["origin"],
+            dest=dest,
+            dest_city=city,
+            out_date=o.dep.date(),
+            in_date=i.dep.date(),
+            price_pp=round(o.price + i.price, 2),
+            link=(
+                f"{SITE}/it-it/booking/select-flight/{cfg['origin']}/{dest}/"
+                f"{o.dep.date().isoformat()}/{i.dep.date().isoformat()}/{cfg['adults']}/0/0/null"
+            ),
+            out_dep=o.dep, out_arr=o.arr, in_dep=i.dep, in_arr=i.arr,
+        )
+        for o, i in combos
+    ]
+
+
+def _search(client, base: str, cfg: dict, dest: str, out_d: date, in_d: date):
+    body = {
+        "isFlightChange": False,
+        "flightList": [
+            {"departureStation": cfg["origin"], "arrivalStation": dest, "departureDate": out_d.isoformat()},
+            {"departureStation": dest, "arrivalStation": cfg["origin"], "departureDate": in_d.isoformat()},
+        ],
+        "adultCount": cfg["adults"],
+        "childCount": 0,
+        "infantCount": 0,
+        "wdc": False,
+    }
+    return client.json("POST", f"{base}/Api/search/search", body)
 
 
 def _run(client, cfg: dict) -> list[Offer]:
+    wcfg = cfg["sources"]["wizzair"]
     base = api_base(client)
     route_map = client.json("GET", f"{base}/Api/asset/map?languageCode=it-it")
     dests = destinations(route_map, cfg["origin"])
     log.info("Wizz Air: %d destinazioni da %s", len(dests), cfg["origin"])
     start, end = search_range(cfg)
-    sleep = cfg["sources"]["wizzair"].get("sleep_seconds", 1.5)
+    sleep = wcfg.get("sleep_seconds", 1.5)
+    search_ok = True
     offers: list[Offer] = []
     for dest, city in dests.items():
         for w_start, w_end in windows(start, end, days=30):
@@ -174,8 +229,32 @@ def _run(client, cfg: dict) -> list[Offer]:
                     raise
                 log.warning("Wizz %s: %s", dest, e)
                 continue
-            offers += combine(dest, city, tt, cfg)
             time.sleep(sleep)
+            for fri in candidate_weekends(tt, cfg):
+                combos = None
+                if search_ok:
+                    try:
+                        outs, ins = [], []
+                        # (ven, dom) e (sab, lun) coprono tutti e 4 i giorni del weekend
+                        for d_out, d_in in ((fri, fri + timedelta(days=2)),
+                                            (fri + timedelta(days=1), fri + timedelta(days=3))):
+                            res = _search(client, base, cfg, dest, d_out, d_in)
+                            outs += search_legs(res.get("outboundFlights"))
+                            ins += search_legs(res.get("returnFlights"))
+                            time.sleep(sleep)
+                        combos = best_combos(outs, ins, cfg)
+                    except Exception as e:  # noqa: BLE001
+                        log.warning("Wizz search non disponibile (%s): uso il calendario", e)
+                        search_ok = False
+                if combos is None:
+                    est = wcfg.get("estimated_flight_hours", 3)
+                    combos = best_combos(
+                        timetable_legs(tt.get("outboundFlights"), est),
+                        timetable_legs(tt.get("returnFlights"), est),
+                        cfg,
+                    )
+                    combos = [c for c in combos if fri <= c[0].dep.date() <= fri + timedelta(days=1)]
+                offers += to_offers(dest, city, combos, cfg)
     return offers
 
 
