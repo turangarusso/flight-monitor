@@ -9,6 +9,10 @@ on:
       sources:
         description: "Fonti (all oppure es. ryanair,wizzair)"
         default: all
+      digest:
+        description: "Invia anche il riepilogo delle offerte valide"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -42,7 +46,8 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           SOURCES: ${{ github.event.inputs.sources || (github.event.schedule == '17 12,19 * * *' && 'ryanair,wizzair') || 'all' }}
-        run: python monitor.py --sources "$SOURCES"
+          DIGEST: ${{ (github.event.schedule == '17 5 * * *' || github.event.inputs.digest == 'true') && '--digest' || '' }}
+        run: python monitor.py --sources "$SOURCES" $DIGEST
 
       - name: Salva storico prezzi
         if: always()

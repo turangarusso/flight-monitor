@@ -209,6 +209,25 @@ def test_message_shows_times(cfg):
     assert "sab 16/01 08:30→10:25" in msg and "dom 17/01 19:40" in msg and "33 h sul posto" in msg
 
 
+def test_digest_includes_already_notified(cfg):
+    state = empty_state()
+    offers = [offer(25), offer(56, dest="TLS"), offer(20, dest="CTA")]
+    select_alerts(offers, state, cfg)
+    snapshot = json.dumps(state, sort_keys=True)
+    assert select_alerts(offers, state, cfg) == []          # niente nuovi avvisi...
+    msgs = notify.build_digest(offers, cfg)                 # ...ma il riepilogo le mostra
+    assert len(msgs) == 2 and "TLS" in msgs[0] and "CTA" in msgs[1] and "CTA" not in msgs[0]
+    assert "🆕" not in "".join(msgs)
+    assert json.dumps(state, sort_keys=True) == snapshot
+
+
+def test_digest_limits_and_empty(cfg):
+    many = [offer(20 + i, dest=f"X{i:02d}") for i in range(15)]
+    (msg,) = notify.build_digest(many, cfg)
+    assert msg.count("Prenota") == 12 and "altre 3 destinazioni" in msg
+    assert "Nessuna offerta" in notify.build_digest([], cfg)[0]
+
+
 def test_prices_csv_migration(tmp_path):
     path = tmp_path / "prices.csv"
     path.write_text("checked_at,source\nold,row\n")

@@ -31,6 +31,11 @@ thresholds:
   super: 40   # 🔥 Super offerta
   good: 65    # 👍 Buona offerta
 
+# Riepilogo del mattino (run delle ~6-7): migliori offerte valide, anche già viste
+digest:
+  max_abroad: 12   # destinazioni estere mostrate
+  max_italy: 6     # destinazioni italiane mostrate
+
 alerts:
   # Rinotifica un'offerta già vista solo se il prezzo scende di almeno X euro
   min_drop_eur: 3

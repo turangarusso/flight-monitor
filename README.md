@@ -14,7 +14,9 @@ Le offerte in **Italia** arrivano in un messaggio separato da quelle all'**ester
 
 Se una fonte non funziona, l'errore viene salvato in `data/last_errors.txt`.
 
-Avvisa solo per offerte **nuove**, **scese di almeno 3 €** o al **minimo storico** di una destinazione, quindi non riceve duplicati.
+Ogni mattina arriva anche un **riepilogo** con le migliori offerte ancora valide, comprese quelle già notificate.
+
+Gli avvisi durante il giorno arrivano solo per offerte **nuove**, **scese di almeno 3 €** o al **minimo storico** di una destinazione, quindi non riceve duplicati.
 
 ## Setup (5 minuti)
 

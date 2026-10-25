@@ -10,6 +10,7 @@ import requests
 from airports import is_domestic
 from alerts import Alert
 from dates import fmt_it
+from models import Offer
 
 MAX_LEN = 3900  # limite Telegram 4096 caratteri
 
@@ -26,15 +27,16 @@ def _times(o) -> str:
 def _line(a: Alert, others: int, cfg: dict) -> str:
     o = a.offer
     adults = cfg["adults"]
-    tag = {"new": "🆕", "drop": f"🔻 -{a.drop:.0f} €", "record": "🏆 minimo storico"}[a.reason]
+    tag = {"new": "🆕", "drop": f"🔻 -{a.drop:.0f} €", "record": "🏆 minimo storico",
+           "digest": ""}[a.reason]
     if a.reason == "record" and a.drop:
         tag += f" (-{a.drop:.0f} €)"
     tier = "🔥" if o.price_pp <= cfg["thresholds"]["super"] else "👍"
-    more = f" · +{others} altre date" if others else ""
+    extras = "".join(f"{x} · " for x in (tag, f"+{others} altre date" if others else "") if x)
     return (
         f"{tier} <b>{html.escape(o.dest_city)}</b> ({html.escape(o.airline)})\n"
         f"   {_times(o)}\n"
-        f"   <b>{o.price_pp:.0f} €</b> a testa ({o.price_pp * adults:.0f} € in {adults}) · {tag}{more} · "
+        f"   <b>{o.price_pp:.0f} €</b> a testa ({o.price_pp * adults:.0f} € in {adults}) · {extras}"
         f'<a href="{html.escape(o.link)}">Prenota</a>'
     )
 
@@ -79,6 +81,30 @@ def build_messages(alerts: list[Alert], cfg: dict, warnings: list[str]) -> list[
             lines += ["", _line(a, others, cfg)]
         out += _split(lines)
     return out
+
+
+def build_digest(offers: list[Offer], cfg: dict) -> list[str]:
+    """Riepilogo del mattino: le migliori offerte valide, anche se già notificate."""
+    dcfg = cfg.get("digest") or {}
+    items = [Alert(o, "digest") for o in offers]
+    sections = [
+        ("☀️ <b>Riepilogo del mattino: estero</b>",
+         [a for a in items if not is_domestic(a.offer.dest)], dcfg.get("max_abroad", 12)),
+        ("🇮🇹 <b>Riepilogo del mattino: Italia</b>",
+         [a for a in items if is_domestic(a.offer.dest)], dcfg.get("max_italy", 6)),
+    ]
+    out = []
+    for title, group, limit in sections:
+        rows = _best_per_dest(group)
+        if not rows:
+            continue
+        lines = [title]
+        for a, others in rows[:limit]:
+            lines += ["", _line(a, others, cfg)]
+        if len(rows) > limit:
+            lines += ["", f"…e altre {len(rows) - limit} destinazioni"]
+        out += _split(lines)
+    return out or [f"☀️ Nessuna offerta weekend sotto i {cfg['thresholds']['good']} € oggi."]
 
 
 def send(messages: list[str]) -> None:

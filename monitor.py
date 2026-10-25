@@ -35,6 +35,8 @@ def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--sources", default="all", help="es. ryanair,wizzair (default: all)")
     p.add_argument("--dry-run", action="store_true")
+    p.add_argument("--digest", action="store_true",
+                   help="invia anche il riepilogo delle migliori offerte valide")
     args = p.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 
@@ -73,6 +75,8 @@ def main(argv: list[str] | None = None) -> int:
         state["failures"][n] == cfg["alerts"]["failure_alert_after"] for n in wanted
     )
     messages = notify.build_messages(alerts, cfg, warnings if (alerts or first_warning) else [])
+    if args.digest:
+        messages += notify.build_digest(offers, cfg)
 
     if args.dry_run:
         print("\n---\n".join(messages) or "(nessun messaggio)")
