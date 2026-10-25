@@ -1,29 +1,3 @@
-Run del 2026-10-25 14:43 UTC
+Run del 2026-10-25 15:05 UTC
 
-[wizzair]
-Traceback (most recent call last):
-  File "/home/runner/work/flight-monitor/flight-monitor/monitor.py", line 49, in main
-    found = importlib.import_module(f"sources.{name}").fetch(cfg)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/flight-monitor/flight-monitor/sources/wizzair.py", line 264, in fetch
-    return _run(client, cfg)
-           ^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/flight-monitor/flight-monitor/sources/wizzair.py", line 202, in _run
-    base = api_base(client)
-           ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/flight-monitor/flight-monitor/sources/wizzair.py", line 92, in api_base
-    text = client.text(SITE + "/buildnumber")
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-http_utils.HttpError: HTTP 404 su https://wizzair.com/buildnumber
-
-
-[google_flights]
-Traceback (most recent call last):
-  File "/home/runner/work/flight-monitor/flight-monitor/monitor.py", line 49, in main
-    found = importlib.import_module(f"sources.{name}").fetch(cfg)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/flight-monitor/flight-monitor/sources/google_flights.py", line 146, in fetch
-    raise RuntimeError(f"Google Flights: tutte le {stats['total']} ricerche fallite. Primo errore: {first_error[0]}")
-RuntimeError: Google Flights: tutte le 264 ricerche fallite. Primo errore: BuilderError: Invalid impersonate: "chrome_126"
-
-
+Nessun errore
