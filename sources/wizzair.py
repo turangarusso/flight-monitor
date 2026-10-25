@@ -127,7 +127,7 @@ def api_base(client) -> str:
 def destinations(route_map: dict, origin: str) -> dict[str, str]:
     """IATA -> nome città delle destinazioni dirette da `origin`."""
     cities = route_map.get("cities", [])
-    names = {c["iata"]: c.get("shortName") or c["iata"] for c in cities}
+    names = {c["iata"]: (c.get("shortName") or c["iata"]).strip() for c in cities}
     # "Venezia (tutti gli aeroporti)" & co. sono gruppi di aeroporti già presenti singolarmente
     fake = {c["iata"] for c in cities
             if c.get("isFakeStation") or "tutti gli aeroporti" in (c.get("shortName") or "").lower()}
@@ -230,7 +230,7 @@ def _search(client, base: str, cfg: dict, dest: str, out_d: date, in_d: date):
     return client.json("POST", f"{base}/Api/search/search", body)
 
 
-def _run(client, cfg: dict) -> list[Offer]:
+def _run(client, cfg: dict, opened: list) -> list[Offer]:
     wcfg = cfg["sources"]["wizzair"]
     base = api_base(client)
     route_map = client.json("GET", f"{base}/Api/asset/map?languageCode=it-it")
@@ -239,6 +239,7 @@ def _run(client, cfg: dict) -> list[Offer]:
     start, end = search_range(cfg)
     sleep = wcfg.get("sleep_seconds", 1.5)
     search_ok = True
+    searcher = client
     offers: list[Offer] = []
     for dest, city in dests.items():
         for w_start, w_end in windows(start, end, days=30):
@@ -265,18 +266,27 @@ def _run(client, cfg: dict) -> list[Offer]:
             time.sleep(sleep)
             for fri in candidate_weekends(tt, cfg):
                 combos = None
-                if search_ok:
+                while search_ok and combos is None:
                     try:
                         outs, ins = [], []
                         # (ven, dom) e (sab, lun) coprono tutti e 4 i giorni del weekend
                         for d_out, d_in in ((fri, fri + timedelta(days=2)),
                                             (fri + timedelta(days=1), fri + timedelta(days=3))):
-                            res = _search(client, base, cfg, dest, d_out, d_in)
+                            res = _search(searcher, base, cfg, dest, d_out, d_in)
                             outs += search_legs(res.get("outboundFlights"))
                             ins += search_legs(res.get("returnFlights"))
                             time.sleep(sleep)
                         combos = best_combos(outs, ins, cfg)
                     except Exception as e:  # noqa: BLE001
+                        if isinstance(searcher, RequestsClient) and wcfg.get("playwright_fallback"):
+                            # la ricerca dettagliata è più protetta: riprova dal browser
+                            log.info("Wizz search bloccata (%s), riprovo dal browser", e)
+                            try:
+                                searcher = BrowserClient()
+                                opened.append(searcher)
+                                continue
+                            except Exception as be:  # noqa: BLE001
+                                e = be
                         log.warning("Wizz search non disponibile (%s): uso il calendario", e)
                         search_ok = False
                 if combos is None:
@@ -292,17 +302,21 @@ def _run(client, cfg: dict) -> list[Offer]:
 
 
 def fetch(cfg: dict) -> list[Offer]:
+    opened: list = []  # browser aperti durante il run, da chiudere alla fine
     client = RequestsClient()
     try:
-        return _run(client, cfg)
+        return _run(client, cfg, opened)
     except HttpError as e:
         if e.status not in (403, 429) or not cfg["sources"]["wizzair"].get("playwright_fallback"):
             raise
         log.warning("Wizz Air ha bloccato le richieste dirette (%s), uso il browser", e)
     finally:
         client.close()
+        for b in opened:
+            b.close()
+        opened.clear()
     browser = BrowserClient()
     try:
-        return _run(browser, cfg)
+        return _run(browser, cfg, opened)
     finally:
         browser.close()
