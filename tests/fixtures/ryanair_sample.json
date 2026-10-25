@@ -1,0 +1,87 @@
+{
+ "fares": [
+  {
+   "outbound": {
+    "departureAirport": {
+     "iataCode": "NAP",
+     "name": "Napoli"
+    },
+    "arrivalAirport": {
+     "iataCode": "BCN",
+     "name": "Barcellona El Prat",
+     "city": {
+      "name": "Barcellona",
+      "code": "BARCELONA"
+     }
+    },
+    "departureDate": "2026-11-13T06:30:00",
+    "price": {
+     "value": 14.99,
+     "currencyCode": "EUR"
+    }
+   },
+   "inbound": {
+    "departureAirport": {
+     "iataCode": "BCN"
+    },
+    "arrivalAirport": {
+     "iataCode": "NAP"
+    },
+    "departureDate": "2026-11-15T21:10:00",
+    "price": {
+     "value": 15.0,
+     "currencyCode": "EUR"
+    }
+   },
+   "summary": {
+    "price": {
+     "value": 29.99,
+     "currencyCode": "EUR"
+    },
+    "tripDurationDays": 2
+   }
+  },
+  {
+   "outbound": {
+    "departureAirport": {
+     "iataCode": "NAP"
+    },
+    "arrivalAirport": {
+     "iataCode": "STN",
+     "name": "Londra Stansted",
+     "city": {
+      "name": "Londra"
+     }
+    },
+    "departureDate": "2026-11-14T07:00:00",
+    "price": {
+     "value": 30.0
+    }
+   },
+   "inbound": {
+    "departureAirport": {
+     "iataCode": "STN"
+    },
+    "arrivalAirport": {
+     "iataCode": "NAP"
+    },
+    "departureDate": "2026-11-16T10:00:00",
+    "price": {
+     "value": 25.5
+    }
+   },
+   "summary": {
+    "price": {
+     "value": 55.5
+    }
+   }
+  },
+  {
+   "outbound": {
+    "broken": true
+   }
+  }
+ ],
+ "nextPage": null,
+ "size": 3
+}

@@ -1,0 +1,56 @@
+name: Monitor voli
+
+on:
+  schedule:
+    - cron: "17 5 * * *"      # tutte le fonti, incluso Google Flights (~6-7 ora italiana)
+    - cron: "17 12,19 * * *"  # solo Ryanair + Wizz Air
+  workflow_dispatch:
+    inputs:
+      sources:
+        description: "Fonti (all oppure es. ryanair,wizzair)"
+        default: all
+
+permissions:
+  contents: write
+
+concurrency:
+  group: flight-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Installa dipendenze
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Test
+        run: python -m pytest -q
+
+      - name: Cerca voli
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SOURCES: ${{ github.event.inputs.sources || (github.event.schedule == '17 12,19 * * *' && 'ryanair,wizzair') || 'all' }}
+        run: python monitor.py --sources "$SOURCES"
+
+      - name: Salva storico prezzi
+        if: always()
+        run: |
+          git config user.name "flight-monitor-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Aggiorna prezzi $(date -u '+%Y-%m-%d %H:%M')"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push

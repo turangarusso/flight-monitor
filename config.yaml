@@ -1,0 +1,66 @@
+# Aeroporto di partenza (codice IATA)
+origin: NAP
+
+# Quanti mesi in avanti cercare
+months_ahead: 4
+
+# Weekend: partenza venerdì/sabato, ritorno domenica/lunedì, da 1 a 3 notti
+outbound_days: [FRI, SAT]
+inbound_days: [SUN, MON]
+min_nights: 1
+max_nights: 3
+
+# Numero di passeggeri (per i link di prenotazione e il totale)
+adults: 2
+
+# Soglie di prezzo A/R a persona, in euro
+thresholds:
+  super: 40   # 🔥 Super offerta
+  good: 65    # 👍 Buona offerta
+
+alerts:
+  # Rinotifica un'offerta già vista solo se il prezzo scende di almeno X euro
+  min_drop_eur: 3
+  # Avvisa su Telegram se una fonte fallisce N run di fila
+  failure_alert_after: 3
+
+sources:
+  ryanair:
+    enabled: true
+
+  wizzair:
+    enabled: true
+    # Se l'API blocca le richieste dirette, riprova tramite browser headless
+    playwright_fallback: true
+    sleep_seconds: 1.5
+
+  google_flights:
+    enabled: true
+    # Quanti weekend (ven→dom) controllare per ogni destinazione
+    weekends: 8
+    sleep_seconds: 3
+    # Destinazioni da controllare (Google Flights non supporta "ovunque").
+    # Soprattutto rotte easyJet / Volotea / Vueling / ITA da Napoli.
+    destinations:
+      - LGW   # Londra Gatwick
+      - AMS   # Amsterdam
+      - CDG   # Parigi CDG
+      - ORY   # Parigi Orly
+      - NCE   # Nizza
+      - GVA   # Ginevra
+      - BSL   # Basilea
+      - BER   # Berlino
+      - BCN   # Barcellona
+      - LIS   # Lisbona
+      - NTE   # Nantes
+      - BOD   # Bordeaux
+      - ATH   # Atene
+      - VCE   # Venezia
+      - TRN   # Torino
+      - MXP   # Milano Malpensa
+      - LIN   # Milano Linate
+      - PMO   # Palermo
+      - CTA   # Catania
+      - CAG   # Cagliari
+      - OLB   # Olbia
+      - MLA   # Malta

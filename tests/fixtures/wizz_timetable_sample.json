@@ -1,0 +1,66 @@
+{
+ "outboundFlights": [
+  {
+   "departureStation": "NAP",
+   "arrivalStation": "BUD",
+   "departureDate": "2026-11-13T00:00:00",
+   "price": {
+    "amount": 19.99,
+    "currencyCode": "EUR"
+   },
+   "priceType": "price"
+  },
+  {
+   "departureStation": "NAP",
+   "arrivalStation": "BUD",
+   "departureDate": "2026-11-14T00:00:00",
+   "price": {
+    "amount": 9.99,
+    "currencyCode": "EUR"
+   },
+   "priceType": "price"
+  },
+  {
+   "departureStation": "NAP",
+   "arrivalStation": "BUD",
+   "departureDate": "2026-11-18T00:00:00",
+   "price": {
+    "amount": 5.0,
+    "currencyCode": "EUR"
+   },
+   "priceType": "price"
+  },
+  {
+   "departureStation": "NAP",
+   "arrivalStation": "BUD",
+   "departureDate": "2026-11-20T00:00:00",
+   "price": {
+    "amount": 0,
+    "currencyCode": "EUR"
+   },
+   "priceType": "soldOut"
+  }
+ ],
+ "returnFlights": [
+  {
+   "departureStation": "BUD",
+   "arrivalStation": "NAP",
+   "departureDate": "2026-11-15T00:00:00",
+   "price": {
+    "amount": 8000,
+    "currencyCode": "HUF"
+   },
+   "priceType": "price"
+  },
+  {
+   "departureStation": "BUD",
+   "arrivalStation": "NAP",
+   "departureDate": "2026-11-16T00:00:00",
+   "price": {
+    "amount": 12000,
+    "currencyCode": "HUF"
+   },
+   "priceType": "price"
+  }
+ ]
+}
