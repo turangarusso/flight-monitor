@@ -57,8 +57,20 @@ class BrowserClient:
         self._pw = sync_playwright().start()
         self._browser = self._pw.chromium.launch()
         self._page = self._browser.new_page(locale="it-IT")
+        self.base = None
+
+        def on_request(req):
+            m = _BASE_RE.search(req.url)
+            if m and not self.base:
+                self.base = m.group(0)
+
+        # il sito chiama da solo be.wizzair.com/<versione>/Api/...: ne leggiamo la versione
+        self._page.on("request", on_request)
         self._page.goto(SITE + "/it-it", wait_until="domcontentloaded", timeout=60000)
-        self._page.wait_for_timeout(5000)
+        for _ in range(20):
+            if self.base:
+                break
+            self._page.wait_for_timeout(1000)
 
     def _fetch(self, method: str, url: str, body: dict | None):
         res = self._page.evaluate(
@@ -88,12 +100,28 @@ class BrowserClient:
         self._pw.stop()
 
 
+_BASE_RE = re.compile(r"https://be\.wizzair\.com/[\d.]+")
+
+
+class VersionNotFound(HttpError):
+    """La versione API non si trova con richieste dirette: serve il browser."""
+
+    def __init__(self):
+        super().__init__(403, "versione API Wizz")
+
+
 def api_base(client) -> str:
-    text = client.text(SITE + "/buildnumber")
-    m = re.search(r"https://be\.wizzair\.com/[\d.]+", text)
-    if not m:
-        raise RuntimeError(f"Versione API Wizz non trovata in: {text[:200]!r}")
-    return m.group(0)
+    if getattr(client, "base", None):
+        return client.base
+    for url in (SITE + "/buildnumber", "https://www.wizzair.com/buildnumber", SITE + "/it-it"):
+        try:
+            m = _BASE_RE.search(client.text(url))
+        except Exception as e:  # noqa: BLE001
+            log.info("Wizz %s: %s", url, e)
+            continue
+        if m:
+            return m.group(0)
+    raise VersionNotFound()
 
 
 def destinations(route_map: dict, origin: str) -> dict[str, str]:

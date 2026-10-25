@@ -134,6 +134,14 @@ def test_wizz_destinations_and_version():
 
     assert wizzair.api_base(Fake()) == "https://be.wizzair.com/27.3.0"
 
+    class NotFound:
+        def text(self, url):
+            raise wizzair.HttpError(404, url)
+
+    with pytest.raises(wizzair.VersionNotFound) as e:   # 403 -> passa al browser
+        wizzair.api_base(NotFound())
+    assert e.value.status == 403
+
 
 def test_google_price_parse():
     assert google_flights.parse_price("€58") == 58
