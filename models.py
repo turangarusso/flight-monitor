@@ -30,6 +30,7 @@ class Offer:
     out_arr: datetime | None = None
     in_dep: datetime | None = None
     in_arr: datetime | None = None
+    country_code: str = ""   # ISO2 del paese di destinazione, es. "FR"
 
     @property
     def key(self) -> str:

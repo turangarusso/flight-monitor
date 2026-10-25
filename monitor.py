@@ -52,12 +52,14 @@ def main(argv: list[str] | None = None) -> int:
 
     state = storage.load_state()
     offers, warnings, errors = [], [], {}
+    refreshed: set[str] = set()
     for name in wanted:
         try:
             found = importlib.import_module(f"sources.{name}").fetch(cfg)
             log.info("%s: %d tariffe", name, len(found))
             offers += found
             state["failures"][name] = 0
+            refreshed.add(name)
         except Exception as e:  # noqa: BLE001 - una fonte rotta non blocca le altre
             log.exception("%s fallita", name)
             errors[name] = traceback.format_exc(limit=4)
@@ -83,6 +85,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     storage.append_prices(offers)
+    storage.write_latest(offers, refreshed, cfg["adults"])
     if source_warnings:
         errors["avvisi"] = "\n".join(dict.fromkeys(source_warnings))
     storage.write_errors(errors)

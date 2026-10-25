@@ -29,6 +29,25 @@ Gli avvisi durante il giorno arrivano solo per offerte **nuove**, **scese di alm
    - *Settings → Secrets and variables → Actions → New repository secret*: aggiungi `TELEGRAM_BOT_TOKEN` e `TELEGRAM_CHAT_ID`.
 3. **Test**: tab *Actions → Monitor voli → Run workflow*.
 
+## Comandi del bot (opzionale, gratis con Cloudflare)
+
+Scrivendo al bot puoi consultare tutte le offerte in qualsiasi momento:
+
+- `/voli Tolosa` (o solo `Tolosa`): tutti i voli per quella città
+- `/voli`: elenco delle città con il prezzo minimo
+- `/top`: le 10 offerte migliori
+- `/paese Spagna`: tutte le città di un paese
+
+Il bot gira su Cloudflare Workers (gratis) e legge `data/latest.json`. Setup una tantum:
+
+1. Crea un account gratuito su https://dash.cloudflare.com e apri **Workers & Pages** una volta, per attivare il sottodominio `workers.dev`.
+2. *My Profile → API Tokens → Create Token*, modello **Edit Cloudflare Workers** → copia il token.
+3. Copia l'**Account ID** (nella pagina Workers & Pages, colonna a destra).
+4. Nel repo, *Settings → Secrets → Actions*: aggiungi `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID`.
+5. *Actions → Bot Telegram → Run workflow*. Pubblica il bot, lo collega a Telegram e imposta il menu dei comandi.
+
+Il bot risponde solo alla chat di `TELEGRAM_CHAT_ID`.
+
 ## Personalizzare
 
 Modifica `config.yaml`: soglie di prezzo, mesi in avanti, giorni della settimana, notti, destinazioni Google Flights, oppure disattiva una fonte con `enabled: false`.

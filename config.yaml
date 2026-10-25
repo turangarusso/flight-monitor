@@ -35,6 +35,7 @@ thresholds:
 digest:
   max_abroad: 12   # destinazioni estere mostrate
   max_italy: 6     # destinazioni italiane mostrate
+  max_other_dates: 4   # altre date mostrate sotto ogni città (le altre con /voli <città>)
 
 alerts:
   # Rinotifica un'offerta già vista solo se il prezzo scende di almeno X euro
@@ -59,28 +60,28 @@ sources:
     # Quanti weekend controllare per ogni destinazione (4 ricerche a weekend)
     weekends: 6
     sleep_seconds: 2
-    # Destinazioni da controllare (codice IATA: nome), Google Flights non supporta "ovunque".
+    # Destinazioni da controllare (codice IATA: città e paese), Google Flights non supporta "ovunque".
     # Soprattutto rotte easyJet / Volotea / Vueling / ITA da Napoli.
     destinations:
-      LGW: Londra Gatwick
-      AMS: Amsterdam
-      CDG: Parigi CDG
-      ORY: Parigi Orly
-      NCE: Nizza
-      GVA: Ginevra
-      BSL: Basilea
-      BER: Berlino
-      BCN: Barcellona
-      LIS: Lisbona
-      NTE: Nantes
-      BOD: Bordeaux
-      ATH: Atene
-      VCE: Venezia
-      TRN: Torino
-      MXP: Milano Malpensa
-      LIN: Milano Linate
-      PMO: Palermo
-      CTA: Catania
-      CAG: Cagliari
-      OLB: Olbia
-      MLA: Malta
+      LGW: {city: Londra Gatwick, country: GB}
+      AMS: {city: Amsterdam, country: NL}
+      CDG: {city: Parigi CDG, country: FR}
+      ORY: {city: Parigi Orly, country: FR}
+      NCE: {city: Nizza, country: FR}
+      GVA: {city: Ginevra, country: CH}
+      BSL: {city: Basilea, country: CH}
+      BER: {city: Berlino, country: DE}
+      BCN: {city: Barcellona, country: ES}
+      LIS: {city: Lisbona, country: PT}
+      NTE: {city: Nantes, country: FR}
+      BOD: {city: Bordeaux, country: FR}
+      ATH: {city: Atene, country: GR}
+      VCE: {city: Venezia, country: IT}
+      TRN: {city: Torino, country: IT}
+      MXP: {city: Milano Malpensa, country: IT}
+      LIN: {city: Milano Linate, country: IT}
+      PMO: {city: Palermo, country: IT}
+      CTA: {city: Catania, country: IT}
+      CAG: {city: Cagliari, country: IT}
+      OLB: {city: Olbia, country: IT}
+      MLA: {city: Malta, country: MT}

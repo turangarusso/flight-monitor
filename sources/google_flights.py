@@ -69,6 +69,19 @@ def to_legs(flights, day: date) -> list[Leg]:
     return legs
 
 
+def destinations(raw) -> dict[str, tuple[str, str]]:
+    """Config -> IATA: (città, paese). Accetta lista, 'IATA: nome' o 'IATA: {city, country}'."""
+    if isinstance(raw, list):
+        return {d: (d, "") for d in raw}
+    out = {}
+    for iata, v in raw.items():
+        if isinstance(v, dict):
+            out[iata] = (v.get("city") or iata, (v.get("country") or "").upper())
+        else:
+            out[iata] = (v or iata, "")
+    return out
+
+
 def search_link(origin: str, dest: str, out_d: date, in_d: date) -> str:
     q = f"Flights from {origin} to {dest} on {out_d.isoformat()} through {in_d.isoformat()} nonstop"
     return f"https://www.google.com/travel/flights?q={quote(q)}&curr=EUR&hl=it"
@@ -117,10 +130,7 @@ def fetch(cfg: dict) -> list[Offer]:
             first_error.append(f"{type(e).__name__}: {str(e)[:300]}")
         log.debug("Google Flights: %s", e)
 
-    dests = gcfg["destinations"]
-    if isinstance(dests, list):
-        dests = {d: d for d in dests}
-    for dest, city in dests.items():
+    for dest, (city, country) in destinations(gcfg["destinations"]).items():
         for fri, sun in upcoming_fri_sun(gcfg.get("weekends", 6)):
             sat, mon = fri + timedelta(days=1), sun + timedelta(days=1)
             outs = one_way(origin, dest, fri) + one_way(origin, dest, sat)
@@ -140,6 +150,7 @@ def fetch(cfg: dict) -> list[Offer]:
                         price_pp=round(o.price + i.price, 2),
                         link=search_link(origin, dest, o.dep.date(), i.dep.date()),
                         out_dep=o.dep, out_arr=o.arr, in_dep=i.dep, in_arr=i.arr,
+                        country_code=country,
                     )
                 )
     if stats["total"] and stats["errors"] == stats["total"]:

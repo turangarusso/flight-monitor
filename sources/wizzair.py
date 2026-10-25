@@ -124,16 +124,17 @@ def api_base(client) -> str:
     raise VersionNotFound()
 
 
-def destinations(route_map: dict, origin: str) -> dict[str, str]:
-    """IATA -> nome città delle destinazioni dirette da `origin`."""
+def destinations(route_map: dict, origin: str) -> dict[str, tuple[str, str]]:
+    """IATA -> (nome città, codice paese) delle destinazioni dirette da `origin`."""
     cities = route_map.get("cities", [])
-    names = {c["iata"]: (c.get("shortName") or c["iata"]).strip() for c in cities}
+    info = {c["iata"]: ((c.get("shortName") or c["iata"]).strip(), (c.get("countryCode") or "").upper())
+            for c in cities}
     # "Venezia (tutti gli aeroporti)" & co. sono gruppi di aeroporti già presenti singolarmente
     fake = {c["iata"] for c in cities
             if c.get("isFakeStation") or "tutti gli aeroporti" in (c.get("shortName") or "").lower()}
     for city in cities:
         if city.get("iata") == origin:
-            return {c["iata"]: names.get(c["iata"], c["iata"])
+            return {c["iata"]: info.get(c["iata"], (c["iata"], ""))
                     for c in city.get("connections", []) if c["iata"] not in fake}
     return {}
 
@@ -194,7 +195,7 @@ def candidate_weekends(timetable: dict, cfg: dict) -> list[date]:
     return sorted(out)
 
 
-def to_offers(dest: str, city: str, combos, cfg: dict) -> list[Offer]:
+def to_offers(dest: str, city: str, combos, cfg: dict, country: str = "") -> list[Offer]:
     return [
         Offer(
             source="wizzair",
@@ -210,6 +211,7 @@ def to_offers(dest: str, city: str, combos, cfg: dict) -> list[Offer]:
                 f"{o.dep.date().isoformat()}/{i.dep.date().isoformat()}/{cfg['adults']}/0/0/null"
             ),
             out_dep=o.dep, out_arr=o.arr, in_dep=i.dep, in_arr=i.arr,
+            country_code=country,
         )
         for o, i in combos
     ]
@@ -241,7 +243,7 @@ def _run(client, cfg: dict, opened: list) -> list[Offer]:
     search_ok = True
     searcher = client
     offers: list[Offer] = []
-    for dest, city in dests.items():
+    for dest, (city, country) in dests.items():
         for w_start, w_end in windows(start, end, days=30):
             body = {
                 "flightList": [
@@ -297,7 +299,7 @@ def _run(client, cfg: dict, opened: list) -> list[Offer]:
                         cfg,
                     )
                     combos = [c for c in combos if fri <= c[0].dep.date() <= fri + timedelta(days=1)]
-                offers += to_offers(dest, city, combos, cfg)
+                offers += to_offers(dest, city, combos, cfg, country)
     return offers
 
 

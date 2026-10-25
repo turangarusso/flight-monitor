@@ -1,5 +1,5 @@
 import json
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import pytest
@@ -8,6 +8,7 @@ import fx
 import monitor
 import notify
 import storage
+from airports import country_label
 from alerts import filter_offers, select_alerts
 from dates import is_weekend_trip, upcoming_fri_sun, windows
 from combos import best_combos, valid_trip
@@ -124,11 +125,11 @@ def test_wizz_timetable_candidates_and_fallback(cfg):
 def test_wizz_destinations_and_version():
     route_map = {"cities": [
         {"iata": "NAP", "shortName": "Napoli", "connections": [{"iata": "BUD"}, {"iata": "TIA"}, {"iata": "VCX"}]},
-        {"iata": "BUD", "shortName": "Budapest", "connections": []},
+        {"iata": "BUD", "shortName": "Budapest", "countryCode": "hu", "connections": []},
         {"iata": "VCE", "shortName": "Venezia", "connections": []},
         {"iata": "VCX", "shortName": "Venezia (tutti gli aeroporti)", "connections": []},
     ]}
-    assert wizzair.destinations(route_map, "NAP") == {"BUD": "Budapest", "TIA": "TIA"}
+    assert wizzair.destinations(route_map, "NAP") == {"BUD": ("Budapest", "HU"), "TIA": ("TIA", "")}
 
     class Fake:
         def text(self, url):
@@ -196,7 +197,7 @@ def test_messages_split_italy_and_group(cfg):
     assert "estero" in abroad and "CTA" not in abroad and "⚠️ Wizz Air" in abroad
     assert "Italia" in italy and "CTA" in italy and "BCN" not in italy
     assert abroad.index("BCN") < abroad.index("STN")            # ordinate per prezzo
-    assert "+1 altre date" in abroad and abroad.count("BCN") == 1
+    assert "Altre date:" in abroad and abroad.count("<b>BCN</b>") == 1 and "ven 20/11" in abroad
     assert "50 € in 2" in abroad and "🔥" in abroad and "👍" in abroad
     assert notify.build_messages([], cfg, []) == []
 
@@ -226,6 +227,42 @@ def test_digest_limits_and_empty(cfg):
     (msg,) = notify.build_digest(many, cfg)
     assert msg.count("Prenota") == 12 and "altre 3 destinazioni" in msg
     assert "Nessuna offerta" in notify.build_digest([], cfg)[0]
+
+
+def test_country_from_sources(cfg):
+    fares = ryanair.parse_fares(json.loads((FIX / "ryanair_sample.json").read_text()))
+    assert [f["country"] for f in fares] == ["GB", "ES"]
+    assert google_flights.destinations(cfg["sources"]["google_flights"]["destinations"])["NTE"] == ("Nantes", "FR")
+    assert google_flights.destinations(["LGW"]) == {"LGW": ("LGW", "")}
+    assert country_label("fr") == "🇫🇷 Francia" and country_label("ZZ") == "🇿🇿" and country_label("") == ""
+
+
+def test_message_country_and_other_dates(cfg):
+    weekends = [date(2027, 1, 8) + timedelta(weeks=i) for i in range(6)]
+    offers = [offer(50 + i, dest="TLS", out=d, inn=d + timedelta(days=2)) for i, d in enumerate(weekends)]
+    for o in offers:
+        o.dest_city, o.country_code = "Tolosa", "FR"
+    (msg,) = notify.build_digest(offers, cfg)
+    assert "<b>Tolosa</b> 🇫🇷 Francia (Ryanair)" in msg
+    assert msg.count("   • ") == 4                       # 4 altre date mostrate
+    assert "…e altre 1 date: /voli Tolosa" in msg
+    assert msg.count("Prenota") == 5
+
+
+def test_latest_json_keeps_other_sources(tmp_path):
+    path = tmp_path / "latest.json"
+    old_google = offer(40, dest="LGW", out=date(2027, 1, 8), inn=date(2027, 1, 10))
+    old_google.source = "google_flights"
+    past = offer(30, dest="BCN", out=date(2026, 1, 1), inn=date(2026, 1, 3))
+    past.source = "google_flights"
+    storage.write_latest([old_google, past, offer(99)], {"ryanair", "google_flights"}, path=path)
+    new = offer(25, dest="TLS", out=date(2027, 1, 22), inn=date(2027, 1, 24))
+    new.country_code = "FR"
+    storage.write_latest([new], {"ryanair"}, path=path, today=date(2026, 10, 25))
+    data = json.loads(path.read_text())
+    assert data["adults"] == 2
+    assert [(r["source"], r["dest"]) for r in data["offers"]] == [("ryanair", "TLS"), ("google_flights", "LGW")]
+    assert data["offers"][0]["country_name"] == "Francia" and data["offers"][0]["flag"] == "🇫🇷"
 
 
 def test_prices_csv_migration(tmp_path):

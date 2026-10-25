@@ -1,0 +1,10 @@
+name = "flight-monitor-bot"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+workers_dev = true
+
+[vars]
+DATA_URL = "https://raw.githubusercontent.com/turangarusso/flight-monitor/main/data/latest.json"
+
+# Secret impostati dal workflow .github/workflows/bot.yml:
+# TELEGRAM_BOT_TOKEN, WEBHOOK_SECRET, ALLOWED_CHAT_IDS

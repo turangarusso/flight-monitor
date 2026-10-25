@@ -9,8 +9,10 @@
      "iataCode": "LTN",
      "name": "Londra Luton",
      "city": {
-      "name": "Londra"
-     }
+      "name": "Londra",
+      "countryCode": "gb"
+     },
+     "countryName": "Regno Unito"
     },
     "departureDate": "2027-01-16T20:05:00",
     "arrivalDate": "2027-01-16T22:00:00",
@@ -46,8 +48,10 @@
      "iataCode": "BCN",
      "name": "Barcellona El Prat",
      "city": {
-      "name": "Barcellona"
-     }
+      "name": "Barcellona",
+      "countryCode": "es"
+     },
+     "countryName": "Spagna"
     },
     "departureDate": "2027-01-15T18:30:00",
     "arrivalDate": "2027-01-15T20:30:00",

@@ -60,6 +60,7 @@ def parse_fares(data: dict) -> list[dict]:
         found.append({
             "dest": arr["iataCode"],
             "city": (arr.get("city") or {}).get("name") or arr.get("name") or arr["iataCode"],
+            "country": ((arr.get("city") or {}).get("countryCode") or arr.get("countryCode") or "").upper(),
             "out": out_leg,
             "in": in_leg,
         })
@@ -84,7 +85,7 @@ def parse_availability(data: dict, min_seats: int) -> tuple[list[Leg], list[Leg]
     return trips[0], trips[1]
 
 
-def to_offers(dest: str, city: str, combos, cfg: dict) -> list[Offer]:
+def to_offers(dest: str, city: str, combos, cfg: dict, country: str = "") -> list[Offer]:
     return [
         Offer(
             source="ryanair",
@@ -97,6 +98,7 @@ def to_offers(dest: str, city: str, combos, cfg: dict) -> list[Offer]:
             price_pp=round(o.price + i.price, 2),
             link=booking_link(cfg["origin"], dest, o.dep.date(), i.dep.date(), cfg["adults"]),
             out_dep=o.dep, out_arr=o.arr, in_dep=i.dep, in_arr=i.arr,
+            country_code=country,
         )
         for o, i in combos
     ]
@@ -152,6 +154,6 @@ def fetch(cfg: dict) -> list[Offer]:
                 time.sleep(1)
             if combos is None:
                 combos = best_combos([fare["out"]], [fare["in"]], cfg)
-            offers += to_offers(fare["dest"], fare["city"], combos, cfg)
+            offers += to_offers(fare["dest"], fare["city"], combos, cfg, fare["country"])
         time.sleep(1)
     return offers

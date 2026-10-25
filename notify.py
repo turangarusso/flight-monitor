@@ -7,7 +7,7 @@ import os
 
 import requests
 
-from airports import is_domestic
+from airports import country_label, is_domestic
 from alerts import Alert
 from dates import fmt_it
 from models import Offer
@@ -24,7 +24,17 @@ def _times(o) -> str:
     )
 
 
-def _line(a: Alert, others: int, cfg: dict) -> str:
+def _short(o, cfg: dict, best: Offer) -> str:
+    """Riga compatta per le altre date della stessa città."""
+    if o.out_dep and o.out_arr and o.in_dep:
+        when = f"{fmt_it(o.out_date)} {o.out_dep:%H:%M}→{o.out_arr:%H:%M} · {fmt_it(o.in_date)} {o.in_dep:%H:%M}"
+    else:
+        when = f"{fmt_it(o.out_date)} → {fmt_it(o.in_date)}"
+    airline = f" ({html.escape(o.airline)})" if o.airline != best.airline else ""
+    return f'   • {when} · <b>{o.price_pp:.0f} €</b>{airline} · <a href="{html.escape(o.link)}">Prenota</a>'
+
+
+def _line(a: Alert, others: list[Alert], cfg: dict) -> str:
     o = a.offer
     adults = cfg["adults"]
     tag = {"new": "🆕", "drop": f"🔻 -{a.drop:.0f} €", "record": "🏆 minimo storico",
@@ -32,21 +42,32 @@ def _line(a: Alert, others: int, cfg: dict) -> str:
     if a.reason == "record" and a.drop:
         tag += f" (-{a.drop:.0f} €)"
     tier = "🔥" if o.price_pp <= cfg["thresholds"]["super"] else "👍"
-    extras = "".join(f"{x} · " for x in (tag, f"+{others} altre date" if others else "") if x)
-    return (
-        f"{tier} <b>{html.escape(o.dest_city)}</b> ({html.escape(o.airline)})\n"
-        f"   {_times(o)}\n"
-        f"   <b>{o.price_pp:.0f} €</b> a testa ({o.price_pp * adults:.0f} € in {adults}) · {extras}"
-        f'<a href="{html.escape(o.link)}">Prenota</a>'
-    )
+    country = country_label(o.country_code)
+    lines = [
+        f"{tier} <b>{html.escape(o.dest_city)}</b>{' ' + country if country else ''} ({html.escape(o.airline)})",
+        f"   {_times(o)}",
+        f"   <b>{o.price_pp:.0f} €</b> a testa ({o.price_pp * adults:.0f} € in {adults}) · "
+        + (f"{tag} · " if tag else "")
+        + f'<a href="{html.escape(o.link)}">Prenota</a>',
+    ]
+    limit = (cfg.get("digest") or {}).get("max_other_dates", 4)
+    if others:
+        lines.append("   Altre date:")
+        lines += [_short(x.offer, cfg, o) for x in others[:limit]]
+        if len(others) > limit:
+            lines.append(f"   …e altre {len(others) - limit} date: /voli {html.escape(o.dest_city)}")
+    return "\n".join(lines)
 
 
-def _best_per_dest(alerts: list[Alert]) -> list[tuple[Alert, int]]:
-    """Una riga per destinazione: l'offerta più economica + quante altre date."""
+def _best_per_dest(alerts: list[Alert]) -> list[tuple[Alert, list[Alert]]]:
+    """Una voce per destinazione: l'offerta più economica + le altre date, per prezzo."""
     groups: dict[str, list[Alert]] = {}
     for a in alerts:
         groups.setdefault(a.offer.dest, []).append(a)
-    rows = [(min(g, key=lambda a: a.offer.price_pp), len(g) - 1) for g in groups.values()]
+    rows = []
+    for g in groups.values():
+        g.sort(key=lambda a: (a.offer.price_pp, a.offer.out_date))
+        rows.append((g[0], g[1:]))
     return sorted(rows, key=lambda r: r[0].offer.price_pp)
 
 
