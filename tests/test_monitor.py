@@ -123,8 +123,10 @@ def test_wizz_timetable_candidates_and_fallback(cfg):
 
 def test_wizz_destinations_and_version():
     route_map = {"cities": [
-        {"iata": "NAP", "shortName": "Napoli", "connections": [{"iata": "BUD"}, {"iata": "TIA"}]},
+        {"iata": "NAP", "shortName": "Napoli", "connections": [{"iata": "BUD"}, {"iata": "TIA"}, {"iata": "VCX"}]},
         {"iata": "BUD", "shortName": "Budapest", "connections": []},
+        {"iata": "VCE", "shortName": "Venezia", "connections": []},
+        {"iata": "VCX", "shortName": "Venezia (tutti gli aeroporti)", "connections": []},
     ]}
     assert wizzair.destinations(route_map, "NAP") == {"BUD": "Budapest", "TIA": "TIA"}
 

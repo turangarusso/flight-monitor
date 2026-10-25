@@ -42,6 +42,12 @@ def main(argv: list[str] | None = None) -> int:
     enabled = [n for n, c in cfg["sources"].items() if c.get("enabled")]
     wanted = enabled if args.sources == "all" else [s.strip() for s in args.sources.split(",")]
 
+    # salva anche gli avvisi non fatali delle fonti (es. fallback attivati) in last_errors.txt
+    source_warnings: list[str] = []
+    handler = logging.Handler(logging.WARNING)
+    handler.emit = lambda r: source_warnings.append(f"{r.name}: {r.getMessage()}")
+    logging.getLogger("sources").addHandler(handler)
+
     state = storage.load_state()
     offers, warnings, errors = [], [], {}
     for name in wanted:
@@ -73,6 +79,8 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     storage.append_prices(offers)
+    if source_warnings:
+        errors["avvisi"] = "\n".join(dict.fromkeys(source_warnings))
     storage.write_errors(errors)
     if messages:
         notify.send(messages)

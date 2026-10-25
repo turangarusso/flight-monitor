@@ -126,10 +126,15 @@ def api_base(client) -> str:
 
 def destinations(route_map: dict, origin: str) -> dict[str, str]:
     """IATA -> nome città delle destinazioni dirette da `origin`."""
-    names = {c["iata"]: c.get("shortName") or c["iata"] for c in route_map.get("cities", [])}
-    for city in route_map.get("cities", []):
+    cities = route_map.get("cities", [])
+    names = {c["iata"]: c.get("shortName") or c["iata"] for c in cities}
+    # "Venezia (tutti gli aeroporti)" & co. sono gruppi di aeroporti già presenti singolarmente
+    fake = {c["iata"] for c in cities
+            if c.get("isFakeStation") or "tutti gli aeroporti" in (c.get("shortName") or "").lower()}
+    for city in cities:
         if city.get("iata") == origin:
-            return {c["iata"]: names.get(c["iata"], c["iata"]) for c in city.get("connections", [])}
+            return {c["iata"]: names.get(c["iata"], c["iata"])
+                    for c in city.get("connections", []) if c["iata"] not in fake}
     return {}
 
 
