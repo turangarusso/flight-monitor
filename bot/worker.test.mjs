@@ -75,9 +75,9 @@ test("webhook: segreto e chat autorizzate", async () => {
     body: JSON.stringify({ message: { chat: { id: chatId }, text: "/voli tolosa" } }),
   });
   assert.equal((await worker.fetch(req("sbagliato", 530138459), env)).status, 403);
-  await worker.fetch(req("s3cret", 999), env);
+  assert.match(await (await worker.fetch(req("s3cret", 999), env)).text(), /non autorizzata/);
   assert.equal(sent.length, 0);                     // chat estranea: nessuna risposta
-  await worker.fetch(req("s3cret", 530138459), env);
+  assert.match(await (await worker.fetch(req("s3cret", 530138459), env)).text(), /inviati: ok/);
   assert.equal(sent.length, 1);
   assert.equal(sent[0].chat_id, 530138459);
   assert.match(sent[0].text, /Tolosa/);

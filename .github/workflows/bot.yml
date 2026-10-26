@@ -84,6 +84,7 @@ jobs:
         if: steps.check.outputs.ready == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          ALLOWED_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           sub=$(curl -sf -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
@@ -102,3 +103,8 @@ jobs:
           sleep 20
           echo "::notice::Webhook Telegram: $(curl -s "$tg/getWebhookInfo" | jq -c '.result | {url, pending_update_count, last_error_date, last_error_message}')"
           echo "::notice::Risposta del Worker: $(curl -s -m 20 -o /dev/null -w '%{http_code}' "$url") $(curl -s -m 20 "$url" | head -c 100)"
+          # simula un messaggio "/aiuto" dalla tua chat: se tutto funziona ti arriva la guida su Telegram
+          test=$(curl -s -m 30 -X POST "$url" -H 'content-type: application/json' \
+            -H "X-Telegram-Bot-Api-Secret-Token: $WEBHOOK_SECRET" \
+            -d "{\"message\":{\"chat\":{\"id\":$ALLOWED_CHAT_IDS},\"text\":\"/aiuto\"}}")
+          echo "::notice::Test /aiuto: $test"

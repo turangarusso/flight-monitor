@@ -199,11 +199,12 @@ async function loadData(env) {
 }
 
 async function send(env, chatId, text) {
-  await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+  const r = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML", disable_web_page_preview: true }),
   });
+  return r.ok ? "ok" : `HTTP ${r.status} ${(await r.text()).slice(0, 200)}`;
 }
 
 export function isAllowed(env, chatId) {
@@ -219,13 +220,21 @@ export default {
     }
     const update = await request.json();
     const msg = update.message;
+    // la risposta HTTP descrive cosa è successo (Telegram la ignora, serve per la diagnosi)
+    if (!msg || !msg.text) return new Response("ignorato: nessun testo");
     // risponde solo alle chat autorizzate; agli altri non dice nulla
-    if (!msg || !msg.text || !isAllowed(env, msg.chat.id)) return new Response("ok");
-    try {
-      for (const text of handle(msg.text, await loadData(env))) await send(env, msg.chat.id, text);
-    } catch (e) {
-      await send(env, msg.chat.id, `⚠️ Non riesco a leggere le offerte (${esc(e.message)}). Riprova tra poco.`);
+    if (!isAllowed(env, msg.chat.id)) {
+      console.log(`chat ${msg.chat.id} non autorizzata`);
+      return new Response(`ignorato: chat ${msg.chat.id} non autorizzata`);
     }
-    return new Response("ok");
+    const results = [];
+    try {
+      for (const text of handle(msg.text, await loadData(env))) results.push(await send(env, msg.chat.id, text));
+    } catch (e) {
+      results.push(`errore: ${e.message}`);
+      results.push(await send(env, msg.chat.id, `⚠️ Non riesco a leggere le offerte (${esc(e.message)}). Riprova tra poco.`));
+    }
+    console.log(results.join(" | "));
+    return new Response(`inviati: ${results.join(" | ")}`);
   },
 };
