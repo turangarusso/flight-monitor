@@ -66,6 +66,15 @@ jobs:
         run: |
           # in caso di errore il messaggio di Cloudflare finisce nelle annotazioni del run
           run() { "$@" > out.txt 2>&1 || { cat out.txt; echo "::error::$(tail -c 1500 out.txt | tr '\n' ' ')"; exit 1; }; cat out.txt; }
+          # sottodominio workers.dev: se l'account non ne ha uno, lo registra
+          api="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/subdomain"
+          auth="Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+          sub=$(curl -s -H "$auth" "$api" | jq -r '.result.subdomain // empty')
+          if [ -z "$sub" ]; then
+            res=$(curl -s -X PUT -H "$auth" -H 'content-type: application/json' "$api" \
+              -d "{\"subdomain\":\"${{ vars.WORKERS_SUBDOMAIN || github.repository_owner }}\"}")
+            echo "::notice::Registrazione sottodominio workers.dev: $(echo "$res" | jq -c '{success, errors, result}')"
+          fi
           run npx --yes wrangler@3 deploy
           for name in TELEGRAM_BOT_TOKEN WEBHOOK_SECRET ALLOWED_CHAT_IDS; do
             printf '%s' "${!name}" | run npx --yes wrangler@3 secret put "$name"
