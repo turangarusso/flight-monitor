@@ -1,0 +1,147 @@
+{
+ "properties": [
+  {
+   "type": "hostel",
+   "name": "Hostel Capitole",
+   "extracted_hotel_class": 0,
+   "overall_rating": 4.6,
+   "reviews": 900,
+   "total_rate": {
+    "lowest": "\u20ac60",
+    "extracted_lowest": 60
+   },
+   "link": "https://hotel/Hostel-Capitole",
+   "amenities": [
+    "Free Wi-Fi"
+   ]
+  },
+  {
+   "type": "hotel",
+   "name": "Hotel Due Stelle",
+   "extracted_hotel_class": 2,
+   "overall_rating": 4.5,
+   "reviews": 300,
+   "total_rate": {
+    "lowest": "\u20ac90",
+    "extracted_lowest": 90
+   },
+   "link": "https://hotel/Hotel-Due-Stelle",
+   "amenities": [
+    "Free Wi-Fi"
+   ]
+  },
+  {
+   "type": "hotel",
+   "name": "Hotel Voto Basso",
+   "extracted_hotel_class": 3,
+   "overall_rating": 3.8,
+   "reviews": 500,
+   "total_rate": {
+    "lowest": "\u20ac95",
+    "extracted_lowest": 95
+   },
+   "link": "https://hotel/Hotel-Voto-Basso",
+   "amenities": [
+    "Free Wi-Fi"
+   ]
+  },
+  {
+   "type": "hotel",
+   "name": "Pension Shared",
+   "extracted_hotel_class": 3,
+   "overall_rating": 4.4,
+   "reviews": 200,
+   "total_rate": {
+    "lowest": "\u20ac100",
+    "extracted_lowest": 100
+   },
+   "link": "https://hotel/Pension-Shared",
+   "amenities": [
+    "Shared bathroom"
+   ]
+  },
+  {
+   "type": "hotel",
+   "name": "Hotel Poche Recensioni",
+   "extracted_hotel_class": 3,
+   "overall_rating": 4.6,
+   "reviews": 12,
+   "total_rate": {
+    "lowest": "\u20ac105",
+    "extracted_lowest": 105
+   },
+   "link": "https://hotel/Hotel-Poche-Recensioni",
+   "amenities": [
+    "Free Wi-Fi"
+   ]
+  },
+  {
+   "type": "hotel",
+   "name": "Hotel Lontano",
+   "extracted_hotel_class": 3,
+   "overall_rating": 4.5,
+   "reviews": 400,
+   "total_rate": {
+    "lowest": "\u20ac110",
+    "extracted_lowest": 110
+   },
+   "link": "https://hotel/Hotel-Lontano",
+   "amenities": [
+    "Free Wi-Fi"
+   ],
+   "location_rating": 2.9
+  },
+  {
+   "type": "hotel",
+   "name": "Hotel Mercure Centre",
+   "extracted_hotel_class": 4,
+   "overall_rating": 4.3,
+   "reviews": 1240,
+   "total_rate": {
+    "lowest": "\u20ac168",
+    "extracted_lowest": 168
+   },
+   "link": "https://hotel/Hotel-Mercure-Centre",
+   "amenities": [
+    "Free Wi-Fi"
+   ]
+  },
+  {
+   "type": "hotel",
+   "name": "Hotel Ibis Styles",
+   "extracted_hotel_class": 3,
+   "overall_rating": 4.2,
+   "reviews": 800,
+   "total_rate": {
+    "lowest": "\u20ac150",
+    "extracted_lowest": 150
+   },
+   "link": "https://hotel/Hotel-Ibis-Styles",
+   "amenities": [
+    "Free Wi-Fi"
+   ]
+  },
+  {
+   "type": "hotel",
+   "name": "Senza prezzo",
+   "extracted_hotel_class": 4,
+   "overall_rating": 4.9,
+   "reviews": 100
+  },
+  {
+   "type": "hotel",
+   "name": "Hotel Caro",
+   "extracted_hotel_class": 5,
+   "overall_rating": 4.8,
+   "reviews": 900,
+   "total_rate": {
+    "lowest": "\u20ac400",
+    "extracted_lowest": 400
+   },
+   "link": "https://hotel/Hotel-Caro",
+   "amenities": [
+    "Free Wi-Fi"
+   ]
+  }
+ ]
+}

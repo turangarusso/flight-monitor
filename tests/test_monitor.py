@@ -7,6 +7,7 @@ import pytest
 import fx
 import monitor
 import notify
+import packages
 import storage
 from airports import country_label
 from alerts import filter_offers, select_alerts
@@ -14,6 +15,7 @@ from dates import is_weekend_trip, upcoming_fri_sun, windows
 from combos import best_combos, valid_trip
 from models import Leg, Offer
 from sources import google_flights, ryanair, wizzair
+from sources import hotels as hotel_src
 
 FIX = Path(__file__).parent / "fixtures"
 
@@ -287,3 +289,75 @@ def test_main_isolates_failing_source(cfg, monkeypatch, tmp_path, capsys):
     monkeypatch.setattr(wizzair, "fetch", lambda c: (_ for _ in ()).throw(RuntimeError("bloccato")))
     assert monitor.main(["--sources", "ryanair,wizzair", "--dry-run"]) == 0
     assert "BCN" in capsys.readouterr().out  # Ryanair notificata nonostante Wizz rotto
+
+
+# --- Pacchetti volo + alloggio ---
+
+def test_hotel_quality_filters(cfg):
+    hotels = json.loads((FIX / "serpapi_hotels_sample.json").read_text())["properties"]
+    best = hotel_src.pick_best(hotels, "hotel", "Tolosa", 2, cfg["hotels"])
+    assert (best.name, best.stars, best.total_eur) == ("Hotel Ibis Styles", 3, 150)
+    rentals = json.loads((FIX / "serpapi_rentals_sample.json").read_text())["properties"]
+    apt = hotel_src.pick_best(rentals, "apartment", "Tolosa", 2, cfg["hotels"])
+    assert (apt.name, apt.rating, apt.total_eur) == ("Capitole Loft", 4.8, 142)
+
+
+class FakeResp:
+    def __init__(self, data):
+        self.data = data
+
+    def raise_for_status(self):
+        pass
+
+    def json(self):
+        return self.data
+
+
+def test_hotel_search_cache_and_budget(cfg, monkeypatch, tmp_path):
+    calls = []
+    data = json.loads((FIX / "serpapi_hotels_sample.json").read_text())
+    monkeypatch.setattr(hotel_src.requests, "get", lambda url, params, timeout: calls.append(params) or FakeResp(data))
+    state = empty_state()
+    cache = tmp_path / "cache.json"
+    s = hotel_src.HotelSearch(cfg, state, api_key="k", cache_path=cache, today=date(2026, 10, 26))
+    d1, d2 = date(2027, 1, 23), date(2027, 1, 25)
+    assert s.best("Tolosa", d1, d2, "hotel").name == "Hotel Ibis Styles"
+    assert s.best("Tolosa", d1, d2, "hotel").name == "Hotel Ibis Styles"   # dalla cache
+    assert len(calls) == 1 and calls[0]["hotel_class"] == "3,4,5" and calls[0]["adults"] == 2
+    assert state["hotel_searches"] == {"2026-10": 1}
+    s.save()
+    s2 = hotel_src.HotelSearch(cfg, state, api_key="k", cache_path=cache, today=date(2026, 10, 27))
+    s2.best("Tolosa", d1, d2, "hotel")
+    assert len(calls) == 1                                                 # cache ancora valida
+    state["hotel_searches"]["2026-10"] = cfg["hotels"]["monthly_budget"]
+    with pytest.raises(hotel_src.BudgetExceeded):
+        s2.best("Praga", d1, d2, "hotel")
+
+
+def test_packages_build_and_message(cfg, monkeypatch, tmp_path):
+    hotels = json.loads((FIX / "serpapi_hotels_sample.json").read_text())
+    rentals = json.loads((FIX / "serpapi_rentals_sample.json").read_text())
+    monkeypatch.setattr(hotel_src.requests, "get",
+                        lambda url, params, timeout: FakeResp(rentals if params.get("vacation_rentals") else hotels))
+    tls = offer(56.27, dest="TLS", out=date(2027, 1, 23), inn=date(2027, 1, 25))
+    tls.dest_city, tls.country_code = "Tolosa", "FR"
+    tls.out_dep, tls.out_arr, tls.in_dep = datetime(2027, 1, 23, 10), datetime(2027, 1, 23, 12, 5), datetime(2027, 1, 25, 20, 55)
+    soon = offer(20, dest="BCN", out=date(2026, 10, 30), inn=date(2026, 11, 1))   # troppo vicino
+    italy = offer(15, dest="CTA", out=date(2027, 1, 8), inn=date(2027, 1, 10))    # Italia: escluso
+    state = empty_state()
+    search = hotel_src.HotelSearch(cfg, state, api_key="k", cache_path=tmp_path / "c.json", today=date(2026, 10, 26))
+    pkgs, notes = packages.build([soon, italy, tls], cfg, search, today=date(2026, 10, 26))
+    assert [p.offer.dest for p in pkgs] == ["TLS"] and notes == []
+    p = pkgs[0]
+    assert p.stay.name == "Capitole Loft" and p.total(2) == pytest.approx(254.54)
+    (msg,) = notify.build_packages(pkgs, cfg, notes)
+    assert "<b>Tolosa</b> 🇫🇷 Francia · sab 23/01 → lun 25/01 (2 notti)" in msg
+    assert "🏨 Hotel Ibis Styles ★★★ · 4,2/5 (800 recensioni) · <b>150 €</b>" in msg
+    assert "🏠 Appartamento Capitole Loft · 4,8/5 (63 recensioni) · <b>142 €</b>" in msg
+    assert "Totale da <b>255 €</b> in 2 (127 € a testa)" in msg
+
+
+def test_packages_disabled_without_key(cfg, tmp_path):
+    search = hotel_src.HotelSearch(cfg, empty_state(), api_key="", cache_path=tmp_path / "c.json")
+    assert packages.build([offer(30, dest="TLS", out=date(2027, 1, 23), inn=date(2027, 1, 25))], cfg, search) == ([], [])
+    assert notify.build_packages([], cfg, []) == []

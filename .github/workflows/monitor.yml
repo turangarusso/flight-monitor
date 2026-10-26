@@ -47,6 +47,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
           SOURCES: ${{ github.event.inputs.sources || (github.event.schedule == '17 12,19 * * *' && 'ryanair,wizzair') || 'all' }}
           DIGEST: ${{ (github.event.schedule == '17 5 * * *' || github.event.inputs.digest == 'true') && '--digest' || '' }}
         run: python monitor.py --sources "$SOURCES" $DIGEST

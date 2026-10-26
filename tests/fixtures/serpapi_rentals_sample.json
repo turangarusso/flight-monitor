@@ -1,0 +1,56 @@
+{
+ "properties": [
+  {
+   "type": "vacation rental",
+   "name": "Room in shared flat",
+   "overall_rating": 4.9,
+   "reviews": 80,
+   "essential_info": [
+    "Private room",
+    "Sleeps 2"
+   ],
+   "rate_per_night": {
+    "extracted_lowest": 35.0
+   }
+  },
+  {
+   "type": "vacation rental",
+   "name": "Studio nuovo",
+   "overall_rating": 4.9,
+   "reviews": 5,
+   "essential_info": [
+    "Entire apartment",
+    "Sleeps 2"
+   ],
+   "rate_per_night": {
+    "extracted_lowest": 45.0
+   }
+  },
+  {
+   "type": "vacation rental",
+   "name": "Capitole Loft",
+   "overall_rating": 4.8,
+   "reviews": 63,
+   "essential_info": [
+    "Entire apartment",
+    "Sleeps 4",
+    "1 bathroom"
+   ],
+   "rate_per_night": {
+    "extracted_lowest": 71.0
+   }
+  },
+  {
+   "type": "vacation rental",
+   "name": "Grand appartement",
+   "overall_rating": 4.7,
+   "reviews": 40,
+   "essential_info": [
+    "Entire apartment"
+   ],
+   "rate_per_night": {
+    "extracted_lowest": 90.0
+   }
+  }
+ ]
+}

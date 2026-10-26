@@ -18,8 +18,10 @@ from pathlib import Path
 import yaml
 
 import notify
+import packages
 import storage
 from alerts import filter_offers, select_alerts
+from sources.hotels import HotelSearch
 
 ROOT = Path(__file__).parent
 NAMES = {"ryanair": "Ryanair", "wizzair": "Wizz Air", "google_flights": "Google Flights"}
@@ -77,15 +79,21 @@ def main(argv: list[str] | None = None) -> int:
         state["failures"][n] == cfg["alerts"]["failure_alert_after"] for n in wanted
     )
     messages = notify.build_messages(alerts, cfg, warnings if (alerts or first_warning) else [])
+    stays: dict[str, dict] = {}
     if args.digest:
         messages += notify.build_digest(offers, cfg)
+        # pacchetti volo + alloggio (solo nel riepilogo, per risparmiare le ricerche gratuite)
+        pkgs, notes = packages.build(offers, cfg, HotelSearch(cfg, state))
+        messages += notify.build_packages(pkgs, cfg, notes)
+        stays = {p.offer.key: {"hotel": p.hotel and p.hotel.as_dict(),
+                               "apartment": p.apartment and p.apartment.as_dict()} for p in pkgs}
 
     if args.dry_run:
         print("\n---\n".join(messages) or "(nessun messaggio)")
         return 0
 
     storage.append_prices(offers)
-    storage.write_latest(offers, refreshed, cfg["adults"])
+    storage.write_latest(offers, refreshed, cfg["adults"], stays=stays)
     if source_warnings:
         errors["avvisi"] = "\n".join(dict.fromkeys(source_warnings))
     storage.write_errors(errors)

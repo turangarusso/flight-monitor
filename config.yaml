@@ -37,6 +37,21 @@ digest:
   max_italy: 6     # destinazioni italiane mostrate
   max_other_dates: 4   # altre date mostrate sotto ogni città (le altre con /voli <città>)
 
+# Pacchetti volo + alloggio (Google Hotels via SerpApi, serve il secret SERPAPI_KEY)
+hotels:
+  enabled: true
+  top_flights: 3          # quante offerte di volo (estero) completare con l'alloggio ogni mattina
+  min_days_ahead: 7       # solo partenze tra almeno 7 giorni
+  monthly_budget: 90      # ricerche al mese (piano gratuito SerpApi: 100-250)
+  cache_days: 3           # non ripete la stessa ricerca per 3 giorni
+  max_total_eur: 250      # prezzo massimo dell'alloggio per tutto il soggiorno, in 2
+  min_stars: 3            # hotel: almeno 3 stelle
+  min_hotel_rating: 4.0   # hotel: voto ospiti minimo su 5
+  min_hotel_reviews: 50
+  min_apartment_rating: 4.3
+  min_apartment_reviews: 15
+  min_location_rating: 3.5
+
 alerts:
   # Rinotifica un'offerta già vista solo se il prezzo scende di almeno X euro
   min_drop_eur: 3

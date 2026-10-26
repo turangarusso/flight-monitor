@@ -15,6 +15,7 @@ export const HELP = [
   "/voli – elenco delle città con il prezzo minimo",
   "/top – le 10 offerte migliori di adesso",
   "/paese <i>nome</i> – tutte le città di un paese (es. <code>/paese Spagna</code>)",
+  "/pacchetti – volo + hotel o appartamento di qualità (aggiornati ogni mattina)",
   "",
   "Puoi anche scrivere solo il nome della città.",
 ].join("\n");
@@ -23,6 +24,7 @@ export const COMMANDS = [
   { command: "voli", description: "Voli per una città (es. /voli Tolosa)" },
   { command: "top", description: "Le 10 offerte migliori di adesso" },
   { command: "paese", description: "Città di un paese (es. /paese Spagna)" },
+  { command: "pacchetti", description: "Volo + hotel o appartamento" },
   { command: "aiuto", description: "Come si usa il bot" },
 ];
 
@@ -105,8 +107,30 @@ export function offerLine(o, adults) {
   return (
     `• ${out} · ritorno ${back}${h != null ? ` · ${h} h sul posto` : ""}\n` +
     `   <b>${Math.round(o.price_pp)} €</b> a testa (${Math.round(o.price_pp * adults)} € in ${adults}) · ` +
-    `${esc(o.airline)} · <a href="${esc(o.link)}">Prenota</a>`
+    `${esc(o.airline)} · <a href="${esc(o.link)}">Prenota</a>` +
+    stays(o).map((st) => "\n" + stayLine(st)).join("") +
+    (stays(o).length ? `\n   💶 Totale da <b>${Math.round(packageTotal(o, adults))} €</b> in ${adults}` : "")
   );
+}
+
+export function stayLine(st) {
+  const icon = st.kind === "hotel" ? "🏨" : "🏠";
+  const label = st.kind === "hotel" ? "" : "Appartamento ";
+  const stars = st.stars ? " " + "★".repeat(st.stars) : "";
+  const rating = st.rating.toFixed(1).replace(".", ",");
+  return `   ${icon} ${label}${esc(st.name)}${stars} · ${rating}/5 (${st.reviews} recensioni) · ` +
+    `<b>${Math.round(st.total_eur)} €</b> · <a href="${esc(st.link)}">Vedi</a>`;
+}
+
+function stays(o) {
+  return [o.hotel, o.apartment].filter(Boolean);
+}
+
+// prezzo totale volo (per tutti) + alloggio più economico
+export function packageTotal(o, adults) {
+  const s = stays(o);
+  if (!s.length) return null;
+  return o.price_pp * adults + Math.min(...s.map((x) => x.total_eur));
 }
 
 export function split(lines) {
@@ -156,6 +180,20 @@ export function handle(text, data) {
     if (!best.length) return ["Nessuna offerta valida in questo momento."];
     const lines = ["🏆 <b>Le 10 offerte migliori</b>"];
     for (const o of best) {
+      const c = cities.find((x) => x.dest === o.dest);
+      lines.push("", cityTitle(c), offerLine(o, adults));
+    }
+    return split([...lines, ...footer]);
+  }
+
+  if (cmd === "pacchetti") {
+    const pk = (data.offers || []).filter((o) => stays(o).length)
+      .sort((a, b) => packageTotal(a, adults) - packageTotal(b, adults));
+    if (!pk.length) {
+      return ["Nessun pacchetto disponibile ora. I pacchetti volo + alloggio vengono calcolati ogni mattina."];
+    }
+    const lines = ["📦 <b>Pacchetti weekend (volo + dove dormire)</b>"];
+    for (const o of pk) {
       const c = cities.find((x) => x.dest === o.dest);
       lines.push("", cityTitle(c), offerLine(o, adults));
     }

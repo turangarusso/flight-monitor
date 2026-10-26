@@ -13,7 +13,10 @@ const data = {
   updated: "2026-10-25T21:56:00Z",
   adults: 2,
   offers: [
-    offer("TLS", "Tolosa", "2027-01-23", "2027-01-25", 56.27),
+    offer("TLS", "Tolosa", "2027-01-23", "2027-01-25", 56.27, {
+      hotel: { kind: "hotel", name: "Hotel Ibis Styles", stars: 3, rating: 4.2, reviews: 800, total_eur: 150, link: "https://h" },
+      apartment: { kind: "apartment", name: "Capitole Loft", stars: 0, rating: 4.8, reviews: 63, total_eur: 142, link: "https://a" },
+    }),
     offer("TLS", "Tolosa", "2027-01-08", "2027-01-11", 59.98),
     offer("TLS", "Tolosa", "2027-01-22", "2027-01-25", 62.27),
     offer("BCN", "Barcellona", "2027-01-15", "2027-01-17", 29.99, { country_name: "Spagna", flag: "🇪🇸" }),
@@ -81,4 +84,15 @@ test("webhook: segreto e chat autorizzate", async () => {
   assert.equal(sent.length, 1);
   assert.equal(sent[0].chat_id, 530138459);
   assert.match(sent[0].text, /Tolosa/);
+});
+
+test("/pacchetti e alloggio in /voli", () => {
+  const [msg] = handle("/pacchetti", data);
+  assert.match(msg, /Pacchetti weekend/);
+  assert.match(msg, /🏨 Hotel Ibis Styles ★★★ · 4,2\/5 \(800 recensioni\) · <b>150 €<\/b>/);
+  assert.match(msg, /🏠 Appartamento Capitole Loft · 4,8\/5/);
+  assert.match(msg, /Totale da <b>255 €<\/b> in 2/);
+  assert.doesNotMatch(msg, /Barcellona/);
+  assert.match(handle("/voli tolosa", data)[0], /Capitole Loft/);
+  assert.match(handle("/pacchetti", { offers: [] })[0], /Nessun pacchetto/);
 });

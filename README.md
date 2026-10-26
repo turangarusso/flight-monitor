@@ -37,6 +37,7 @@ Scrivendo al bot puoi consultare tutte le offerte in qualsiasi momento:
 - `/voli`: elenco delle città con il prezzo minimo
 - `/top`: le 10 offerte migliori
 - `/paese Spagna`: tutte le città di un paese
+- `/pacchetti`: volo + hotel o appartamento di qualità
 
 Il bot gira su Cloudflare Workers (gratis) e legge `data/latest.json`. Setup una tantum:
 
@@ -46,6 +47,21 @@ Il bot gira su Cloudflare Workers (gratis) e legge `data/latest.json`. Setup una
 4. *Actions → Bot Telegram → Run workflow*. Pubblica il bot, lo collega a Telegram e imposta il menu dei comandi.
 
 Il bot risponde solo alla chat di `TELEGRAM_CHAT_ID`.
+
+## Pacchetti volo + alloggio (opzionale, gratis con SerpApi)
+
+Ogni mattina, per le 3 migliori offerte all'estero, il monitor cerca su **Google Hotels**:
+- 🏨 il **hotel più economico di almeno 3 stelle** con voto ≥ 4,0/5 e almeno 50 recensioni;
+- 🏠 l'**appartamento intero più economico** con voto ≥ 4,3/5 e almeno 15 recensioni.
+
+Scarta ostelli, camere private, bagni in comune e zone con voto della posizione basso. Nel riepilogo arriva la sezione "📦 Pacchetti weekend" con il totale volo + alloggio, e il bot ha il comando `/pacchetti`.
+
+Setup:
+1. Iscriviti gratis su https://serpapi.com (piano Free, 100-250 ricerche al mese).
+2. Copia la tua **API key** da https://serpapi.com/manage-api-key
+3. Aggiungila nei Secrets del repo come `SERPAPI_KEY`.
+
+Il monitor usa al massimo 90 ricerche al mese (`hotels.monthly_budget` in `config.yaml`) e non ripete la stessa ricerca per 3 giorni. Senza la chiave tutto il resto funziona come prima.
 
 ## Personalizzare
 

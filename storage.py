@@ -41,7 +41,8 @@ def append_prices(offers: list[Offer], path: Path | None = None) -> None:
 
 
 def write_latest(offers: list[Offer], refreshed: set[str], adults: int = 2,
-                 path: Path | None = None, today: date | None = None) -> None:
+                 path: Path | None = None, today: date | None = None,
+                 stays: dict[str, dict] | None = None) -> None:
     """Offerte valide attuali, lette dal bot Telegram (/voli, /top, /paese).
 
     Le fonti non aggiornate in questo run (non eseguite o fallite) mantengono
@@ -56,6 +57,7 @@ def write_latest(offers: list[Offer], refreshed: set[str], adults: int = 2,
         row = o.as_row()
         row["country_name"] = COUNTRY_IT.get(o.country_code, "")
         row["flag"] = flag(o.country_code)
+        row.update((stays or {}).get(o.key, {}))  # hotel / appartamento del pacchetto
         rows.append(row)
     rows = sorted(rows + keep, key=lambda r: (r["price_pp"], r["out_date"]))
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")

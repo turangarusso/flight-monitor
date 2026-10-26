@@ -128,6 +128,45 @@ def build_digest(offers: list[Offer], cfg: dict) -> list[str]:
     return out or [f"☀️ Nessuna offerta weekend sotto i {cfg['thresholds']['good']} € oggi."]
 
 
+def _stay_line(s) -> str:
+    icon = "🏨" if s.kind == "hotel" else "🏠"
+    stars = f" {'★' * s.stars}" if s.stars else ""
+    label = "" if s.kind == "hotel" else "Appartamento "
+    rating = f"{s.rating:.1f}".replace(".", ",")
+    return (
+        f"   {icon} {label}{html.escape(s.name)}{stars} · {rating}/5 ({s.reviews} recensioni) · "
+        f'<b>{s.total_eur:.0f} €</b> · <a href="{html.escape(s.link)}">Vedi</a>'
+    )
+
+
+def build_packages(packages, cfg: dict, notes: list[str]) -> list[str]:
+    """Sezione "Pacchetti weekend": volo + hotel/appartamento di qualità."""
+    if not packages and not notes:
+        return []
+    adults = cfg["adults"]
+    lines = ["📦 <b>Pacchetti weekend (volo + dove dormire)</b>"]
+    if not packages:
+        lines += ["", "Nessun alloggio di qualità trovato per le offerte migliori di oggi."]
+    for p in packages:
+        o = p.offer
+        country = country_label(o.country_code)
+        nights = o.nights
+        flight = (f"{o.out_dep:%H:%M}→{o.out_arr:%H:%M} · ritorno {o.in_dep:%H:%M}"
+                  if o.out_dep and o.out_arr and o.in_dep else "")
+        lines += [
+            "",
+            f"📦 <b>{html.escape(o.dest_city)}</b>{' ' + country if country else ''} · "
+            f"{fmt_it(o.out_date)} → {fmt_it(o.in_date)} ({nights} {'notte' if nights == 1 else 'notti'})",
+            f"   ✈️ {html.escape(o.airline)} {flight} · <b>{o.price_pp * adults:.0f} €</b> in {adults} · "
+            f'<a href="{html.escape(o.link)}">Prenota</a>',
+        ]
+        lines += [_stay_line(s) for s in (p.hotel, p.apartment) if s]
+        total = p.total(adults)
+        lines.append(f"   💶 Totale da <b>{total:.0f} €</b> in {adults} ({total / adults:.0f} € a testa)")
+    lines += [f"\n⚠️ {html.escape(n)}" for n in notes]
+    return _split(lines)
+
+
 def send(messages: list[str]) -> None:
     token = os.environ["TELEGRAM_BOT_TOKEN"]
     chat_id = os.environ["TELEGRAM_CHAT_ID"]
