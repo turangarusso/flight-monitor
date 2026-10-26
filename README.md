@@ -42,9 +42,8 @@ Il bot gira su Cloudflare Workers (gratis) e legge `data/latest.json`. Setup una
 
 1. Crea un account gratuito su https://dash.cloudflare.com e apri **Workers & Pages** una volta, per attivare il sottodominio `workers.dev`.
 2. *My Profile → API Tokens → Create Token*, modello **Edit Cloudflare Workers** → copia il token.
-3. Copia l'**Account ID** (nella pagina Workers & Pages, colonna a destra).
-4. Nel repo, *Settings → Secrets → Actions*: aggiungi `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID`.
-5. *Actions → Bot Telegram → Run workflow*. Pubblica il bot, lo collega a Telegram e imposta il menu dei comandi.
+3. Nel repo, *Settings → Secrets → Actions*: aggiungi `CLOUDFLARE_API_TOKEN` (l'Account ID viene ricavato in automatico).
+4. *Actions → Bot Telegram → Run workflow*. Pubblica il bot, lo collega a Telegram e imposta il menu dei comandi.
 
 Il bot risponde solo alla chat di `TELEGRAM_CHAT_ID`.
 
