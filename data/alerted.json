@@ -35,6 +35,9 @@
     "ryanair": 0,
     "wizzair": 0
   },
+  "hotel_searches": {
+    "2026-10": 6
+  },
   "offers": {
     "Ryanair + Wizz Air|MXP|2026-12-04|2026-12-07": 47.0,
     "Ryanair + Wizz Air|VCE|2026-12-04|2026-12-06": 59.0,

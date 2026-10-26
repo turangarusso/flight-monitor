@@ -1,0 +1,80 @@
+{
+ "hotel|tirana|2027-01-29|2027-02-01": {
+  "searched": "2026-10-26",
+  "at": "2026-10-26T19:39:47+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Sky Hotel Tirana",
+   "stars": 4,
+   "rating": 4.4,
+   "reviews": 1205,
+   "total_eur": 90.0,
+   "link": "https://sky1hotel.al/"
+  }
+ },
+ "apartment|tirana|2027-01-29|2027-02-01": {
+  "searched": "2026-10-26",
+  "at": "2026-10-26T19:39:48+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Ariadnes Apartments",
+   "stars": 0,
+   "rating": 4.67,
+   "reviews": 140,
+   "total_eur": 80.0,
+   "link": "https://www.google.com/travel/search?q=Ariadnes%20Apartments%20Tirana&hl=it"
+  }
+ },
+ "hotel|malta|2026-12-11|2026-12-14": {
+  "searched": "2026-10-26",
+  "at": "2026-10-26T19:39:50+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Luna Holiday Complex",
+   "stars": 3,
+   "rating": 4.0,
+   "reviews": 1037,
+   "total_eur": 86.0,
+   "link": "http://www.luna.com.mt/"
+  }
+ },
+ "apartment|malta|2026-12-11|2026-12-14": {
+  "searched": "2026-10-26",
+  "at": "2026-10-26T19:39:53+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Birgu Tower - Studio",
+   "stars": 0,
+   "rating": 5.0,
+   "reviews": 16,
+   "total_eur": 118.0,
+   "link": "https://www.google.com/travel/search?q=Birgu%20Tower%20-%20Studio%20Malta&hl=it"
+  }
+ },
+ "hotel|skopje|2027-01-22|2027-01-25": {
+  "searched": "2026-10-26",
+  "at": "2026-10-26T19:39:55+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "HOTEL \"ULTRA STAR\"",
+   "stars": 3,
+   "rating": 4.3,
+   "reviews": 251,
+   "total_eur": 90.0,
+   "link": "https://www.google.com/travel/search?q=HOTEL%20%22ULTRA%20STAR%22%20Skopje&hl=it"
+  }
+ },
+ "apartment|skopje|2027-01-22|2027-01-25": {
+  "searched": "2026-10-26",
+  "at": "2026-10-26T19:39:57+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Maya Apartment",
+   "stars": 0,
+   "rating": 4.65,
+   "reviews": 128,
+   "total_eur": 73.0,
+   "link": "https://www.booking.com/hotel/mk/maya-apartment.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-10365771&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-10365771_grp-3_gendate-20261020"
+  }
+ }
+}
