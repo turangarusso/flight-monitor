@@ -99,4 +99,6 @@ jobs:
             -d "{\"url\":\"$url\",\"secret_token\":\"$WEBHOOK_SECRET\",\"allowed_updates\":[\"message\"],\"drop_pending_updates\":true}" | jq -e '.ok'
           node -e 'import("./bot/worker.js").then(m => console.log(JSON.stringify({commands: m.COMMANDS})))' > commands.json
           curl -sf "$tg/setMyCommands" -H 'content-type: application/json' -d @commands.json | jq -e '.ok'
-          curl -sf "$tg/getWebhookInfo" | jq '.result | {url, pending_update_count, last_error_message}'
+          sleep 20
+          echo "::notice::Webhook Telegram: $(curl -s "$tg/getWebhookInfo" | jq -c '.result | {url, pending_update_count, last_error_date, last_error_message}')"
+          echo "::notice::Risposta del Worker: $(curl -s -m 20 -o /dev/null -w '%{http_code}' "$url") $(curl -s -m 20 "$url" | head -c 100)"
