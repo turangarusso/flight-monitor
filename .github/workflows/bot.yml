@@ -33,7 +33,7 @@ jobs:
             exit 0
           fi
           curl -sf -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
-            https://api.cloudflare.com/client/v4/user/tokens/verify | jq '.result.status'
+            https://api.cloudflare.com/client/v4/user/tokens/verify | jq -r '"::notice::Token Cloudflare: " + .result.status'
           # l'Account ID si ricava dal token se non è stato impostato come secret
           if [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
             CLOUDFLARE_ACCOUNT_ID=$(curl -sf -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
@@ -58,18 +58,18 @@ jobs:
 
       - name: Pubblica il Worker
         if: steps.check.outputs.ready == 'true'
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: bot
-          secrets: |
-            TELEGRAM_BOT_TOKEN
-            WEBHOOK_SECRET
-            ALLOWED_CHAT_IDS
+        working-directory: bot
         env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           ALLOWED_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          # in caso di errore il messaggio di Cloudflare finisce nelle annotazioni del run
+          run() { "$@" > out.txt 2>&1 || { cat out.txt; echo "::error::$(tail -c 1500 out.txt | tr '\n' ' ')"; exit 1; }; cat out.txt; }
+          run npx --yes wrangler@3 deploy
+          for name in TELEGRAM_BOT_TOKEN WEBHOOK_SECRET ALLOWED_CHAT_IDS; do
+            printf '%s' "${!name}" | run npx --yes wrangler@3 secret put "$name"
+          done
 
       - name: Collega il bot Telegram al Worker
         if: steps.check.outputs.ready == 'true'
