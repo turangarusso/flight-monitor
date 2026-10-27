@@ -76,5 +76,31 @@
    "total_eur": 73.0,
    "link": "https://www.booking.com/hotel/mk/maya-apartment.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-10365771&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-10365771_grp-3_gendate-20261020"
   }
+ },
+ "hotel|tirana|2027-01-15|2027-01-18": {
+  "searched": "2026-10-27",
+  "at": "2026-10-27T10:59:22+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Allure Boutique Hotel",
+   "stars": 4,
+   "rating": 4.3,
+   "reviews": 217,
+   "total_eur": 90.0,
+   "link": "http://www.hotel-allure.al/"
+  }
+ },
+ "apartment|tirana|2027-01-15|2027-01-18": {
+  "searched": "2026-10-27",
+  "at": "2026-10-27T10:59:24+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Gledis Apartment Tirana - Panoramic City Terrace",
+   "stars": 0,
+   "rating": 4.75,
+   "reviews": 124,
+   "total_eur": 90.0,
+   "link": "https://www.booking.com/hotel/al/gledis-appartment.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-8538215&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-8538215_grp-3_gendate-20261020"
+  }
  }
 }
