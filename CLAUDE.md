@@ -2,6 +2,8 @@
 
 Monitor gratuito di voli weekend low cost da Napoli (NAP), per 2 persone, con avvisi su Telegram, riepilogo del mattino, pacchetti volo + alloggio e un bot che risponde a comandi. Tutto in italiano (messaggi, commenti, commit).
 
+La storia delle decisioni e le cose aperte sono in `MEMORIA.md`.
+
 Per creare progetti simili (altri monitor di prezzi con bot Telegram) c'è la skill `.claude/skills/monitor-prezzi-telegram/`.
 
 ## Architettura
