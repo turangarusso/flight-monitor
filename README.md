@@ -85,3 +85,8 @@ python -m pytest -q
 - Sono API **non ufficiali** e scraping, per uso personale e a bassa frequenza. Se una compagnia cambia qualcosa, quella fonte smette di funzionare ma le altre continuano: dopo 3 run falliti di fila ricevi un ⚠️ su Telegram.
 - I prezzi sono le tariffe base (senza bagaglio grande né posto scelto). Verifica sempre sul sito che ci siano **2 posti** a quel prezzo.
 - GitHub sospende i workflow schedulati dopo 60 giorni senza commit: il commit automatico dello storico prezzi lo tiene attivo.
+
+## Per sviluppatori (e per Claude)
+
+- `CLAUDE.md`: mappa del codice, comandi, regole e insidie note di questo progetto. Claude Code lo legge in automatico.
+- `.claude/skills/monitor-prezzi-telegram/`: skill riutilizzabile per costruire monitor di prezzi simili (avvisi Telegram, bot con comandi, tutto gratis). Funziona quando apri questo repo con Claude Code. Per averla in tutti i progetti, copia la cartella in `~/.claude/skills/`; per claude.ai, comprimila in zip e caricala da *Impostazioni → Capabilities → Skills*.

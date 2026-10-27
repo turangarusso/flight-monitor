@@ -1,0 +1,114 @@
+name: Bot Telegram
+
+on:
+  push:
+    branches: [main]
+    paths: ["bot/**", ".github/workflows/bot.yml"]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Test
+        working-directory: bot
+        run: node --test
+
+      - name: Controlla i secret
+        id: check
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::warning::Bot non pubblicato: manca il secret CLOUDFLARE_API_TOKEN (vedi README)"
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          curl -sf -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            https://api.cloudflare.com/client/v4/user/tokens/verify | jq -r '"::notice::Token Cloudflare: " + .result.status'
+          # l'Account ID si ricava dal token se non è stato impostato come secret
+          if [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            CLOUDFLARE_ACCOUNT_ID=$(curl -sf -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+              https://api.cloudflare.com/client/v4/accounts | jq -r '.result[0].id')
+          fi
+          if [ -z "$CLOUDFLARE_ACCOUNT_ID" ] || [ "$CLOUDFLARE_ACCOUNT_ID" = "null" ]; then
+            echo "::error::Account ID non trovato: il token deve avere i permessi del modello 'Edit Cloudflare Workers'"
+            exit 1
+          fi
+          echo "CLOUDFLARE_ACCOUNT_ID=$CLOUDFLARE_ACCOUNT_ID" >> "$GITHUB_ENV"
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+
+      # il segreto del webhook è derivato dal token del bot: nessun secret in più da creare
+      - name: Prepara il segreto del webhook
+        if: steps.check.outputs.ready == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          s=$(printf '%s' "{{NOME_REPO}}:$TELEGRAM_BOT_TOKEN" | sha256sum | cut -c1-48)
+          echo "::add-mask::$s"
+          echo "WEBHOOK_SECRET=$s" >> "$GITHUB_ENV"
+
+      - name: Pubblica il Worker
+        if: steps.check.outputs.ready == 'true'
+        working-directory: bot
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          ALLOWED_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_ID }}
+          # API_KEY_SERVIZIO: ${{ secrets.API_KEY_SERVIZIO }}   # chiavi per comandi che chiamano API
+        run: |
+          # in caso di errore il messaggio di Cloudflare finisce nelle annotazioni del run
+          run() { "$@" > out.txt 2>&1 || { cat out.txt; echo "::error::$(tail -c 1500 out.txt | tr '\n' ' ')"; exit 1; }; cat out.txt; }
+          # sottodominio workers.dev: se l'account non ne ha uno, lo registra
+          api="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/subdomain"
+          auth="Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+          sub=$(curl -s -H "$auth" "$api" | jq -r '.result.subdomain // empty')
+          if [ -z "$sub" ]; then
+            res=$(curl -s -X PUT -H "$auth" -H 'content-type: application/json' "$api" \
+              -d "{\"subdomain\":\"${{ vars.WORKERS_SUBDOMAIN || github.repository_owner }}\"}")
+            echo "::notice::Registrazione sottodominio workers.dev: $(echo "$res" | jq -c '{success, errors, result}')"
+          fi
+          run npx --yes wrangler@3 deploy
+          names="TELEGRAM_BOT_TOKEN WEBHOOK_SECRET ALLOWED_CHAT_IDS"
+          # [ -n "$API_KEY_SERVIZIO" ] && names="$names API_KEY_SERVIZIO"
+          for name in $names; do
+            printf '%s' "${!name}" | run npx --yes wrangler@3 secret put "$name"
+          done
+
+      - name: Collega il bot Telegram al Worker
+        if: steps.check.outputs.ready == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          ALLOWED_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          sub=$(curl -sf -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/subdomain" | jq -r '.result.subdomain')
+          if [ -z "$sub" ] || [ "$sub" = "null" ]; then
+            echo "::error::Sottodominio workers.dev non trovato: apri Workers & Pages nella dashboard Cloudflare una volta per crearlo"
+            exit 1
+          fi
+          url="https://{{NOME_WORKER}}.$sub.workers.dev"
+          echo "Worker: $url"
+          tg="https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN"
+          curl -sf "$tg/setWebhook" -H 'content-type: application/json' \
+            -d "{\"url\":\"$url\",\"secret_token\":\"$WEBHOOK_SECRET\",\"allowed_updates\":[\"message\"],\"drop_pending_updates\":true}" | jq -e '.ok'
+          node -e 'import("./bot/worker.js").then(m => console.log(JSON.stringify({commands: m.COMMANDS})))' > commands.json
+          curl -sf "$tg/setMyCommands" -H 'content-type: application/json' -d @commands.json | jq -e '.ok'
+          sleep 20
+          echo "::notice::Webhook Telegram: $(curl -s "$tg/getWebhookInfo" | jq -c '.result | {url, pending_update_count, last_error_date, last_error_message}')"
+          echo "::notice::Risposta del Worker: $(curl -s -m 20 -o /dev/null -w '%{http_code}' "$url") $(curl -s -m 20 "$url" | head -c 100)"
+          # controllo silenzioso: un messaggio da una chat estranea deve essere ignorato (a te non arriva nulla)
+          test=$(curl -s -m 30 -X POST "$url" -H 'content-type: application/json' \
+            -H "X-Telegram-Bot-Api-Secret-Token: $WEBHOOK_SECRET" \
+            -d '{"message":{"chat":{"id":1},"text":"/aiuto"}}')
+          echo "::notice::Test del Worker: $test"
+          case "$test" in *"non autorizzata"*) ;; *) echo "::error::Il Worker non risponde come previsto"; exit 1 ;; esac
