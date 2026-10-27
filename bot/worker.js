@@ -2,7 +2,9 @@
 // Gira su Cloudflare Workers (gratis, sempre acceso) e legge data/latest.json
 // dal repo GitHub pubblico.
 //
-// Comandi: /voli <città>, /voli, /top, /paese <nome>, /aiuto
+// Comandi: /voli <città>, /voli, /top, /paese <nome>, /pacchetti, /pacchetto <città> [gg/mm], /aiuto
+
+import { searchStay, searchesLeft } from "./hotels.js";
 // Scrivere solo il nome di una città equivale a /voli <città>.
 
 const MAX_LEN = 3900; // limite Telegram 4096 caratteri
@@ -16,6 +18,7 @@ export const HELP = [
   "/top – le 10 offerte migliori di adesso",
   "/paese <i>nome</i> – tutte le città di un paese (es. <code>/paese Spagna</code>)",
   "/pacchetti – volo + hotel o appartamento di qualità (aggiornati ogni mattina)",
+  "/pacchetto <i>città</i> – cerca ora hotel e appartamento per il volo più economico (es. <code>/pacchetto Barcellona</code>, oppure <code>/pacchetto Barcellona 23/01</code> per una data)",
   "",
   "Puoi anche scrivere solo il nome della città.",
 ].join("\n");
@@ -24,7 +27,8 @@ export const COMMANDS = [
   { command: "voli", description: "Voli per una città (es. /voli Tolosa)" },
   { command: "top", description: "Le 10 offerte migliori di adesso" },
   { command: "paese", description: "Città di un paese (es. /paese Spagna)" },
-  { command: "pacchetti", description: "Volo + hotel o appartamento" },
+  { command: "pacchetti", description: "Pacchetti volo + alloggio di oggi" },
+  { command: "pacchetto", description: "Cerca alloggio per una città (es. /pacchetto Barcellona)" },
   { command: "aiuto", description: "Come si usa il bot" },
 ];
 
@@ -200,6 +204,36 @@ export function handle(text, data) {
     return split([...lines, ...footer]);
   }
 
+  if (cmd === "pacchetto") {
+    const m = arg.match(/^(.*?)\s+(\d{1,2})\/(\d{1,2})\s*$/);
+    const query = m ? m[1] : arg;
+    if (!query) {
+      return ["Scrivi la città, ad esempio <code>/pacchetto Barcellona</code> o <code>/pacchetto Barcellona 23/01</code>."];
+    }
+    const found = findCities(cities, query);
+    if (!found.length) {
+      return [`Nessun volo trovato per "${esc(query)}". Scrivi /voli per vedere tutte le città disponibili.`];
+    }
+    if (found.length > 1) return split(listCities(found, `Ho trovato più città per "${esc(query)}":`));
+    const c = found[0];
+    let offer = c.offers[0]; // le offerte della città sono ordinate per prezzo
+    if (m) {
+      const day = `-${m[3].padStart(2, "0")}-${m[2].padStart(2, "0")}`;
+      offer = c.offers.find((o) => o.out_date.endsWith(day));
+      if (!offer) {
+        const dates = [...c.offers].sort((a, b) => a.out_date.localeCompare(b.out_date)).map((o) => fmtDay(o.out_date));
+        return [`Nessun volo per ${esc(c.city)} con partenza il ${m[2]}/${m[3]}. Date disponibili: ${dates.join(", ")}.`];
+      }
+    }
+    if (stays(offer).length) {
+      return split([`📦 ${cityTitle(c)}`, offerLine(offer, adults), ...footer]);
+    }
+    return [
+      `🔎 Cerco hotel e appartamenti a <b>${esc(c.city)}</b> per ${fmtDay(offer.out_date)} → ${fmtDay(offer.in_date)}…`,
+      { async: "package", offer, city: c, rules: data.hotel_rules || {}, adults },
+    ];
+  }
+
   if (cmd === "paese") {
     if (!arg) return ["Scrivi il paese, ad esempio <code>/paese Spagna</code>."];
     const q = norm(arg);
@@ -245,13 +279,45 @@ async function send(env, chatId, text) {
   return r.ok ? "ok" : `HTTP ${r.status} ${(await r.text()).slice(0, 200)}`;
 }
 
+// Cerca hotel e appartamento per un'offerta e restituisce il messaggio del pacchetto
+export async function runPackage(env, action, cache) {
+  const { offer, city, rules, adults } = action;
+  if (!env.SERPAPI_KEY) return "⚠️ Ricerca alloggi non configurata (manca SERPAPI_KEY).";
+  const kinds = ["hotel", "apartment"];
+  const found = {};
+  // prima la cache (gratis), poi le ricerche vere solo se servono
+  for (const k of kinds) {
+    const hit = await searchStay(env, city.city, offer.out_date, offer.in_date, k, rules, cache, true);
+    if (hit) found[k] = hit.stay;
+  }
+  const missing = kinds.filter((k) => !(k in found));
+  if (missing.length) {
+    const left = await searchesLeft(env);
+    const reserve = Number(env.HOTEL_RESERVE || 20);
+    if (left != null && left - missing.length < reserve) {
+      return `⚠️ Ricerche alloggi on-demand finite per questo mese (ne restano ${left}, tenute per i pacchetti del mattino).`;
+    }
+    const results = await Promise.all(
+      missing.map((k) => searchStay(env, city.city, offer.out_date, offer.in_date, k, rules, cache)),
+    );
+    missing.forEach((k, i) => { found[k] = results[i].stay; });
+  }
+  if (!found.hotel && !found.apartment) {
+    return `Nessun alloggio di qualità trovato a <b>${esc(city.city)}</b> per queste date ` +
+      `(hotel ${rules.min_stars ?? 3}★+ con voto ≥ ${rules.min_hotel_rating ?? 4}, appartamenti interi con voto ≥ ` +
+      `${rules.min_apartment_rating ?? 4.3}, entro ${rules.max_total_eur ?? 250} €).`;
+  }
+  const withStays = { ...offer, hotel: found.hotel || null, apartment: found.apartment || null };
+  return `📦 ${cityTitle(city)}\n${offerLine(withStays, adults)}`;
+}
+
 export function isAllowed(env, chatId) {
   const allowed = (env.ALLOWED_CHAT_IDS || "").split(",").map((s) => s.trim()).filter(Boolean);
   return allowed.includes(String(chatId));
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     if (request.method !== "POST") return new Response("flight-monitor bot");
     if (request.headers.get("X-Telegram-Bot-Api-Secret-Token") !== env.WEBHOOK_SECRET) {
       return new Response("forbidden", { status: 403 });
@@ -267,7 +333,20 @@ export default {
     }
     const results = [];
     try {
-      for (const text of handle(msg.text, await loadData(env))) results.push(await send(env, msg.chat.id, text));
+      for (const item of handle(msg.text, await loadData(env))) {
+        if (typeof item === "string") {
+          results.push(await send(env, msg.chat.id, item));
+          continue;
+        }
+        // ricerca lenta: si risponde subito a Telegram e si continua in background
+        const cache = typeof caches !== "undefined" ? caches.default : null;
+        const job = runPackage(env, item, cache)
+          .catch((e) => `⚠️ Ricerca alloggi non riuscita (${esc(e.message)}). Riprova più tardi.`)
+          .then((text) => send(env, msg.chat.id, text));
+        if (ctx?.waitUntil) ctx.waitUntil(job);
+        else await job;
+        results.push("pacchetto in background");
+      }
     } catch (e) {
       results.push(`errore: ${e.message}`);
       results.push(await send(env, msg.chat.id, `⚠️ Non riesco a leggere le offerte (${esc(e.message)}). Riprova tra poco.`));

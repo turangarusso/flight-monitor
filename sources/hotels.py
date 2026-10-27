@@ -21,6 +21,7 @@ import requests
 log = logging.getLogger(__name__)
 
 API = "https://serpapi.com/search.json"
+ACCOUNT_API = "https://serpapi.com/account.json"  # gratuita: non consuma ricerche
 CACHE = Path(__file__).parent.parent / "data" / "hotels_cache.json"
 
 # parole che indicano strutture da evitare (nome, tipo, servizi, info)
@@ -122,6 +123,7 @@ class HotelSearch:
         self.cache_path = cache_path or CACHE
         self.today = today or date.today()
         self.month = self.today.strftime("%Y-%m")
+        self.state = state
         self.counter = state.setdefault("hotel_searches", {})
         self.cache = self._load_cache()
 
@@ -132,6 +134,17 @@ class HotelSearch:
     @property
     def used(self) -> int:
         return self.counter.get(self.month, 0)
+
+    def searches_left(self) -> int | None:
+        """Ricerche rimaste sul piano SerpApi (None se non si riesce a saperlo)."""
+        try:
+            r = requests.get(ACCOUNT_API, params={"api_key": self.key}, timeout=30)
+            r.raise_for_status()
+            left = r.json().get("total_searches_left")
+            return int(left) if left is not None else None
+        except Exception as e:  # noqa: BLE001
+            log.info("SerpApi account: %s", e)
+            return None
 
     def _load_cache(self) -> dict:
         if not self.cache_path.exists():

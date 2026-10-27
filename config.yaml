@@ -40,7 +40,9 @@ digest:
 # Pacchetti volo + alloggio (Google Hotels via SerpApi, serve il secret SERPAPI_KEY)
 hotels:
   enabled: true
-  top_flights: 3          # quante offerte di volo (estero) completare con l'alloggio ogni mattina
+  fixed_cheapest: 1       # ogni mattina: pacchetto per il volo all'estero più economico...
+  rotating: 2             # ...più 2 destinazioni a rotazione tra le successive
+  rotation_pool: 10       # la rotazione pesca tra le 10 destinazioni più economiche
   min_days_ahead: 7       # solo partenze tra almeno 7 giorni
   monthly_budget: 90      # ricerche al mese (piano gratuito SerpApi: 100-250)
   cache_days: 3           # non ripete la stessa ricerca per 3 giorni

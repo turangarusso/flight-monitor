@@ -63,6 +63,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           ALLOWED_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: |
           # in caso di errore il messaggio di Cloudflare finisce nelle annotazioni del run
           run() { "$@" > out.txt 2>&1 || { cat out.txt; echo "::error::$(tail -c 1500 out.txt | tr '\n' ' ')"; exit 1; }; cat out.txt; }
@@ -76,7 +77,9 @@ jobs:
             echo "::notice::Registrazione sottodominio workers.dev: $(echo "$res" | jq -c '{success, errors, result}')"
           fi
           run npx --yes wrangler@3 deploy
-          for name in TELEGRAM_BOT_TOKEN WEBHOOK_SECRET ALLOWED_CHAT_IDS; do
+          names="TELEGRAM_BOT_TOKEN WEBHOOK_SECRET ALLOWED_CHAT_IDS"
+          [ -n "$SERPAPI_KEY" ] && names="$names SERPAPI_KEY"   # per /pacchetto
+          for name in $names; do
             printf '%s' "${!name}" | run npx --yes wrangler@3 secret put "$name"
           done
 
@@ -103,8 +106,9 @@ jobs:
           sleep 20
           echo "::notice::Webhook Telegram: $(curl -s "$tg/getWebhookInfo" | jq -c '.result | {url, pending_update_count, last_error_date, last_error_message}')"
           echo "::notice::Risposta del Worker: $(curl -s -m 20 -o /dev/null -w '%{http_code}' "$url") $(curl -s -m 20 "$url" | head -c 100)"
-          # simula un messaggio "/aiuto" dalla tua chat: se tutto funziona ti arriva la guida su Telegram
+          # controllo silenzioso: un messaggio da una chat estranea deve essere ignorato (a te non arriva nulla)
           test=$(curl -s -m 30 -X POST "$url" -H 'content-type: application/json' \
             -H "X-Telegram-Bot-Api-Secret-Token: $WEBHOOK_SECRET" \
-            -d "{\"message\":{\"chat\":{\"id\":$ALLOWED_CHAT_IDS},\"text\":\"/aiuto\"}}")
-          echo "::notice::Test /aiuto: $test"
+            -d '{"message":{"chat":{"id":1},"text":"/aiuto"}}')
+          echo "::notice::Test del Worker: $test"
+          case "$test" in *"non autorizzata"*) ;; *) echo "::error::Il Worker non risponde come previsto"; exit 1 ;; esac

@@ -361,3 +361,33 @@ def test_packages_disabled_without_key(cfg, tmp_path):
     search = hotel_src.HotelSearch(cfg, empty_state(), api_key="", cache_path=tmp_path / "c.json")
     assert packages.build([offer(30, dest="TLS", out=date(2027, 1, 23), inn=date(2027, 1, 25))], cfg, search) == ([], [])
     assert notify.build_packages([], cfg, []) == []
+
+
+def test_package_rotation(cfg):
+    dests = ["MLA", "TIA", "SKP", "BCN", "WAW", "BTS", "TLS", "VLC", "KRK", "BUD", "OPO"]
+    offers = [offer(30 + i, dest=d, out=date(2027, 1, 15), inn=date(2027, 1, 17)) for i, d in enumerate(dests)]
+    history: dict = {}
+    pick = lambda day: [o.dest for o in packages.candidates(offers, cfg, history, today=day)]
+    day1 = pick(date(2026, 10, 27))
+    assert day1 == ["MLA", "TIA", "SKP"]
+    history.update({d: "2026-10-27" for d in day1})
+    day2 = pick(date(2026, 10, 28))
+    assert day2 == ["MLA", "BCN", "WAW"]                    # Barcellona entra il secondo giorno
+    history.update({d: "2026-10-28" for d in day2})
+    assert pick(date(2026, 10, 29)) == ["MLA", "BTS", "TLS"]
+    assert "OPO" not in sum((pick(date(2026, 10, 30) + timedelta(days=i)) for i in range(5)), [])  # 11ª: fuori dal pool
+
+
+def test_packages_skip_when_serpapi_almost_empty(cfg, monkeypatch, tmp_path):
+    monkeypatch.setattr(hotel_src.requests, "get",
+                        lambda url, params, timeout: FakeResp({"total_searches_left": 3}))
+    search = hotel_src.HotelSearch(cfg, empty_state(), api_key="k", cache_path=tmp_path / "c.json")
+    offers = [offer(30, dest=d, out=date(2027, 1, 15), inn=date(2027, 1, 17)) for d in ("MLA", "TIA", "SKP")]
+    pkgs, notes = packages.build(offers, cfg, search, today=date(2026, 10, 27))
+    assert pkgs == [] and "3 rimaste" in notes[0]
+
+
+def test_latest_json_has_hotel_rules(cfg, tmp_path):
+    path = tmp_path / "latest.json"
+    storage.write_latest([offer(30)], {"ryanair"}, path=path, hotel_rules=cfg["hotels"])
+    assert json.loads(path.read_text())["hotel_rules"]["min_stars"] == 3

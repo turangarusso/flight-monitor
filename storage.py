@@ -42,7 +42,7 @@ def append_prices(offers: list[Offer], path: Path | None = None) -> None:
 
 def write_latest(offers: list[Offer], refreshed: set[str], adults: int = 2,
                  path: Path | None = None, today: date | None = None,
-                 stays: dict[str, dict] | None = None) -> None:
+                 stays: dict[str, dict] | None = None, hotel_rules: dict | None = None) -> None:
     """Offerte valide attuali, lette dal bot Telegram (/voli, /top, /paese).
 
     Le fonti non aggiornate in questo run (non eseguite o fallite) mantengono
@@ -62,7 +62,7 @@ def write_latest(offers: list[Offer], refreshed: set[str], adults: int = 2,
     rows = sorted(rows + keep, key=lambda r: (r["price_pp"], r["out_date"]))
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps({"updated": now, "adults": adults, "offers": rows}, ensure_ascii=False, indent=1) + "\n", "utf-8")
+    path.write_text(json.dumps({"updated": now, "adults": adults, "hotel_rules": hotel_rules or {}, "offers": rows}, ensure_ascii=False, indent=1) + "\n", "utf-8")
 
 
 def write_errors(errors: dict[str, str], path: Path | None = None) -> None:

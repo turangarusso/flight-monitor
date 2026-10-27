@@ -37,7 +37,8 @@ Scrivendo al bot puoi consultare tutte le offerte in qualsiasi momento:
 - `/voli`: elenco delle città con il prezzo minimo
 - `/top`: le 10 offerte migliori
 - `/paese Spagna`: tutte le città di un paese
-- `/pacchetti`: volo + hotel o appartamento di qualità
+- `/pacchetti`: i pacchetti volo + alloggio di stamattina
+- `/pacchetto Barcellona` (o `/pacchetto Barcellona 23/01`): cerca subito hotel e appartamento per quella città
 
 Il bot gira su Cloudflare Workers (gratis) e legge `data/latest.json`. Setup una tantum:
 
@@ -50,7 +51,9 @@ Il bot risponde solo alla chat di `TELEGRAM_CHAT_ID`.
 
 ## Pacchetti volo + alloggio (opzionale, gratis con SerpApi)
 
-Ogni mattina, per le 3 migliori offerte all'estero, il monitor cerca su **Google Hotels**:
+Ogni mattina il monitor cerca su **Google Hotels** l'alloggio per 3 offerte all'estero: il volo più economico più 2 destinazioni **a rotazione** tra le 10 più economiche, così in pochi giorni tutte ricevono un pacchetto. Con `/pacchetto <città>` il bot cerca subito per la città che vuoi, tenendo sempre una riserva di ricerche per il mattino.
+
+Per ogni offerta cerca:
 - 🏨 il **hotel più economico di almeno 3 stelle** con voto ≥ 4,0/5 e almeno 50 recensioni;
 - 🏠 l'**appartamento intero più economico** con voto ≥ 4,3/5 e almeno 15 recensioni.
 

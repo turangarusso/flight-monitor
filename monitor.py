@@ -93,7 +93,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     storage.append_prices(offers)
-    storage.write_latest(offers, refreshed, cfg["adults"], stays=stays)
+    storage.write_latest(offers, refreshed, cfg["adults"], stays=stays, hotel_rules=cfg.get("hotels"))
     if source_warnings:
         errors["avvisi"] = "\n".join(dict.fromkeys(source_warnings))
     storage.write_errors(errors)
