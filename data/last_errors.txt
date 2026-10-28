@@ -1,6 +1,8 @@
-Run del 2026-10-28 18:27 UTC
+Run del 2026-10-28 23:20 UTC
 
 [avvisi]
 sources.ryanair: Ryanair availability non disponibile (HTTP 409 su https://www.ryanair.com/api/booking/v4/it-it/availability): uso solo le tariffe minime
 sources.wizzair: Wizz search non disponibile (HTTP 429 su https://be.wizzair.com/29.22.0/Api/search/search): uso il calendario
+sources.wizzair: Wizz GHV: HTTP 503 su https://be.wizzair.com/29.22.0/Api/search/timetable
+sources.wizzair: Wizz VCE: HTTP 503 su https://be.wizzair.com/29.22.0/Api/search/timetable
 
