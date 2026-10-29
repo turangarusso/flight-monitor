@@ -102,5 +102,83 @@
    "total_eur": 90.0,
    "link": "https://www.booking.com/hotel/al/gledis-appartment.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-8538215&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-8538215_grp-3_gendate-20261020"
   }
+ },
+ "hotel|tirana|2027-02-05|2027-02-08": {
+  "searched": "2026-10-29",
+  "at": "2026-10-29T11:54:30+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Sky Hotel Tirana",
+   "stars": 4,
+   "rating": 4.4,
+   "reviews": 1209,
+   "total_eur": 90.0,
+   "link": "https://sky1hotel.al/"
+  }
+ },
+ "apartment|tirana|2027-02-05|2027-02-08": {
+  "searched": "2026-10-29",
+  "at": "2026-10-29T11:54:32+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Ariadnes Apartments",
+   "stars": 0,
+   "rating": 4.67,
+   "reviews": 140,
+   "total_eur": 80.0,
+   "link": "https://www.google.com/travel/search?q=Ariadnes%20Apartments%20Tirana&hl=it"
+  }
+ },
+ "hotel|tolosa|2027-01-23|2027-01-25": {
+  "searched": "2026-10-29",
+  "at": "2026-10-29T11:54:34+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "B&B HOTEL Toulouse Université",
+   "stars": 3,
+   "rating": 4.0,
+   "reviews": 1038,
+   "total_eur": 99.0,
+   "link": "https://www.hotel-bb.com/fr/hotel/toulouse-universite?utm_source=googlemaps&utm_medium=fichehotel&utm_campaign=yext"
+  }
+ },
+ "apartment|tolosa|2027-01-23|2027-01-25": {
+  "searched": "2026-10-29",
+  "at": "2026-10-29T11:54:36+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "36 m2 2-room apartment, parking, fiber internet, near metro, Literie Bultex",
+   "stars": 0,
+   "rating": 4.45,
+   "reviews": 32,
+   "total_eur": 120.0,
+   "link": "https://www.booking.com/hotel/fr/36-m2-2-room-apartment-parking-fiber-internet-near-metro-literie-bultex.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-14211980&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-14211980_grp-0_gendate-20261023"
+  }
+ },
+ "hotel|bratislava|2027-01-29|2027-02-01": {
+  "searched": "2026-10-29",
+  "at": "2026-10-29T11:54:40+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Villa Bea",
+   "stars": 3,
+   "rating": 4.4,
+   "reviews": 113,
+   "total_eur": 184.0,
+   "link": "http://www.villabea.sk/"
+  }
+ },
+ "apartment|bratislava|2027-01-29|2027-02-01": {
+  "searched": "2026-10-29",
+  "at": "2026-10-29T11:54:42+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Apartmány Bratislava - Apartment Zahradnicka 11",
+   "stars": 0,
+   "rating": 4.75,
+   "reviews": 16,
+   "total_eur": 171.0,
+   "link": "https://www.google.com/travel/search?q=Apartm%C3%A1ny%20Bratislava%20-%20Apartment%20Zahradnicka%2011%20Bratislava&hl=it"
+  }
  }
 }
