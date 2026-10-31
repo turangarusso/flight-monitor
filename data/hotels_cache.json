@@ -1,30 +1,4 @@
 {
- "hotel|tirana|2027-01-15|2027-01-18": {
-  "searched": "2026-10-27",
-  "at": "2026-10-27T10:59:22+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Allure Boutique Hotel",
-   "stars": 4,
-   "rating": 4.3,
-   "reviews": 217,
-   "total_eur": 90.0,
-   "link": "http://www.hotel-allure.al/"
-  }
- },
- "apartment|tirana|2027-01-15|2027-01-18": {
-  "searched": "2026-10-27",
-  "at": "2026-10-27T10:59:24+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Gledis Apartment Tirana - Panoramic City Terrace",
-   "stars": 0,
-   "rating": 4.75,
-   "reviews": 124,
-   "total_eur": 90.0,
-   "link": "https://www.booking.com/hotel/al/gledis-appartment.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-8538215&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-8538215_grp-3_gendate-20261020"
-  }
- },
  "hotel|tirana|2027-02-05|2027-02-08": {
   "searched": "2026-10-29",
   "at": "2026-10-29T11:54:30+00:00",
@@ -156,5 +130,49 @@
   "searched": "2026-10-30",
   "at": "2026-10-30T11:46:20+00:00",
   "stay": null
+ },
+ "hotel|parigi|2027-01-30|2027-02-01": {
+  "searched": "2026-10-31",
+  "at": "2026-10-31T11:16:48+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Hôtel Libertel Canal Saint-Martin",
+   "stars": 3,
+   "rating": 4.0,
+   "reviews": 1189,
+   "total_eur": 135.0,
+   "link": "http://www.libertel-canal-saint-martin.com/"
+  }
+ },
+ "apartment|parigi|2027-01-30|2027-02-01": {
+  "searched": "2026-10-31",
+  "at": "2026-10-31T11:16:50+00:00",
+  "stay": null
+ },
+ "hotel|valencia|2027-01-08|2027-01-11": {
+  "searched": "2026-10-31",
+  "at": "2026-10-31T11:16:52+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Hostal Balcón Al Mar",
+   "stars": 4,
+   "rating": 4.4,
+   "reviews": 539,
+   "total_eur": 179.0,
+   "link": "https://www.hostalbalconalmar.es/"
+  }
+ },
+ "apartment|valencia|2027-01-08|2027-01-11": {
+  "searched": "2026-10-31",
+  "at": "2026-10-31T11:16:54+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "SleekLofts Affordable Tiny Studio with Balcony",
+   "stars": 0,
+   "rating": 4.54,
+   "reviews": 76,
+   "total_eur": 181.0,
+   "link": "https://booking.ownerrez.com/request?brand=ora7ccde4199x&channel=GoogleVacationRentals&property=orp5b79353x"
+  }
  }
 }
