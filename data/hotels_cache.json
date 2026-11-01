@@ -174,5 +174,57 @@
    "total_eur": 181.0,
    "link": "https://booking.ownerrez.com/request?brand=ora7ccde4199x&channel=GoogleVacationRentals&property=orp5b79353x"
   }
+ },
+ "hotel|bucarest baneasa|2027-02-19|2027-02-22": {
+  "searched": "2026-11-01",
+  "at": "2026-11-01T12:12:11+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Arc de Triomphe by CityBookings",
+   "stars": 3,
+   "rating": 4.2,
+   "reviews": 587,
+   "total_eur": 141.0,
+   "link": "https://arcdetriomphe.book-onlinenow.net/"
+  }
+ },
+ "apartment|bucarest baneasa|2027-02-19|2027-02-22": {
+  "searched": "2026-11-01",
+  "at": "2026-11-01T12:12:12+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Sunny two room apartment, Baneasa, Petrom City, Free wi-fi and underground parking - One-Bedroom Apartment",
+   "stars": 0,
+   "rating": 4.8671427,
+   "reviews": 70,
+   "total_eur": 207.0,
+   "link": "https://www.freecancellations.com/search/F2giQ1MEHncAXFIBVVhYTQ8KVxgyFFwU?lat=44.49285&lng=26.06561&language=en"
+  }
+ },
+ "hotel|bucarest henri coandă|2027-02-19|2027-02-22": {
+  "searched": "2026-11-01",
+  "at": "2026-11-01T12:12:15+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Otopeni Suites by CityBookings",
+   "stars": 3,
+   "rating": 4.3,
+   "reviews": 105,
+   "total_eur": 140.0,
+   "link": "https://otopenisuites.book-onlinenow.net/"
+  }
+ },
+ "apartment|bucarest henri coandă|2027-02-19|2027-02-22": {
+  "searched": "2026-11-01",
+  "at": "2026-11-01T12:12:16+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Aba Fly & Rest",
+   "stars": 0,
+   "rating": 4.85,
+   "reviews": 26,
+   "total_eur": 176.0,
+   "link": "https://www.booking.com/hotel/ro/aba-fly-amp-rest.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-15378159&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-15378159_grp-3_gendate-20261028"
+  }
  }
 }
