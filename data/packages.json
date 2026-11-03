@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T10:51:07Z",
+ "updated": "2026-11-03T13:09:40Z",
  "packages": [
   {
    "source": "ryanair",
@@ -117,6 +117,45 @@
    "stay_found": "2026-10-31",
    "first_found": "2026-10-31",
    "found": "2026-10-31"
+  },
+  {
+   "source": "ryanair",
+   "airline": "Ryanair",
+   "origin": "NAP",
+   "dest": "BTS",
+   "dest_city": "Bratislava",
+   "out_date": "2027-01-15",
+   "in_date": "2027-01-18",
+   "price_pp": 50.98,
+   "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-01-15&dateIn=2027-01-18&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=BTS&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-01-15&tpEndDate=2027-01-18&tpOriginIata=NAP&tpDestinationIata=BTS",
+   "out_dep": "2027-01-15T06:40:00",
+   "out_arr": "2027-01-15T08:20:00",
+   "in_dep": "2027-01-18T18:10:00",
+   "in_arr": "2027-01-18T19:50:00",
+   "country_code": "SK",
+   "country_name": "Slovacchia",
+   "flag": "🇸🇰",
+   "hotel": {
+    "kind": "hotel",
+    "name": "Hotel ANTARES",
+    "stars": 4,
+    "rating": 4.4,
+    "reviews": 621,
+    "total_eur": 161.0,
+    "link": "http://www.hotelantares.sk/"
+   },
+   "apartment": {
+    "kind": "apartment",
+    "name": "LUXUSNÝ Byt - One-Bedroom Apartment",
+    "stars": 0,
+    "rating": 4.85,
+    "reviews": 161,
+    "total_eur": 170.0,
+    "link": "https://www.google.com/travel/search?q=LUXUSN%C3%9D%20Byt%20-%20One-Bedroom%20Apartment%20Bratislava&hl=it"
+   },
+   "stay_found": "2026-11-03",
+   "first_found": "2026-11-03",
+   "found": "2026-11-03"
   },
   {
    "source": "wizzair",
@@ -274,7 +313,7 @@
    "dest_city": "Tolosa",
    "out_date": "2027-01-23",
    "in_date": "2027-01-25",
-   "price_pp": 43.98,
+   "price_pp": 41.98,
    "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-01-23&dateIn=2027-01-25&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=TLS&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-01-23&tpEndDate=2027-01-25&tpOriginIata=NAP&tpDestinationIata=TLS",
    "out_dep": "2027-01-23T10:00:00",
    "out_arr": "2027-01-23T12:05:00",
@@ -288,22 +327,22 @@
     "name": "B&B HOTEL Toulouse Université",
     "stars": 3,
     "rating": 4.0,
-    "reviews": 1038,
+    "reviews": 1042,
     "total_eur": 99.0,
     "link": "https://www.hotel-bb.com/fr/hotel/toulouse-universite?utm_source=googlemaps&utm_medium=fichehotel&utm_campaign=yext"
    },
    "apartment": {
     "kind": "apartment",
-    "name": "36 m2 2-room apartment, parking, fiber internet, near metro, Literie Bultex",
+    "name": "Charmant Studio Refait à Neuf, au Pied du Métro et du Tramway",
     "stars": 0,
-    "rating": 4.45,
-    "reviews": 32,
-    "total_eur": 120.0,
-    "link": "https://www.booking.com/hotel/fr/36-m2-2-room-apartment-parking-fiber-internet-near-metro-literie-bultex.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-14211980&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-14211980_grp-0_gendate-20261023"
+    "rating": 4.3,
+    "reviews": 97,
+    "total_eur": 117.0,
+    "link": "https://www.google.com/travel/search?q=Charmant%20Studio%20Refait%20%C3%A0%20Neuf%2C%20au%20Pied%20du%20M%C3%A9tro%20et%20du%20Tramway%20Tolosa&hl=it"
    },
-   "stay_found": "2026-10-29",
+   "stay_found": "2026-11-03",
    "first_found": "2026-10-29",
-   "found": "2026-10-29"
+   "found": "2026-11-03"
   },
   {
    "source": "ryanair",
@@ -422,23 +461,23 @@
    "dest_city": "Tirana",
    "out_date": "2027-02-05",
    "in_date": "2027-02-08",
-   "price_pp": 35.98,
+   "price_pp": 33.83,
    "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-02-05&dateIn=2027-02-08&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=TIA&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-02-05&tpEndDate=2027-02-08&tpOriginIata=NAP&tpDestinationIata=TIA",
    "out_dep": "2027-02-05T11:15:00",
    "out_arr": "2027-02-05T12:30:00",
-   "in_dep": "2027-02-08T09:50:00",
-   "in_arr": "2027-02-08T11:00:00",
+   "in_dep": "2027-02-08T09:40:00",
+   "in_arr": "2027-02-08T10:50:00",
    "country_code": "AL",
    "country_name": "Albania",
    "flag": "🇦🇱",
    "hotel": {
     "kind": "hotel",
-    "name": "Sky Hotel Tirana",
-    "stars": 4,
+    "name": "ALBJONA GUESTHOUSE",
+    "stars": 3,
     "rating": 4.4,
-    "reviews": 1209,
-    "total_eur": 90.0,
-    "link": "https://sky1hotel.al/"
+    "reviews": 80,
+    "total_eur": 85.0,
+    "link": "https://www.hotelsalbanian.com/albjona-guesthouse/"
    },
    "apartment": {
     "kind": "apartment",
@@ -449,9 +488,9 @@
     "total_eur": 80.0,
     "link": "https://www.google.com/travel/search?q=Ariadnes%20Apartments%20Tirana&hl=it"
    },
-   "stay_found": "2026-10-29",
+   "stay_found": "2026-11-03",
    "first_found": "2026-10-29",
-   "found": "2026-10-29"
+   "found": "2026-11-03"
   },
   {
    "source": "wizzair",
