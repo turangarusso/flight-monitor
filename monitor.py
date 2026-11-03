@@ -13,6 +13,7 @@ import importlib
 import logging
 import sys
 import traceback
+from datetime import date
 from pathlib import Path
 
 import yaml
@@ -80,13 +81,16 @@ def main(argv: list[str] | None = None) -> int:
     )
     messages = notify.build_messages(alerts, cfg, warnings if (alerts or first_warning) else [])
     stays: dict[str, dict] = {}
+    pkgs: list = []
     if args.digest:
         messages += notify.build_digest(offers, cfg)
         # pacchetti volo + alloggio (solo nel riepilogo, per risparmiare le ricerche gratuite)
         pkgs, notes = packages.build(offers, cfg, HotelSearch(cfg, state))
         messages += notify.build_packages(pkgs, cfg, notes)
+        found = date.today().isoformat()
         stays = {p.offer.key: {"hotel": p.hotel and p.hotel.as_dict(),
-                               "apartment": p.apartment and p.apartment.as_dict()} for p in pkgs}
+                               "apartment": p.apartment and p.apartment.as_dict(),
+                               "stay_found": found} for p in pkgs}
 
     if args.dry_run:
         print("\n---\n".join(messages) or "(nessun messaggio)")
@@ -94,6 +98,8 @@ def main(argv: list[str] | None = None) -> int:
 
     storage.append_prices(offers)
     storage.write_latest(offers, refreshed, cfg["adults"], stays=stays, hotel_rules=cfg.get("hotels"))
+    if pkgs_rows := [{**storage.offer_row(p.offer), **stays[p.offer.key]} for p in pkgs]:
+        storage.archive_packages(pkgs_rows)
     if source_warnings:
         errors["avvisi"] = "\n".join(dict.fromkeys(source_warnings))
     storage.write_errors(errors)

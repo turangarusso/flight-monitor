@@ -41,6 +41,12 @@ Riassunto della conversazione che ha creato `flight-monitor`. Serve a riprendere
 | Pacchetti a rotazione + `/pacchetto` su richiesta | Barcellona non usciva mai: erano solo i 3 voli più economici. L'utente ha chiesto la rotazione |
 | CLAUDE.md + skill, non un agent | L'agent non conserva conoscenza; la skill è riutilizzabile per altri monitor |
 
+## Aggiornamento 03/11/2026
+- Nuovo comando `/pacchetti riepilogo` (anche `/pacchetti tutti` o `/storico`): top 20 pacchetti trovati finora con partenza futura, ordinati per totale, con data di quando sono stati trovati e se il volo è ancora tra le offerte di oggi.
+- Nuovo archivio `data/packages.json`: tutti i pacchetti trovati, mai cancellati. Riempito con i 15 pacchetti dal 26/10 recuperati dallo storico Git.
+- Corretto: i run delle 13 e delle 20 cancellavano gli alloggi da `latest.json`, quindi `/pacchetti` diceva "Nessun pacchetto" dal pomeriggio in poi.
+- I risultati di `/pacchetto <città>` dal bot **non** finiscono nell'archivio (il Worker non scrive su GitHub).
+
 ## Cose aperte / da ricordare
 - **Rigenerare il token Cloudflare** (Roll) e aggiornare il Secret: è passato in chat. Stesso discorso, se vuole, per il token del bot Telegram (BotFather → `/revoke`).
 - **Ritorni del lunedì all'alba** (es. 05:55): decidere se impostare `inbound_depart_after.MON` in `config.yaml`.

@@ -2,7 +2,8 @@
 // Gira su Cloudflare Workers (gratis, sempre acceso) e legge data/latest.json
 // dal repo GitHub pubblico.
 //
-// Comandi: /voli <città>, /voli, /top, /paese <nome>, /pacchetti, /pacchetto <città> [gg/mm], /aiuto
+// Comandi: /voli <città>, /voli, /top, /paese <nome>, /pacchetti, /pacchetti riepilogo (/storico),
+// /pacchetto <città> [gg/mm], /aiuto
 
 import { searchStay, searchesLeft } from "./hotels.js";
 // Scrivere solo il nome di una città equivale a /voli <città>.
@@ -18,6 +19,7 @@ export const HELP = [
   "/top – le 10 offerte migliori di adesso",
   "/paese <i>nome</i> – tutte le città di un paese (es. <code>/paese Spagna</code>)",
   "/pacchetti – volo + hotel o appartamento di qualità (aggiornati ogni mattina)",
+  "/pacchetti riepilogo – i 20 pacchetti migliori trovati finora (anche nei giorni scorsi). Uguale: /storico",
   "/pacchetto <i>città</i> – cerca ora hotel e appartamento per il volo più economico (es. <code>/pacchetto Barcellona</code>, oppure <code>/pacchetto Barcellona 23/01</code> per una data)",
   "",
   "Puoi anche scrivere solo il nome della città.",
@@ -28,6 +30,7 @@ export const COMMANDS = [
   { command: "top", description: "Le 10 offerte migliori di adesso" },
   { command: "paese", description: "Città di un paese (es. /paese Spagna)" },
   { command: "pacchetti", description: "Pacchetti volo + alloggio di oggi" },
+  { command: "storico", description: "I 20 pacchetti migliori trovati finora" },
   { command: "pacchetto", description: "Cerca alloggio per una città (es. /pacchetto Barcellona)" },
   { command: "aiuto", description: "Come si usa il bot" },
 ];
@@ -170,8 +173,45 @@ function listCities(cities, title) {
   return lines;
 }
 
+export const SUMMARY_SIZE = 20;
+const SUMMARY_WORDS = ["riepilogo", "tutti", "top", "storico", "archivio"];
+
+// true se il comando chiede l'archivio dei pacchetti (/pacchetti riepilogo, /storico)
+export function wantsArchive(text) {
+  const { cmd, arg } = parseCommand(text);
+  return cmd === "storico" || (cmd === "pacchetti" && SUMMARY_WORDS.includes(norm(arg)));
+}
+
+const offerKey = (o) => `${o.airline}|${o.dest}|${o.out_date}|${o.in_date}`;
+
+// I migliori pacchetti dell'archivio con partenza futura, dal totale più basso
+export function packageSummary(data, archive, today) {
+  const adults = data.adults || 2;
+  const current = new Map((data.offers || []).map((o) => [offerKey(o), o]));
+  const best = (archive?.packages || [])
+    .filter((p) => p.out_date >= today && stays(p).length)
+    .sort((a, b) => packageTotal(a, adults) - packageTotal(b, adults))
+    .slice(0, SUMMARY_SIZE);
+  if (!best.length) {
+    return ["Nessun pacchetto in archivio con partenza futura. I pacchetti vengono calcolati ogni mattina."];
+  }
+  const lines = [`🗂 <b>Top ${best.length} pacchetti trovati finora</b>`, "<i>Prezzi degli alloggi del giorno in cui il pacchetto è stato trovato.</i>"];
+  for (const p of best) {
+    const now = current.get(offerKey(p));
+    const c = { city: p.dest_city, flag: p.flag || "", country: p.country_name || "" };
+    let status;
+    if (!now) status = "   ⚠️ Volo non più tra le offerte di oggi: il prezzo potrebbe essere salito";
+    else if (Math.round(now.price_pp) < Math.round(p.price_pp)) status = `   ✅ Volo ancora disponibile, ora a <b>${Math.round(now.price_pp)} €</b> a testa (sceso)`;
+    else if (Math.round(now.price_pp) > Math.round(p.price_pp)) status = `   ✅ Volo ancora disponibile, ora a <b>${Math.round(now.price_pp)} €</b> a testa (salito)`;
+    else status = "   ✅ Volo ancora disponibile allo stesso prezzo";
+    lines.push("", cityTitle(c), offerLine(p, adults), `   📅 Trovato il ${fmtDay(p.found || p.first_found)}`, status);
+  }
+  lines.push("", "Per ricontrollare l'alloggio a prezzi di oggi: /pacchetto seguito dalla città e dalla data.");
+  return split(lines);
+}
+
 // Testo del comando -> lista di messaggi HTML da inviare
-export function handle(text, data) {
+export function handle(text, data, archive = null, today = romeToday()) {
   const { cmd, arg } = parseCommand(text);
   const adults = data.adults || 2;
   const cities = groupCities(data.offers || []);
@@ -190,11 +230,14 @@ export function handle(text, data) {
     return split([...lines, ...footer]);
   }
 
+  if (wantsArchive(text)) return packageSummary(data, archive, today);
+
   if (cmd === "pacchetti") {
     const pk = (data.offers || []).filter((o) => stays(o).length)
       .sort((a, b) => packageTotal(a, adults) - packageTotal(b, adults));
     if (!pk.length) {
-      return ["Nessun pacchetto disponibile ora. I pacchetti volo + alloggio vengono calcolati ogni mattina."];
+      return ["Nessun pacchetto disponibile ora. I pacchetti volo + alloggio vengono calcolati ogni mattina. " +
+        "Per quelli dei giorni scorsi scrivi /pacchetti riepilogo."];
     }
     const lines = ["📦 <b>Pacchetti weekend (volo + dove dormire)</b>"];
     for (const o of pk) {
@@ -264,9 +307,23 @@ export function handle(text, data) {
   return [HELP];
 }
 
+// data di oggi in Italia, "2026-11-03"
+export function romeToday(d = new Date()) {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Rome" }).format(d);
+}
+
 async function loadData(env) {
   const r = await fetch(env.DATA_URL, { cf: { cacheTtl: 60 } });
   if (!r.ok) throw new Error(`latest.json: HTTP ${r.status}`);
+  return r.json();
+}
+
+// archivio dei pacchetti (data/packages.json), accanto a latest.json
+async function loadArchive(env) {
+  const url = env.PACKAGES_URL || env.DATA_URL.replace(/latest\.json$/, "packages.json");
+  const r = await fetch(url, { cf: { cacheTtl: 60 } });
+  if (r.status === 404) return { packages: [] }; // ancora nessun archivio
+  if (!r.ok) throw new Error(`packages.json: HTTP ${r.status}`);
   return r.json();
 }
 
@@ -333,7 +390,8 @@ export default {
     }
     const results = [];
     try {
-      for (const item of handle(msg.text, await loadData(env))) {
+      const archive = wantsArchive(msg.text) ? await loadArchive(env) : null;
+      for (const item of handle(msg.text, await loadData(env), archive)) {
         if (typeof item === "string") {
           results.push(await send(env, msg.chat.id, item));
           continue;

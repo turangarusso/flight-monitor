@@ -16,6 +16,7 @@ STATE = DATA / "alerted.json"
 
 ERRORS = DATA / "last_errors.txt"
 LATEST = DATA / "latest.json"
+PACKAGES = DATA / "packages.json"
 
 FIELDS = ["checked_at", "source", "airline", "origin", "dest", "dest_city",
           "out_date", "in_date", "price_pp", "link", "out_dep", "out_arr", "in_dep", "in_arr"]
@@ -47,22 +48,64 @@ def write_latest(offers: list[Offer], refreshed: set[str], adults: int = 2,
 
     Le fonti non aggiornate in questo run (non eseguite o fallite) mantengono
     le offerte precedenti, tranne quelle con partenza già passata.
+    Gli alloggi calcolati la mattina restano attaccati alle offerte anche nei
+    run delle 13 e delle 20 dello stesso giorno (prima sparivano).
     """
     path = path or LATEST
     today_s = (today or date.today()).isoformat()
     old = json.loads(path.read_text("utf-8")).get("offers", []) if path.exists() else []
     keep = [r for r in old if r.get("source") not in refreshed and r.get("out_date", "") >= today_s]
+    old_stays = {_row_key(r): {k: r[k] for k in STAY_FIELDS if k in r}
+                 for r in old if r.get("stay_found") == today_s}
     rows = []
     for o in offers:
-        row = o.as_row()
-        row["country_name"] = COUNTRY_IT.get(o.country_code, "")
-        row["flag"] = flag(o.country_code)
+        row = offer_row(o)
+        row.update(old_stays.get(o.key, {}))
         row.update((stays or {}).get(o.key, {}))  # hotel / appartamento del pacchetto
         rows.append(row)
     rows = sorted(rows + keep, key=lambda r: (r["price_pp"], r["out_date"]))
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps({"updated": now, "adults": adults, "hotel_rules": hotel_rules or {}, "offers": rows}, ensure_ascii=False, indent=1) + "\n", "utf-8")
+
+
+STAY_FIELDS = ("hotel", "apartment", "stay_found")
+
+
+def _row_key(r: dict) -> str:
+    """Stessa chiave di Offer.key, calcolata da una riga di latest.json."""
+    return f"{r.get('airline')}|{r.get('dest')}|{r.get('out_date')}|{r.get('in_date')}"
+
+
+def offer_row(o: Offer) -> dict:
+    row = o.as_row()
+    row["country_name"] = COUNTRY_IT.get(o.country_code, "")
+    row["flag"] = flag(o.country_code)
+    return row
+
+
+def archive_packages(rows: list[dict], path: Path | None = None, today: date | None = None) -> None:
+    """Archivio di tutti i pacchetti trovati (data/packages.json), letto da /pacchetti riepilogo.
+
+    Una voce per volo (compagnia, destinazione, date): se lo stesso pacchetto
+    viene ritrovato si aggiornano prezzi e alloggi e si tiene la data della
+    prima volta. Le voci non vengono mai cancellate: è lo storico consultabile.
+    """
+    path = path or PACKAGES
+    today_s = (today or date.today()).isoformat()
+    data = json.loads(path.read_text("utf-8")) if path.exists() else {}
+    archive = {_row_key(r): r for r in data.get("packages", [])}
+    for r in rows:
+        if not (r.get("hotel") or r.get("apartment")):
+            continue
+        k = _row_key(r)
+        found = r.get("stay_found") or today_s
+        first = archive.get(k, {}).get("first_found", found)
+        archive[k] = {**r, "first_found": first, "found": found}
+    items = sorted(archive.values(), key=lambda r: (r["out_date"], r["dest"]))
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"updated": now, "packages": items}, ensure_ascii=False, indent=1) + "\n", "utf-8")
 
 
 def write_errors(errors: dict[str, str], path: Path | None = None) -> None:

@@ -21,12 +21,13 @@ GitHub Actions (monitor.yml, cron 3 volte al giorno, repo pubblico = minuti grat
 
 Cloudflare Worker (bot/worker.js + bot/hotels.js, deploy con bot.yml)
   webhook Telegram -> legge data/latest.json da raw.githubusercontent.com
-  comandi: /voli /top /paese /pacchetti /pacchetto
+  comandi: /voli /top /paese /pacchetti /pacchetti riepilogo (/storico, legge data/packages.json) /pacchetto
 ```
 
 ## Dati (`data/`, committati dal workflow)
 - `prices.csv`: storico di tutte le offerte trovate.
-- `latest.json`: offerte valide attuali + `hotel_rules`; è la fonte dati del bot.
+- `latest.json`: offerte valide attuali + `hotel_rules`; è la fonte dati del bot. Gli alloggi del mattino (`hotel`, `apartment`, `stay_found`) restano sulle offerte anche nei run delle 13 e delle 20 dello stesso giorno.
+- `packages.json`: **archivio di tutti i pacchetti volo + alloggio trovati**, una voce per volo, mai cancellata (`first_found`, `found`). Lo legge `/pacchetti riepilogo`. Riempito all'inizio dallo storico Git di `latest.json`.
 - `alerted.json`: stato con `offers` (anti-spam), `dest_min`, `failures`, `hotel_searches` (budget mensile SerpApi) e `package_history` (rotazione).
 - `hotels_cache.json`: cache delle ricerche hotel (3 giorni).
 - `last_errors.txt`: errori e avvisi dell'ultimo run. **È il modo per diagnosticare**: i log di Actions non sono scaricabili dalla sessione Claude.

@@ -391,3 +391,31 @@ def test_latest_json_has_hotel_rules(cfg, tmp_path):
     path = tmp_path / "latest.json"
     storage.write_latest([offer(30)], {"ryanair"}, path=path, hotel_rules=cfg["hotels"])
     assert json.loads(path.read_text())["hotel_rules"]["min_stars"] == 3
+
+
+def test_stays_survive_later_runs_same_day(tmp_path):
+    path = tmp_path / "latest.json"
+    tls = offer(56, dest="TLS", out=date(2027, 1, 23), inn=date(2027, 1, 25))
+    stay = {"hotel": {"kind": "hotel", "name": "H", "stars": 3, "rating": 4.2, "reviews": 80,
+                      "total_eur": 150, "link": "https://h"}, "apartment": None, "stay_found": "2026-11-03"}
+    storage.write_latest([tls], {"ryanair"}, path=path, today=date(2026, 11, 3), stays={tls.key: stay})
+    # run delle 20: stesse offerte, senza ricerca hotel -> gli alloggi restano
+    storage.write_latest([offer(54, dest="TLS", out=date(2027, 1, 23), inn=date(2027, 1, 25))],
+                         {"ryanair"}, path=path, today=date(2026, 11, 3))
+    row = json.loads(path.read_text())["offers"][0]
+    assert row["price_pp"] == 54 and row["hotel"]["name"] == "H"
+    # il giorno dopo gli alloggi vecchi non vengono più mostrati come attuali
+    storage.write_latest([tls], {"ryanair"}, path=path, today=date(2026, 11, 4))
+    assert "hotel" not in json.loads(path.read_text())["offers"][0]
+
+
+def test_archive_packages_keeps_history(tmp_path):
+    path = tmp_path / "packages.json"
+    tls = storage.offer_row(offer(56, dest="TLS", out=date(2027, 1, 23), inn=date(2027, 1, 25)))
+    hotel = {"kind": "hotel", "name": "H", "stars": 3, "rating": 4.2, "reviews": 80, "total_eur": 150, "link": "x"}
+    storage.archive_packages([{**tls, "hotel": hotel, "stay_found": "2026-11-01"}], path=path)
+    storage.archive_packages([{**tls, "price_pp": 50, "hotel": {**hotel, "total_eur": 140}, "stay_found": "2026-11-03"},
+                              {**tls, "dest": "BCN"}], path=path)  # senza alloggio: ignorato
+    (p,) = json.loads(path.read_text())["packages"]
+    assert p["price_pp"] == 50 and p["hotel"]["total_eur"] == 140
+    assert p["first_found"] == "2026-11-01" and p["found"] == "2026-11-03"

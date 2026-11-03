@@ -96,3 +96,28 @@ test("/pacchetti e alloggio in /voli", () => {
   assert.match(handle("/voli tolosa", data)[0], /Capitole Loft/);
   assert.match(handle("/pacchetti", { offers: [] })[0], /Nessun pacchetto/);
 });
+
+test("/pacchetti riepilogo e /storico: top 20 dall'archivio", () => {
+  const hotel = (eur) => ({ kind: "hotel", name: `Hotel ${eur}`, stars: 3, rating: 4.1, reviews: 90, total_eur: eur, link: "https://h" });
+  const packages = [
+    offer("TLS", "Tolosa", "2027-01-23", "2027-01-25", 60, { hotel: hotel(150), found: "2026-10-29" }), // ora a 56
+    offer("TIA", "Tirana", "2027-02-19", "2027-02-22", 34, { hotel: hotel(85), found: "2026-10-30", flag: "🇦🇱", country_name: "Albania" }),
+    offer("MLA", "Malta", "2026-10-30", "2026-11-01", 20, { hotel: hotel(50), found: "2026-10-26" }), // già partito
+  ];
+  for (let i = 0; i < 25; i++) packages.push(offer("WAW", "Varsavia", `2027-03-${String(i + 1).padStart(2, "0")}`, "2027-03-28", 40, { hotel: hotel(200 + i), found: "2026-11-01" }));
+  const archive = { packages };
+  for (const cmd of ["/pacchetti riepilogo", "/pacchetti Tutti", "/storico"]) {
+    const msgs = handle(cmd, data, archive, "2026-11-03");
+    const all = msgs.join("");
+    assert.match(all, /Top 20 pacchetti trovati finora/);
+    assert.equal((all.match(/📅 Trovato il/g) || []).length, 20);
+    assert.ok(all.indexOf("Tirana") < all.indexOf("Tolosa"), "ordinati per totale");
+    assert.match(all, /<b>Tirana<\/b> 🇦🇱 Albania/);
+    assert.match(all, /Volo ancora disponibile, ora a <b>56 €<\/b> a testa \(sceso\)/);
+    assert.match(all, /Volo non più tra le offerte di oggi/);
+    assert.doesNotMatch(all, /Malta/);
+    assert.ok(msgs.every((m) => m.length < 4096));
+  }
+  assert.match(handle("/storico", data, { packages: [] }, "2026-11-03")[0], /Nessun pacchetto in archivio/);
+  assert.match(handle("/pacchetti", data)[0], /Pacchetti weekend/); // senza argomento: quelli di oggi
+});
