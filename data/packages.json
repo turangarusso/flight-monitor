@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T13:09:40Z",
+ "updated": "2026-11-04T13:19:31Z",
  "packages": [
   {
    "source": "ryanair",
@@ -153,9 +153,9 @@
     "total_eur": 170.0,
     "link": "https://www.google.com/travel/search?q=LUXUSN%C3%9D%20Byt%20-%20One-Bedroom%20Apartment%20Bratislava&hl=it"
    },
-   "stay_found": "2026-11-03",
+   "stay_found": "2026-11-04",
    "first_found": "2026-11-03",
-   "found": "2026-11-03"
+   "found": "2026-11-04"
   },
   {
    "source": "wizzair",
@@ -313,7 +313,7 @@
    "dest_city": "Tolosa",
    "out_date": "2027-01-23",
    "in_date": "2027-01-25",
-   "price_pp": 41.98,
+   "price_pp": 42.98,
    "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-01-23&dateIn=2027-01-25&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=TLS&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-01-23&tpEndDate=2027-01-25&tpOriginIata=NAP&tpDestinationIata=TLS",
    "out_dep": "2027-01-23T10:00:00",
    "out_arr": "2027-01-23T12:05:00",
@@ -340,9 +340,9 @@
     "total_eur": 117.0,
     "link": "https://www.google.com/travel/search?q=Charmant%20Studio%20Refait%20%C3%A0%20Neuf%2C%20au%20Pied%20du%20M%C3%A9tro%20et%20du%20Tramway%20Tolosa&hl=it"
    },
-   "stay_found": "2026-11-03",
+   "stay_found": "2026-11-04",
    "first_found": "2026-10-29",
-   "found": "2026-11-03"
+   "found": "2026-11-04"
   },
   {
    "source": "ryanair",
@@ -461,7 +461,7 @@
    "dest_city": "Tirana",
    "out_date": "2027-02-05",
    "in_date": "2027-02-08",
-   "price_pp": 33.83,
+   "price_pp": 32.83,
    "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-02-05&dateIn=2027-02-08&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=TIA&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-02-05&tpEndDate=2027-02-08&tpOriginIata=NAP&tpDestinationIata=TIA",
    "out_dep": "2027-02-05T11:15:00",
    "out_arr": "2027-02-05T12:30:00",
@@ -488,9 +488,9 @@
     "total_eur": 80.0,
     "link": "https://www.google.com/travel/search?q=Ariadnes%20Apartments%20Tirana&hl=it"
    },
-   "stay_found": "2026-11-03",
+   "stay_found": "2026-11-04",
    "first_found": "2026-10-29",
-   "found": "2026-11-03"
+   "found": "2026-11-04"
   },
   {
    "source": "wizzair",
