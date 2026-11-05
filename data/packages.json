@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04T13:19:31Z",
+ "updated": "2026-11-05T13:34:52Z",
  "packages": [
   {
    "source": "ryanair",
@@ -282,12 +282,12 @@
    "dest_city": "Varsavia",
    "out_date": "2027-01-22",
    "in_date": "2027-01-25",
-   "price_pp": 49.98,
+   "price_pp": 45.98,
    "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-01-22&dateIn=2027-01-25&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=WAW&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-01-22&tpEndDate=2027-01-25&tpOriginIata=NAP&tpDestinationIata=WAW",
    "out_dep": "2027-01-22T06:40:00",
    "out_arr": "2027-01-22T09:00:00",
-   "in_dep": "2027-01-25T08:55:00",
-   "in_arr": "2027-01-25T11:15:00",
+   "in_dep": "2027-01-25T09:00:00",
+   "in_arr": "2027-01-25T11:20:00",
    "country_code": "PL",
    "country_name": "Polonia",
    "flag": "🇵🇱",
@@ -296,14 +296,22 @@
     "name": "Media Park Apartamenty",
     "stars": 4,
     "rating": 4.3,
-    "reviews": 552,
-    "total_eur": 115.0,
+    "reviews": 553,
+    "total_eur": 113.0,
     "link": "http://apartamentymp.pl/"
    },
-   "apartment": null,
-   "stay_found": "2026-10-30",
+   "apartment": {
+    "kind": "apartment",
+    "name": "JW Apartments Świętojańska Rooms - Superior Quadruple Room",
+    "stars": 0,
+    "rating": 5.0,
+    "reviews": 16,
+    "total_eur": 118.0,
+    "link": "https://www.google.com/travel/search?q=JW%20Apartments%20%C5%9Awi%C4%99toja%C5%84ska%20Rooms%20-%20Superior%20Quadruple%20Room%20Varsavia&hl=it"
+   },
+   "stay_found": "2026-11-05",
    "first_found": "2026-10-30",
-   "found": "2026-10-30"
+   "found": "2026-11-05"
   },
   {
    "source": "ryanair",
@@ -382,6 +390,45 @@
    "stay_found": "2026-10-29",
    "first_found": "2026-10-29",
    "found": "2026-10-29"
+  },
+  {
+   "source": "ryanair",
+   "airline": "Ryanair",
+   "origin": "NAP",
+   "dest": "LTN",
+   "dest_city": "Londra",
+   "out_date": "2027-01-29",
+   "in_date": "2027-02-01",
+   "price_pp": 58.98,
+   "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-01-29&dateIn=2027-02-01&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=LTN&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-01-29&tpEndDate=2027-02-01&tpOriginIata=NAP&tpDestinationIata=LTN",
+   "out_dep": "2027-01-29T17:40:00",
+   "out_arr": "2027-01-29T19:35:00",
+   "in_dep": "2027-02-01T09:15:00",
+   "in_arr": "2027-02-01T12:55:00",
+   "country_code": "GB",
+   "country_name": "Regno Unito",
+   "flag": "🇬🇧",
+   "hotel": {
+    "kind": "hotel",
+    "name": "Premier Inn London Hanger Lane hotel",
+    "stars": 3,
+    "rating": 4.0,
+    "reviews": 2013,
+    "total_eur": 151.0,
+    "link": "https://www.premierinn.com/gb/en/hotels/england/greater-london/london/london-hanger-lane.html?cid=GLBC_LONHAN"
+   },
+   "apartment": {
+    "kind": "apartment",
+    "name": "Albert Guest House - Budget Single Room",
+    "stars": 0,
+    "rating": 4.3,
+    "reviews": 16,
+    "total_eur": 204.0,
+    "link": "https://www.google.com/travel/search?q=Albert%20Guest%20House%20-%20Budget%20Single%20Room%20Londra&hl=it"
+   },
+   "stay_found": "2026-11-05",
+   "first_found": "2026-11-05",
+   "found": "2026-11-05"
   },
   {
    "source": "ryanair",
@@ -488,9 +535,9 @@
     "total_eur": 80.0,
     "link": "https://www.google.com/travel/search?q=Ariadnes%20Apartments%20Tirana&hl=it"
    },
-   "stay_found": "2026-11-04",
+   "stay_found": "2026-11-05",
    "first_found": "2026-10-29",
-   "found": "2026-11-04"
+   "found": "2026-11-05"
   },
   {
    "source": "wizzair",
