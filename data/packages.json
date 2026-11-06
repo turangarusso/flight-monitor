@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T13:34:52Z",
+ "updated": "2026-11-06T13:29:34Z",
  "packages": [
   {
    "source": "ryanair",
@@ -39,6 +39,45 @@
    "stay_found": "2026-11-02",
    "first_found": "2026-11-02",
    "found": "2026-11-02"
+  },
+  {
+   "source": "ryanair",
+   "airline": "Ryanair",
+   "origin": "NAP",
+   "dest": "KTW",
+   "dest_city": "Katowice",
+   "out_date": "2026-12-11",
+   "in_date": "2026-12-14",
+   "price_pp": 56.16,
+   "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2026-12-11&dateIn=2026-12-14&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=KTW&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2026-12-11&tpEndDate=2026-12-14&tpOriginIata=NAP&tpDestinationIata=KTW",
+   "out_dep": "2026-12-11T20:50:00",
+   "out_arr": "2026-12-11T22:55:00",
+   "in_dep": "2026-12-14T12:50:00",
+   "in_arr": "2026-12-14T14:55:00",
+   "country_code": "PL",
+   "country_name": "Polonia",
+   "flag": "🇵🇱",
+   "hotel": {
+    "kind": "hotel",
+    "name": "Hotel Restauracja Kinga",
+    "stars": 3,
+    "rating": 4.0,
+    "reviews": 511,
+    "total_eur": 142.0,
+    "link": "https://hotelkinga.bedsandhotels.com/"
+   },
+   "apartment": {
+    "kind": "apartment",
+    "name": "Sportowców 18 Studio Silesia",
+    "stars": 0,
+    "rating": 4.7,
+    "reviews": 67,
+    "total_eur": 129.0,
+    "link": "https://www.booking.com/hotel/pl/cop24-comfortable-studio-only-20-minutes-to-cop24.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-4255846&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-4255846_grp-2_gendate-20261101"
+   },
+   "stay_found": "2026-11-06",
+   "first_found": "2026-11-06",
+   "found": "2026-11-06"
   },
   {
    "source": "ryanair",
@@ -470,6 +509,37 @@
    "found": "2026-11-02"
   },
   {
+   "source": "wizzair",
+   "airline": "Wizz Air",
+   "origin": "NAP",
+   "dest": "BCN",
+   "dest_city": "Barcellona El Prat",
+   "out_date": "2027-01-30",
+   "in_date": "2027-02-01",
+   "price_pp": 49.98,
+   "link": "https://wizzair.com/it-it/booking/select-flight/NAP/BCN/2027-01-30/2027-02-01/2/0/0/null",
+   "out_dep": "2027-01-30T06:30:00",
+   "out_arr": "2027-01-30T09:30:00",
+   "in_dep": "2027-02-01T09:25:00",
+   "in_arr": "2027-02-01T12:25:00",
+   "country_code": "ES",
+   "country_name": "Spagna",
+   "flag": "🇪🇸",
+   "hotel": {
+    "kind": "hotel",
+    "name": "Flora Parc",
+    "stars": 3,
+    "rating": 4.2,
+    "reviews": 1452,
+    "total_eur": 168.0,
+    "link": "https://floraparc.com/"
+   },
+   "apartment": null,
+   "stay_found": "2026-11-06",
+   "first_found": "2026-11-06",
+   "found": "2026-11-06"
+  },
+  {
    "source": "ryanair",
    "airline": "Ryanair",
    "origin": "NAP",
@@ -538,6 +608,45 @@
    "stay_found": "2026-11-05",
    "first_found": "2026-10-29",
    "found": "2026-11-05"
+  },
+  {
+   "source": "ryanair",
+   "airline": "Ryanair",
+   "origin": "NAP",
+   "dest": "TIA",
+   "dest_city": "Tirana",
+   "out_date": "2027-02-12",
+   "in_date": "2027-02-15",
+   "price_pp": 31.53,
+   "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-02-12&dateIn=2027-02-15&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=TIA&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-02-12&tpEndDate=2027-02-15&tpOriginIata=NAP&tpDestinationIata=TIA",
+   "out_dep": "2027-02-12T19:00:00",
+   "out_arr": "2027-02-12T20:15:00",
+   "in_dep": "2027-02-15T09:40:00",
+   "in_arr": "2027-02-15T10:50:00",
+   "country_code": "AL",
+   "country_name": "Albania",
+   "flag": "🇦🇱",
+   "hotel": {
+    "kind": "hotel",
+    "name": "Artistic Tirana Guesthouse",
+    "stars": 3,
+    "rating": 4.3,
+    "reviews": 180,
+    "total_eur": 105.0,
+    "link": "http://www.tiranabnb.com/"
+   },
+   "apartment": {
+    "kind": "apartment",
+    "name": "Gledis Apartment Tirana - Panoramic City Terrace",
+    "stars": 0,
+    "rating": 4.75,
+    "reviews": 124,
+    "total_eur": 90.0,
+    "link": "https://www.booking.com/hotel/al/gledis-appartment.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-8538215&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-8538215_grp-3_gendate-20261101"
+   },
+   "stay_found": "2026-11-06",
+   "first_found": "2026-11-06",
+   "found": "2026-11-06"
   },
   {
    "source": "wizzair",

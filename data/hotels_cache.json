@@ -1,82 +1,4 @@
 {
- "hotel|tirana|2027-01-29|2027-02-01": {
-  "searched": "2026-11-02",
-  "at": "2026-11-02T13:57:15+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Artistic Tirana Guesthouse",
-   "stars": 3,
-   "rating": 4.3,
-   "reviews": 180,
-   "total_eur": 89.0,
-   "link": "http://www.tiranabnb.com/"
-  }
- },
- "apartment|tirana|2027-01-29|2027-02-01": {
-  "searched": "2026-11-02",
-  "at": "2026-11-02T13:57:17+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Ariadnes Apartments",
-   "stars": 0,
-   "rating": 4.67,
-   "reviews": 140,
-   "total_eur": 80.0,
-   "link": "https://www.google.com/travel/search?q=Ariadnes%20Apartments%20Tirana&hl=it"
-  }
- },
- "hotel|malta|2026-12-04|2026-12-06": {
-  "searched": "2026-11-02",
-  "at": "2026-11-02T13:57:19+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "BLOCK Hotel Gozo Malta",
-   "stars": 3,
-   "rating": 4.5,
-   "reviews": 271,
-   "total_eur": 62.0,
-   "link": "https://www.blockgozo.com/"
-  }
- },
- "apartment|malta|2026-12-04|2026-12-06": {
-  "searched": "2026-11-02",
-  "at": "2026-11-02T13:57:21+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Cozy Apartment in the Heart of Qala",
-   "stars": 0,
-   "rating": 4.45,
-   "reviews": 21,
-   "total_eur": 108.0,
-   "link": "https://www.booking.com/hotel/mt/cozy-apartment-in-the-hearth-of-qala.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-14752462&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-14752462_grp-2_gendate-20261028"
-  }
- },
- "hotel|skopje|2027-01-15|2027-01-18": {
-  "searched": "2026-11-02",
-  "at": "2026-11-02T13:57:24+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Hotel Leonardo",
-   "stars": 3,
-   "rating": 4.3,
-   "reviews": 207,
-   "total_eur": 83.0,
-   "link": "https://www.google.com/travel/search?q=Hotel%20Leonardo%20Skopje&hl=it"
-  }
- },
- "apartment|skopje|2027-01-15|2027-01-18": {
-  "searched": "2026-11-02",
-  "at": "2026-11-02T13:57:25+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Maya Apartment",
-   "stars": 0,
-   "rating": 4.65,
-   "reviews": 128,
-   "total_eur": 73.0,
-   "link": "https://www.booking.com/hotel/mk/maya-apartment.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-10365771&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-10365771_grp-3_gendate-20261028"
-  }
- },
  "hotel|tirana|2027-02-05|2027-02-08": {
   "searched": "2026-11-03",
   "at": "2026-11-03T13:09:29+00:00",
@@ -206,5 +128,75 @@
    "total_eur": 118.0,
    "link": "https://www.google.com/travel/search?q=JW%20Apartments%20%C5%9Awi%C4%99toja%C5%84ska%20Rooms%20-%20Superior%20Quadruple%20Room%20Varsavia&hl=it"
   }
+ },
+ "hotel|tirana|2027-02-12|2027-02-15": {
+  "searched": "2026-11-06",
+  "at": "2026-11-06T13:29:24+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Artistic Tirana Guesthouse",
+   "stars": 3,
+   "rating": 4.3,
+   "reviews": 180,
+   "total_eur": 105.0,
+   "link": "http://www.tiranabnb.com/"
+  }
+ },
+ "apartment|tirana|2027-02-12|2027-02-15": {
+  "searched": "2026-11-06",
+  "at": "2026-11-06T13:29:25+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Gledis Apartment Tirana - Panoramic City Terrace",
+   "stars": 0,
+   "rating": 4.75,
+   "reviews": 124,
+   "total_eur": 90.0,
+   "link": "https://www.booking.com/hotel/al/gledis-appartment.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-8538215&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-8538215_grp-3_gendate-20261101"
+  }
+ },
+ "hotel|katowice|2026-12-11|2026-12-14": {
+  "searched": "2026-11-06",
+  "at": "2026-11-06T13:29:29+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Hotel Restauracja Kinga",
+   "stars": 3,
+   "rating": 4.0,
+   "reviews": 511,
+   "total_eur": 142.0,
+   "link": "https://hotelkinga.bedsandhotels.com/"
+  }
+ },
+ "apartment|katowice|2026-12-11|2026-12-14": {
+  "searched": "2026-11-06",
+  "at": "2026-11-06T13:29:30+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Sportowców 18 Studio Silesia",
+   "stars": 0,
+   "rating": 4.7,
+   "reviews": 67,
+   "total_eur": 129.0,
+   "link": "https://www.booking.com/hotel/pl/cop24-comfortable-studio-only-20-minutes-to-cop24.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-4255846&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-4255846_grp-2_gendate-20261101"
+  }
+ },
+ "hotel|barcellona el prat|2027-01-30|2027-02-01": {
+  "searched": "2026-11-06",
+  "at": "2026-11-06T13:29:32+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Flora Parc",
+   "stars": 3,
+   "rating": 4.2,
+   "reviews": 1452,
+   "total_eur": 168.0,
+   "link": "https://floraparc.com/"
+  }
+ },
+ "apartment|barcellona el prat|2027-01-30|2027-02-01": {
+  "searched": "2026-11-06",
+  "at": "2026-11-06T13:29:34+00:00",
+  "stay": null
  }
 }
