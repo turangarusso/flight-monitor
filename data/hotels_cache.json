@@ -198,5 +198,57 @@
    "total_eur": 204.0,
    "link": "https://www.booking.com/hotel/ro/victoria-condo-otopeni.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-12661435&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-12661435_grp-3_gendate-20261104"
   }
+ },
+ "hotel|malta|2027-01-01|2027-01-04": {
+  "searched": "2026-11-08",
+  "at": "2026-11-08T12:18:29+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "BLOCK Hotel Gozo Malta",
+   "stars": 3,
+   "rating": 4.5,
+   "reviews": 272,
+   "total_eur": 137.0,
+   "link": "https://www.blockgozo.com/"
+  }
+ },
+ "apartment|malta|2027-01-01|2027-01-04": {
+  "searched": "2026-11-08",
+  "at": "2026-11-08T12:18:30+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Felluga harbour view - Apartment with Sea View",
+   "stars": 0,
+   "rating": 4.95,
+   "reviews": 16,
+   "total_eur": 225.0,
+   "link": "https://www.google.com/travel/search?q=Felluga%20harbour%20view%20-%20Apartment%20with%20Sea%20View%20Malta&hl=it"
+  }
+ },
+ "hotel|skopje|2027-01-15|2027-01-18": {
+  "searched": "2026-11-08",
+  "at": "2026-11-08T12:18:32+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Hotel Leonardo",
+   "stars": 3,
+   "rating": 4.3,
+   "reviews": 207,
+   "total_eur": 83.0,
+   "link": "https://www.google.com/travel/search?q=Hotel%20Leonardo%20Skopje&hl=it"
+  }
+ },
+ "apartment|skopje|2027-01-15|2027-01-18": {
+  "searched": "2026-11-08",
+  "at": "2026-11-08T12:18:35+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Maya Apartment - One-Bedroom Apartment",
+   "stars": 0,
+   "rating": 5.0,
+   "reviews": 16,
+   "total_eur": 73.0,
+   "link": "https://www.google.com/travel/search?q=Maya%20Apartment%20-%20One-Bedroom%20Apartment%20Skopje&hl=it"
+  }
  }
 }
