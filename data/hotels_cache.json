@@ -1,56 +1,4 @@
 {
- "hotel|londra|2027-01-29|2027-02-01": {
-  "searched": "2026-11-05",
-  "at": "2026-11-05T13:34:40+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Premier Inn London Hanger Lane hotel",
-   "stars": 3,
-   "rating": 4.0,
-   "reviews": 2013,
-   "total_eur": 151.0,
-   "link": "https://www.premierinn.com/gb/en/hotels/england/greater-london/london/london-hanger-lane.html?cid=GLBC_LONHAN"
-  }
- },
- "apartment|londra|2027-01-29|2027-02-01": {
-  "searched": "2026-11-05",
-  "at": "2026-11-05T13:34:45+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Albert Guest House - Budget Single Room",
-   "stars": 0,
-   "rating": 4.3,
-   "reviews": 16,
-   "total_eur": 204.0,
-   "link": "https://www.google.com/travel/search?q=Albert%20Guest%20House%20-%20Budget%20Single%20Room%20Londra&hl=it"
-  }
- },
- "hotel|varsavia|2027-01-22|2027-01-25": {
-  "searched": "2026-11-05",
-  "at": "2026-11-05T13:34:46+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Media Park Apartamenty",
-   "stars": 4,
-   "rating": 4.3,
-   "reviews": 553,
-   "total_eur": 113.0,
-   "link": "http://apartamentymp.pl/"
-  }
- },
- "apartment|varsavia|2027-01-22|2027-01-25": {
-  "searched": "2026-11-05",
-  "at": "2026-11-05T13:34:52+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "JW Apartments Świętojańska Rooms - Superior Quadruple Room",
-   "stars": 0,
-   "rating": 5.0,
-   "reviews": 16,
-   "total_eur": 118.0,
-   "link": "https://www.google.com/travel/search?q=JW%20Apartments%20%C5%9Awi%C4%99toja%C5%84ska%20Rooms%20-%20Superior%20Quadruple%20Room%20Varsavia&hl=it"
-  }
- },
  "hotel|tirana|2027-02-12|2027-02-15": {
   "searched": "2026-11-06",
   "at": "2026-11-06T13:29:24+00:00",
@@ -249,6 +197,58 @@
    "reviews": 16,
    "total_eur": 73.0,
    "link": "https://www.google.com/travel/search?q=Maya%20Apartment%20-%20One-Bedroom%20Apartment%20Skopje&hl=it"
+  }
+ },
+ "hotel|tolosa|2027-01-23|2027-01-25": {
+  "searched": "2026-11-09",
+  "at": "2026-11-09T14:16:29+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "B&B HOTEL Toulouse Université",
+   "stars": 3,
+   "rating": 4.0,
+   "reviews": 1051,
+   "total_eur": 99.0,
+   "link": "https://www.hotel-bb.com/fr/hotel/toulouse-universite?utm_source=googlemaps&utm_medium=fichehotel&utm_campaign=yext"
+  }
+ },
+ "apartment|tolosa|2027-01-23|2027-01-25": {
+  "searched": "2026-11-09",
+  "at": "2026-11-09T14:16:30+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Charmant Studio Refait à Neuf, au Pied du Métro et du Tramway",
+   "stars": 0,
+   "rating": 4.3,
+   "reviews": 98,
+   "total_eur": 114.0,
+   "link": "https://www.google.com/travel/search?q=Charmant%20Studio%20Refait%20%C3%A0%20Neuf%2C%20au%20Pied%20du%20M%C3%A9tro%20et%20du%20Tramway%20Tolosa&hl=it"
+  }
+ },
+ "hotel|bratislava|2027-01-29|2027-02-01": {
+  "searched": "2026-11-09",
+  "at": "2026-11-09T14:16:32+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Hotel ANTARES",
+   "stars": 4,
+   "rating": 4.4,
+   "reviews": 621,
+   "total_eur": 140.0,
+   "link": "http://www.hotelantares.sk/"
+  }
+ },
+ "apartment|bratislava|2027-01-29|2027-02-01": {
+  "searched": "2026-11-09",
+  "at": "2026-11-09T14:16:34+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "WHITE APARTMENT, Kraskova 2, BRATISLAVA - Apartment",
+   "stars": 0,
+   "rating": 4.55,
+   "reviews": 16,
+   "total_eur": 143.0,
+   "link": "https://www.google.com/travel/search?q=WHITE%20APARTMENT%2C%20Kraskova%202%2C%20BRATISLAVA%20-%20Apartment%20Bratislava&hl=it"
   }
  }
 }
