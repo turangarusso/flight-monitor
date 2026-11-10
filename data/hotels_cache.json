@@ -1,74 +1,4 @@
 {
- "hotel|tirana|2027-02-12|2027-02-15": {
-  "searched": "2026-11-06",
-  "at": "2026-11-06T13:29:24+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Artistic Tirana Guesthouse",
-   "stars": 3,
-   "rating": 4.3,
-   "reviews": 180,
-   "total_eur": 105.0,
-   "link": "http://www.tiranabnb.com/"
-  }
- },
- "apartment|tirana|2027-02-12|2027-02-15": {
-  "searched": "2026-11-06",
-  "at": "2026-11-06T13:29:25+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Gledis Apartment Tirana - Panoramic City Terrace",
-   "stars": 0,
-   "rating": 4.75,
-   "reviews": 124,
-   "total_eur": 90.0,
-   "link": "https://www.booking.com/hotel/al/gledis-appartment.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-8538215&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-8538215_grp-3_gendate-20261101"
-  }
- },
- "hotel|katowice|2026-12-11|2026-12-14": {
-  "searched": "2026-11-06",
-  "at": "2026-11-06T13:29:29+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Hotel Restauracja Kinga",
-   "stars": 3,
-   "rating": 4.0,
-   "reviews": 511,
-   "total_eur": 142.0,
-   "link": "https://hotelkinga.bedsandhotels.com/"
-  }
- },
- "apartment|katowice|2026-12-11|2026-12-14": {
-  "searched": "2026-11-06",
-  "at": "2026-11-06T13:29:30+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Sportowców 18 Studio Silesia",
-   "stars": 0,
-   "rating": 4.7,
-   "reviews": 67,
-   "total_eur": 129.0,
-   "link": "https://www.booking.com/hotel/pl/cop24-comfortable-studio-only-20-minutes-to-cop24.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-4255846&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-4255846_grp-2_gendate-20261101"
-  }
- },
- "hotel|barcellona el prat|2027-01-30|2027-02-01": {
-  "searched": "2026-11-06",
-  "at": "2026-11-06T13:29:32+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Flora Parc",
-   "stars": 3,
-   "rating": 4.2,
-   "reviews": 1452,
-   "total_eur": 168.0,
-   "link": "https://floraparc.com/"
-  }
- },
- "apartment|barcellona el prat|2027-01-30|2027-02-01": {
-  "searched": "2026-11-06",
-  "at": "2026-11-06T13:29:34+00:00",
-  "stay": null
- },
  "hotel|tirana|2027-02-05|2027-02-08": {
   "searched": "2026-11-07",
   "at": "2026-11-07T12:06:27+00:00",
@@ -249,6 +179,50 @@
    "reviews": 16,
    "total_eur": 143.0,
    "link": "https://www.google.com/travel/search?q=WHITE%20APARTMENT%2C%20Kraskova%202%2C%20BRATISLAVA%20-%20Apartment%20Bratislava&hl=it"
+  }
+ },
+ "hotel|parigi|2027-01-30|2027-02-01": {
+  "searched": "2026-11-10",
+  "at": "2026-11-10T13:52:44+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "B&B HOTEL Paris Italie Porte de Choisy",
+   "stars": 3,
+   "rating": 4.2,
+   "reviews": 5708,
+   "total_eur": 144.0,
+   "link": "https://www.hotel-bb.com/fr/hotel/paris-italie-porte-de-choisy?utm_source=googlemaps&utm_medium=fichehotel&utm_campaign=yext"
+  }
+ },
+ "apartment|parigi|2027-01-30|2027-02-01": {
+  "searched": "2026-11-10",
+  "at": "2026-11-10T13:52:47+00:00",
+  "stay": null
+ },
+ "hotel|varsavia|2027-01-15|2027-01-18": {
+  "searched": "2026-11-10",
+  "at": "2026-11-10T13:52:49+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Media Park Apartamenty",
+   "stars": 4,
+   "rating": 4.3,
+   "reviews": 554,
+   "total_eur": 117.0,
+   "link": "http://apartamentymp.pl/"
+  }
+ },
+ "apartment|varsavia|2027-01-15|2027-01-18": {
+  "searched": "2026-11-10",
+  "at": "2026-11-10T13:52:50+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Fantastic Waw - KP22 Room C",
+   "stars": 0,
+   "rating": 4.3,
+   "reviews": 98,
+   "total_eur": 85.0,
+   "link": "https://www.booking.com/hotel/pl/fantastic-kp22-room-c.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-11695814&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-11695814_grp-2_gendate-20261107"
   }
  }
 }
