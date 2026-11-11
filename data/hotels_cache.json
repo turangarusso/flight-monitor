@@ -1,82 +1,4 @@
 {
- "hotel|tirana|2027-02-05|2027-02-08": {
-  "searched": "2026-11-07",
-  "at": "2026-11-07T12:06:27+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Allure Boutique Hotel",
-   "stars": 4,
-   "rating": 4.3,
-   "reviews": 218,
-   "total_eur": 93.0,
-   "link": "http://www.hotel-allure.al/"
-  }
- },
- "apartment|tirana|2027-02-05|2027-02-08": {
-  "searched": "2026-11-07",
-  "at": "2026-11-07T12:06:29+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Gledis Apartment Tirana - Panoramic City Terrace",
-   "stars": 0,
-   "rating": 4.75,
-   "reviews": 124,
-   "total_eur": 90.0,
-   "link": "https://www.booking.com/hotel/al/gledis-appartment.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-8538215&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-8538215_grp-3_gendate-20261104"
-  }
- },
- "hotel|bucarest baneasa|2027-03-05|2027-03-08": {
-  "searched": "2026-11-07",
-  "at": "2026-11-07T12:06:30+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Pension La Noblesse",
-   "stars": 3,
-   "rating": 4.3,
-   "reviews": 127,
-   "total_eur": 179.0,
-   "link": "http://www.pensiunelanoblesse.ro/"
-  }
- },
- "apartment|bucarest baneasa|2027-03-05|2027-03-08": {
-  "searched": "2026-11-07",
-  "at": "2026-11-07T12:06:31+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Sunny two room apartment, Baneasa, Petrom City, Free wi-fi and underground parking",
-   "stars": 0,
-   "rating": 4.8671427,
-   "reviews": 70,
-   "total_eur": 208.0,
-   "link": "https://www.google.com/travel/search?q=Sunny%20two%20room%20apartment%2C%20Baneasa%2C%20Petrom%20City%2C%20Free%20wi-fi%20and%20underground%20parking%20Bucarest%20Baneasa&hl=it"
-  }
- },
- "hotel|bucarest henri coandă|2027-03-05|2027-03-08": {
-  "searched": "2026-11-07",
-  "at": "2026-11-07T12:06:33+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Pension La Noblesse",
-   "stars": 3,
-   "rating": 4.3,
-   "reviews": 127,
-   "total_eur": 179.0,
-   "link": "http://www.pensiunelanoblesse.ro/"
-  }
- },
- "apartment|bucarest henri coandă|2027-03-05|2027-03-08": {
-  "searched": "2026-11-07",
-  "at": "2026-11-07T12:06:34+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Victoria Condo Otopeni- Self Check-in and Check- out",
-   "stars": 0,
-   "rating": 4.9,
-   "reviews": 161,
-   "total_eur": 204.0,
-   "link": "https://www.booking.com/hotel/ro/victoria-condo-otopeni.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-12661435&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-12661435_grp-3_gendate-20261104"
-  }
- },
  "hotel|malta|2027-01-01|2027-01-04": {
   "searched": "2026-11-08",
   "at": "2026-11-08T12:18:29+00:00",
@@ -224,5 +146,75 @@
    "total_eur": 85.0,
    "link": "https://www.booking.com/hotel/pl/fantastic-kp22-room-c.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-11695814&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-11695814_grp-2_gendate-20261107"
   }
+ },
+ "hotel|tirana|2027-02-05|2027-02-08": {
+  "searched": "2026-11-11",
+  "at": "2026-11-11T13:06:01+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Allure Boutique Hotel",
+   "stars": 4,
+   "rating": 4.3,
+   "reviews": 219,
+   "total_eur": 94.0,
+   "link": "http://www.hotel-allure.al/"
+  }
+ },
+ "apartment|tirana|2027-02-05|2027-02-08": {
+  "searched": "2026-11-11",
+  "at": "2026-11-11T13:06:03+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Apartment with view - Apartment",
+   "stars": 0,
+   "rating": 5.0,
+   "reviews": 16,
+   "total_eur": 95.0,
+   "link": "https://www.google.com/travel/search?q=Apartment%20with%20view%20-%20Apartment%20Tirana&hl=it"
+  }
+ },
+ "hotel|malaga|2026-12-11|2026-12-14": {
+  "searched": "2026-11-11",
+  "at": "2026-11-11T13:06:05+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "BLUESEA Calabahía",
+   "stars": 4,
+   "rating": 4.0,
+   "reviews": 1779,
+   "total_eur": 126.0,
+   "link": "https://www.blueseahotels.com/hoteles/costa-del-sol/rincon-de-la-victoria/bluesea-calabahia/?utm_source=google&utm_medium=organic&utm_campaign=GMB&utm_content=BLUESEACalaBahia"
+  }
+ },
+ "apartment|malaga|2026-12-11|2026-12-14": {
+  "searched": "2026-11-11",
+  "at": "2026-11-11T13:06:07+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Apartamentos Angelita Plaza Beach",
+   "stars": 0,
+   "rating": 4.538475,
+   "reviews": 282,
+   "total_eur": 175.0,
+   "link": "https://deals.vio.com?sig=73aca13c7f952d2641c156f3e69125e1eb497c325f122828ee5aa8797168b9a12d32303331333438363233&turl=https%3A%2F%2Fwww.vio.com%2FHotel%2FSearch%3FhotelId%3D4829626%26utm_source%3Dgha-vr%26utm_campaign%3Dstatic%26openHotelDetails%3D1"
+  }
+ },
+ "hotel|barcellona el prat|2027-01-22|2027-01-25": {
+  "searched": "2026-11-11",
+  "at": "2026-11-11T13:06:08+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Flora Parc",
+   "stars": 3,
+   "rating": 4.2,
+   "reviews": 1457,
+   "total_eur": 214.0,
+   "link": "https://floraparc.com/"
+  }
+ },
+ "apartment|barcellona el prat|2027-01-22|2027-01-25": {
+  "searched": "2026-11-11",
+  "at": "2026-11-11T13:06:09+00:00",
+  "stay": null
  }
 }

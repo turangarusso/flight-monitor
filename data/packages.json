@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T13:52:50Z",
+ "updated": "2026-11-11T13:06:09Z",
  "packages": [
   {
    "source": "ryanair",
@@ -39,6 +39,45 @@
    "stay_found": "2026-11-02",
    "first_found": "2026-11-02",
    "found": "2026-11-02"
+  },
+  {
+   "source": "ryanair",
+   "airline": "Ryanair",
+   "origin": "NAP",
+   "dest": "AGP",
+   "dest_city": "Malaga",
+   "out_date": "2026-12-11",
+   "in_date": "2026-12-14",
+   "price_pp": 57.63,
+   "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2026-12-11&dateIn=2026-12-14&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=AGP&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2026-12-11&tpEndDate=2026-12-14&tpOriginIata=NAP&tpDestinationIata=AGP",
+   "out_dep": "2026-12-11T16:50:00",
+   "out_arr": "2026-12-11T19:45:00",
+   "in_dep": "2026-12-14T09:00:00",
+   "in_arr": "2026-12-14T11:35:00",
+   "country_code": "ES",
+   "country_name": "Spagna",
+   "flag": "🇪🇸",
+   "hotel": {
+    "kind": "hotel",
+    "name": "BLUESEA Calabahía",
+    "stars": 4,
+    "rating": 4.0,
+    "reviews": 1779,
+    "total_eur": 126.0,
+    "link": "https://www.blueseahotels.com/hoteles/costa-del-sol/rincon-de-la-victoria/bluesea-calabahia/?utm_source=google&utm_medium=organic&utm_campaign=GMB&utm_content=BLUESEACalaBahia"
+   },
+   "apartment": {
+    "kind": "apartment",
+    "name": "Apartamentos Angelita Plaza Beach",
+    "stars": 0,
+    "rating": 4.538475,
+    "reviews": 282,
+    "total_eur": 175.0,
+    "link": "https://deals.vio.com?sig=73aca13c7f952d2641c156f3e69125e1eb497c325f122828ee5aa8797168b9a12d32303331333438363233&turl=https%3A%2F%2Fwww.vio.com%2FHotel%2FSearch%3FhotelId%3D4829626%26utm_source%3Dgha-vr%26utm_campaign%3Dstatic%26openHotelDetails%3D1"
+   },
+   "stay_found": "2026-11-11",
+   "first_found": "2026-11-11",
+   "found": "2026-11-11"
   },
   {
    "source": "ryanair",
@@ -351,6 +390,37 @@
    "stay_found": "2026-11-10",
    "first_found": "2026-11-10",
    "found": "2026-11-10"
+  },
+  {
+   "source": "wizzair",
+   "airline": "Wizz Air",
+   "origin": "NAP",
+   "dest": "BCN",
+   "dest_city": "Barcellona El Prat",
+   "out_date": "2027-01-22",
+   "in_date": "2027-01-25",
+   "price_pp": 49.98,
+   "link": "https://wizzair.com/it-it/booking/select-flight/NAP/BCN/2027-01-22/2027-01-25/2/0/0/null",
+   "out_dep": "2027-01-22T06:15:00",
+   "out_arr": "2027-01-22T09:15:00",
+   "in_dep": "2027-01-25T09:25:00",
+   "in_arr": "2027-01-25T12:25:00",
+   "country_code": "ES",
+   "country_name": "Spagna",
+   "flag": "🇪🇸",
+   "hotel": {
+    "kind": "hotel",
+    "name": "Flora Parc",
+    "stars": 3,
+    "rating": 4.2,
+    "reviews": 1457,
+    "total_eur": 214.0,
+    "link": "https://floraparc.com/"
+   },
+   "apartment": null,
+   "stay_found": "2026-11-11",
+   "first_found": "2026-11-11",
+   "found": "2026-11-11"
   },
   {
    "source": "wizzair",
@@ -670,22 +740,22 @@
     "name": "Allure Boutique Hotel",
     "stars": 4,
     "rating": 4.3,
-    "reviews": 218,
-    "total_eur": 93.0,
+    "reviews": 219,
+    "total_eur": 94.0,
     "link": "http://www.hotel-allure.al/"
    },
    "apartment": {
     "kind": "apartment",
-    "name": "Gledis Apartment Tirana - Panoramic City Terrace",
+    "name": "Apartment with view - Apartment",
     "stars": 0,
-    "rating": 4.75,
-    "reviews": 124,
-    "total_eur": 90.0,
-    "link": "https://www.booking.com/hotel/al/gledis-appartment.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-8538215&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-8538215_grp-3_gendate-20261104"
+    "rating": 5.0,
+    "reviews": 16,
+    "total_eur": 95.0,
+    "link": "https://www.google.com/travel/search?q=Apartment%20with%20view%20-%20Apartment%20Tirana&hl=it"
    },
-   "stay_found": "2026-11-10",
+   "stay_found": "2026-11-11",
    "first_found": "2026-10-29",
-   "found": "2026-11-10"
+   "found": "2026-11-11"
   },
   {
    "source": "ryanair",
