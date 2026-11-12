@@ -1,56 +1,4 @@
 {
- "hotel|malta|2027-01-01|2027-01-04": {
-  "searched": "2026-11-08",
-  "at": "2026-11-08T12:18:29+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "BLOCK Hotel Gozo Malta",
-   "stars": 3,
-   "rating": 4.5,
-   "reviews": 272,
-   "total_eur": 137.0,
-   "link": "https://www.blockgozo.com/"
-  }
- },
- "apartment|malta|2027-01-01|2027-01-04": {
-  "searched": "2026-11-08",
-  "at": "2026-11-08T12:18:30+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Felluga harbour view - Apartment with Sea View",
-   "stars": 0,
-   "rating": 4.95,
-   "reviews": 16,
-   "total_eur": 225.0,
-   "link": "https://www.google.com/travel/search?q=Felluga%20harbour%20view%20-%20Apartment%20with%20Sea%20View%20Malta&hl=it"
-  }
- },
- "hotel|skopje|2027-01-15|2027-01-18": {
-  "searched": "2026-11-08",
-  "at": "2026-11-08T12:18:32+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Hotel Leonardo",
-   "stars": 3,
-   "rating": 4.3,
-   "reviews": 207,
-   "total_eur": 83.0,
-   "link": "https://www.google.com/travel/search?q=Hotel%20Leonardo%20Skopje&hl=it"
-  }
- },
- "apartment|skopje|2027-01-15|2027-01-18": {
-  "searched": "2026-11-08",
-  "at": "2026-11-08T12:18:35+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Maya Apartment - One-Bedroom Apartment",
-   "stars": 0,
-   "rating": 5.0,
-   "reviews": 16,
-   "total_eur": 73.0,
-   "link": "https://www.google.com/travel/search?q=Maya%20Apartment%20-%20One-Bedroom%20Apartment%20Skopje&hl=it"
-  }
- },
  "hotel|tolosa|2027-01-23|2027-01-25": {
   "searched": "2026-11-09",
   "at": "2026-11-09T14:16:29+00:00",
@@ -216,5 +164,57 @@
   "searched": "2026-11-11",
   "at": "2026-11-11T13:06:09+00:00",
   "stay": null
+ },
+ "hotel|bucarest baneasa|2027-01-30|2027-02-01": {
+  "searched": "2026-11-12",
+  "at": "2026-11-12T14:08:13+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Piccolo Mondo By CityBookings",
+   "stars": 3,
+   "rating": 4.2,
+   "reviews": 74,
+   "total_eur": 112.0,
+   "link": "https://piccolomondo.book-onlinenow.net/"
+  }
+ },
+ "apartment|bucarest baneasa|2027-01-30|2027-02-01": {
+  "searched": "2026-11-12",
+  "at": "2026-11-12T14:08:16+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Aviatiei-Boutique",
+   "stars": 0,
+   "rating": 4.5,
+   "reviews": 56,
+   "total_eur": 142.0,
+   "link": "https://www.booking.com/hotel/ro/aviatiei-boutique-bucuresti1.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-14610725&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-14610725_grp-1_gendate-20261108"
+  }
+ },
+ "hotel|bucarest henri coandă|2027-01-30|2027-02-01": {
+  "searched": "2026-11-12",
+  "at": "2026-11-12T14:08:19+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Bucharest airport hotel",
+   "stars": 3,
+   "rating": 4.1,
+   "reviews": 220,
+   "total_eur": 125.0,
+   "link": "https://airporthotelbucharest.com/ro?utm_source=google&utm_medium=organic&utm_campaign=google_business_profile"
+  }
+ },
+ "apartment|bucarest henri coandă|2027-01-30|2027-02-01": {
+  "searched": "2026-11-12",
+  "at": "2026-11-12T14:08:21+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Blue Condo Otopeni, ground floor",
+   "stars": 0,
+   "rating": 4.6,
+   "reviews": 215,
+   "total_eur": 90.0,
+   "link": "https://www.booking.com/hotel/ro/blue-condo-otopeni.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-12181490&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-12181490_grp-2_gendate-20261108"
+  }
  }
 }
