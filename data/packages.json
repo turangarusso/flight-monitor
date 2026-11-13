@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T14:08:21Z",
+ "updated": "2026-11-13T13:29:33Z",
  "packages": [
   {
    "source": "ryanair",
@@ -204,7 +204,7 @@
    "dest_city": "Valencia",
    "out_date": "2027-01-08",
    "in_date": "2027-01-11",
-   "price_pp": 64.98,
+   "price_pp": 59.74,
    "link": "https://wizzair.com/it-it/booking/select-flight/NAP/VLC/2027-01-08/2027-01-11/2/0/0/null",
    "out_dep": "2027-01-08T12:15:00",
    "out_arr": "2027-01-08T15:15:00",
@@ -215,25 +215,17 @@
    "flag": "🇪🇸",
    "hotel": {
     "kind": "hotel",
-    "name": "Hostal Balcón Al Mar",
-    "stars": 4,
+    "name": "Hotel Líndala",
+    "stars": 3,
     "rating": 4.4,
-    "reviews": 539,
-    "total_eur": 179.0,
-    "link": "https://www.hostalbalconalmar.es/"
+    "reviews": 1162,
+    "total_eur": 176.0,
+    "link": "http://www.lindalavalencia.com/"
    },
-   "apartment": {
-    "kind": "apartment",
-    "name": "SleekLofts Affordable Tiny Studio with Balcony",
-    "stars": 0,
-    "rating": 4.54,
-    "reviews": 76,
-    "total_eur": 181.0,
-    "link": "https://booking.ownerrez.com/request?brand=ora7ccde4199x&channel=GoogleVacationRentals&property=orp5b79353x"
-   },
-   "stay_found": "2026-10-31",
+   "apartment": null,
+   "stay_found": "2026-11-13",
    "first_found": "2026-10-31",
-   "found": "2026-10-31"
+   "found": "2026-11-13"
   },
   {
    "source": "ryanair",
@@ -282,7 +274,7 @@
    "dest_city": "Skopje",
    "out_date": "2027-01-15",
    "in_date": "2027-01-18",
-   "price_pp": 42.98,
+   "price_pp": 38.86,
    "link": "https://wizzair.com/it-it/booking/select-flight/NAP/SKP/2027-01-15/2027-01-18/2/0/0/null",
    "out_dep": "2027-01-15T14:35:00",
    "out_arr": "2027-01-15T17:35:00",
@@ -297,7 +289,7 @@
     "stars": 3,
     "rating": 4.3,
     "reviews": 207,
-    "total_eur": 83.0,
+    "total_eur": 76.0,
     "link": "https://www.google.com/travel/search?q=Hotel%20Leonardo%20Skopje&hl=it"
    },
    "apartment": {
@@ -306,12 +298,12 @@
     "stars": 0,
     "rating": 5.0,
     "reviews": 16,
-    "total_eur": 73.0,
+    "total_eur": 74.0,
     "link": "https://www.google.com/travel/search?q=Maya%20Apartment%20-%20One-Bedroom%20Apartment%20Skopje&hl=it"
    },
-   "stay_found": "2026-11-08",
+   "stay_found": "2026-11-13",
    "first_found": "2026-11-02",
-   "found": "2026-11-08"
+   "found": "2026-11-13"
   },
   {
    "source": "ryanair",
@@ -625,36 +617,36 @@
    "dest_city": "Tirana",
    "out_date": "2027-01-29",
    "in_date": "2027-02-01",
-   "price_pp": 34.24,
+   "price_pp": 35.98,
    "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-01-29&dateIn=2027-02-01&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=TIA&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-01-29&tpEndDate=2027-02-01&tpOriginIata=NAP&tpDestinationIata=TIA",
    "out_dep": "2027-01-29T11:15:00",
    "out_arr": "2027-01-29T12:30:00",
-   "in_dep": "2027-02-01T09:50:00",
-   "in_arr": "2027-02-01T11:00:00",
+   "in_dep": "2027-02-01T09:40:00",
+   "in_arr": "2027-02-01T10:50:00",
    "country_code": "AL",
    "country_name": "Albania",
    "flag": "🇦🇱",
    "hotel": {
     "kind": "hotel",
-    "name": "Artistic Tirana Guesthouse",
+    "name": "ALBJONA GUESTHOUSE",
     "stars": 3,
-    "rating": 4.3,
-    "reviews": 180,
-    "total_eur": 89.0,
-    "link": "http://www.tiranabnb.com/"
+    "rating": 4.4,
+    "reviews": 81,
+    "total_eur": 85.0,
+    "link": "https://www.hotelsalbanian.com/albjona-guesthouse/"
    },
    "apartment": {
     "kind": "apartment",
-    "name": "Ariadnes Apartments",
+    "name": "Villa Miceli",
     "stars": 0,
-    "rating": 4.67,
-    "reviews": 140,
-    "total_eur": 80.0,
-    "link": "https://www.google.com/travel/search?q=Ariadnes%20Apartments%20Tirana&hl=it"
+    "rating": 4.55,
+    "reviews": 123,
+    "total_eur": 63.0,
+    "link": "https://www.booking.com/hotel/al/fatbardha-miceli.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-13359978&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-13359978_grp-2_gendate-20261109"
    },
-   "stay_found": "2026-11-02",
+   "stay_found": "2026-11-13",
    "first_found": "2026-10-26",
-   "found": "2026-11-02"
+   "found": "2026-11-13"
   },
   {
    "source": "wizzair",

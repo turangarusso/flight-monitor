@@ -1,56 +1,4 @@
 {
- "hotel|tolosa|2027-01-23|2027-01-25": {
-  "searched": "2026-11-09",
-  "at": "2026-11-09T14:16:29+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "B&B HOTEL Toulouse Université",
-   "stars": 3,
-   "rating": 4.0,
-   "reviews": 1051,
-   "total_eur": 99.0,
-   "link": "https://www.hotel-bb.com/fr/hotel/toulouse-universite?utm_source=googlemaps&utm_medium=fichehotel&utm_campaign=yext"
-  }
- },
- "apartment|tolosa|2027-01-23|2027-01-25": {
-  "searched": "2026-11-09",
-  "at": "2026-11-09T14:16:30+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Charmant Studio Refait à Neuf, au Pied du Métro et du Tramway",
-   "stars": 0,
-   "rating": 4.3,
-   "reviews": 98,
-   "total_eur": 114.0,
-   "link": "https://www.google.com/travel/search?q=Charmant%20Studio%20Refait%20%C3%A0%20Neuf%2C%20au%20Pied%20du%20M%C3%A9tro%20et%20du%20Tramway%20Tolosa&hl=it"
-  }
- },
- "hotel|bratislava|2027-01-29|2027-02-01": {
-  "searched": "2026-11-09",
-  "at": "2026-11-09T14:16:32+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Hotel ANTARES",
-   "stars": 4,
-   "rating": 4.4,
-   "reviews": 621,
-   "total_eur": 140.0,
-   "link": "http://www.hotelantares.sk/"
-  }
- },
- "apartment|bratislava|2027-01-29|2027-02-01": {
-  "searched": "2026-11-09",
-  "at": "2026-11-09T14:16:34+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "WHITE APARTMENT, Kraskova 2, BRATISLAVA - Apartment",
-   "stars": 0,
-   "rating": 4.55,
-   "reviews": 16,
-   "total_eur": 143.0,
-   "link": "https://www.google.com/travel/search?q=WHITE%20APARTMENT%2C%20Kraskova%202%2C%20BRATISLAVA%20-%20Apartment%20Bratislava&hl=it"
-  }
- },
  "hotel|parigi|2027-01-30|2027-02-01": {
   "searched": "2026-11-10",
   "at": "2026-11-10T13:52:44+00:00",
@@ -215,6 +163,76 @@
    "reviews": 215,
    "total_eur": 90.0,
    "link": "https://www.booking.com/hotel/ro/blue-condo-otopeni.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-12181490&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-12181490_grp-2_gendate-20261108"
+  }
+ },
+ "hotel|tirana|2027-01-29|2027-02-01": {
+  "searched": "2026-11-13",
+  "at": "2026-11-13T13:29:20+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "ALBJONA GUESTHOUSE",
+   "stars": 3,
+   "rating": 4.4,
+   "reviews": 81,
+   "total_eur": 85.0,
+   "link": "https://www.hotelsalbanian.com/albjona-guesthouse/"
+  }
+ },
+ "apartment|tirana|2027-01-29|2027-02-01": {
+  "searched": "2026-11-13",
+  "at": "2026-11-13T13:29:22+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Villa Miceli",
+   "stars": 0,
+   "rating": 4.55,
+   "reviews": 123,
+   "total_eur": 63.0,
+   "link": "https://www.booking.com/hotel/al/fatbardha-miceli.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-13359978&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-13359978_grp-2_gendate-20261109"
+  }
+ },
+ "hotel|valencia|2027-01-08|2027-01-11": {
+  "searched": "2026-11-13",
+  "at": "2026-11-13T13:29:23+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Hotel Líndala",
+   "stars": 3,
+   "rating": 4.4,
+   "reviews": 1162,
+   "total_eur": 176.0,
+   "link": "http://www.lindalavalencia.com/"
+  }
+ },
+ "apartment|valencia|2027-01-08|2027-01-11": {
+  "searched": "2026-11-13",
+  "at": "2026-11-13T13:29:26+00:00",
+  "stay": null
+ },
+ "hotel|skopje|2027-01-15|2027-01-18": {
+  "searched": "2026-11-13",
+  "at": "2026-11-13T13:29:30+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Hotel Leonardo",
+   "stars": 3,
+   "rating": 4.3,
+   "reviews": 207,
+   "total_eur": 76.0,
+   "link": "https://www.google.com/travel/search?q=Hotel%20Leonardo%20Skopje&hl=it"
+  }
+ },
+ "apartment|skopje|2027-01-15|2027-01-18": {
+  "searched": "2026-11-13",
+  "at": "2026-11-13T13:29:33+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Maya Apartment - One-Bedroom Apartment",
+   "stars": 0,
+   "rating": 5.0,
+   "reviews": 16,
+   "total_eur": 74.0,
+   "link": "https://www.google.com/travel/search?q=Maya%20Apartment%20-%20One-Bedroom%20Apartment%20Skopje&hl=it"
   }
  }
 }
