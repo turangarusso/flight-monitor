@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T13:29:33Z",
+ "updated": "2026-11-14T12:37:44Z",
  "packages": [
   {
    "source": "ryanair",
@@ -539,7 +539,7 @@
    "dest_city": "Bratislava",
    "out_date": "2027-01-29",
    "in_date": "2027-02-01",
-   "price_pp": 47.98,
+   "price_pp": 42.98,
    "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-01-29&dateIn=2027-02-01&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=BTS&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-01-29&tpEndDate=2027-02-01&tpOriginIata=NAP&tpDestinationIata=BTS",
    "out_dep": "2027-01-29T06:40:00",
    "out_arr": "2027-01-29T08:20:00",
@@ -550,12 +550,12 @@
    "flag": "🇸🇰",
    "hotel": {
     "kind": "hotel",
-    "name": "Hotel ANTARES",
-    "stars": 4,
+    "name": "Villa Bea",
+    "stars": 3,
     "rating": 4.4,
-    "reviews": 621,
-    "total_eur": 140.0,
-    "link": "http://www.hotelantares.sk/"
+    "reviews": 114,
+    "total_eur": 185.0,
+    "link": "http://www.villabea.sk/"
    },
    "apartment": {
     "kind": "apartment",
@@ -563,12 +563,12 @@
     "stars": 0,
     "rating": 4.55,
     "reviews": 16,
-    "total_eur": 143.0,
+    "total_eur": 158.0,
     "link": "https://www.google.com/travel/search?q=WHITE%20APARTMENT%2C%20Kraskova%202%2C%20BRATISLAVA%20-%20Apartment%20Bratislava&hl=it"
    },
-   "stay_found": "2026-11-09",
+   "stay_found": "2026-11-14",
    "first_found": "2026-10-29",
-   "found": "2026-11-09"
+   "found": "2026-11-14"
   },
   {
    "source": "ryanair",
@@ -608,6 +608,45 @@
    "stay_found": "2026-11-05",
    "first_found": "2026-11-05",
    "found": "2026-11-05"
+  },
+  {
+   "source": "ryanair",
+   "airline": "Ryanair",
+   "origin": "NAP",
+   "dest": "MLA",
+   "dest_city": "Malta",
+   "out_date": "2027-01-29",
+   "in_date": "2027-02-01",
+   "price_pp": 40.98,
+   "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-01-29&dateIn=2027-02-01&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=MLA&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-01-29&tpEndDate=2027-02-01&tpOriginIata=NAP&tpDestinationIata=MLA",
+   "out_dep": "2027-01-29T15:30:00",
+   "out_arr": "2027-01-29T16:45:00",
+   "in_dep": "2027-02-01T06:55:00",
+   "in_arr": "2027-02-01T08:10:00",
+   "country_code": "MT",
+   "country_name": "Malta",
+   "flag": "🇲🇹",
+   "hotel": {
+    "kind": "hotel",
+    "name": "BLOCK Hotel Gozo Malta",
+    "stars": 3,
+    "rating": 4.5,
+    "reviews": 273,
+    "total_eur": 82.0,
+    "link": "https://www.blockgozo.com/"
+   },
+   "apartment": {
+    "kind": "apartment",
+    "name": "Birgu Tower - Studio",
+    "stars": 0,
+    "rating": 5.0,
+    "reviews": 16,
+    "total_eur": 129.0,
+    "link": "https://www.google.com/travel/search?q=Birgu%20Tower%20-%20Studio%20Malta&hl=it"
+   },
+   "stay_found": "2026-11-14",
+   "first_found": "2026-11-14",
+   "found": "2026-11-14"
   },
   {
    "source": "ryanair",
@@ -952,12 +991,12 @@
    "dest_city": "Tirana",
    "out_date": "2027-02-19",
    "in_date": "2027-02-22",
-   "price_pp": 35.98,
+   "price_pp": 36.45,
    "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-02-19&dateIn=2027-02-22&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=TIA&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-02-19&tpEndDate=2027-02-22&tpOriginIata=NAP&tpDestinationIata=TIA",
    "out_dep": "2027-02-19T19:00:00",
    "out_arr": "2027-02-19T20:15:00",
-   "in_dep": "2027-02-22T09:50:00",
-   "in_arr": "2027-02-22T11:00:00",
+   "in_dep": "2027-02-22T09:40:00",
+   "in_arr": "2027-02-22T10:50:00",
    "country_code": "AL",
    "country_name": "Albania",
    "flag": "🇦🇱",
@@ -966,22 +1005,14 @@
     "name": "ALBJONA GUESTHOUSE",
     "stars": 3,
     "rating": 4.4,
-    "reviews": 80,
+    "reviews": 81,
     "total_eur": 85.0,
     "link": "https://www.hotelsalbanian.com/albjona-guesthouse/"
    },
-   "apartment": {
-    "kind": "apartment",
-    "name": "Gledis Apartment Tirana - Panoramic City Terrace",
-    "stars": 0,
-    "rating": 4.75,
-    "reviews": 124,
-    "total_eur": 90.0,
-    "link": "https://www.booking.com/hotel/al/gledis-appartment.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-8538215&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-8538215_grp-3_gendate-20261027"
-   },
-   "stay_found": "2026-10-30",
+   "apartment": null,
+   "stay_found": "2026-11-14",
    "first_found": "2026-10-30",
-   "found": "2026-10-30"
+   "found": "2026-11-14"
   },
   {
    "source": "wizzair",

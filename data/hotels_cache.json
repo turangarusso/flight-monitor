@@ -1,48 +1,4 @@
 {
- "hotel|parigi|2027-01-30|2027-02-01": {
-  "searched": "2026-11-10",
-  "at": "2026-11-10T13:52:44+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "B&B HOTEL Paris Italie Porte de Choisy",
-   "stars": 3,
-   "rating": 4.2,
-   "reviews": 5708,
-   "total_eur": 144.0,
-   "link": "https://www.hotel-bb.com/fr/hotel/paris-italie-porte-de-choisy?utm_source=googlemaps&utm_medium=fichehotel&utm_campaign=yext"
-  }
- },
- "apartment|parigi|2027-01-30|2027-02-01": {
-  "searched": "2026-11-10",
-  "at": "2026-11-10T13:52:47+00:00",
-  "stay": null
- },
- "hotel|varsavia|2027-01-15|2027-01-18": {
-  "searched": "2026-11-10",
-  "at": "2026-11-10T13:52:49+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Media Park Apartamenty",
-   "stars": 4,
-   "rating": 4.3,
-   "reviews": 554,
-   "total_eur": 117.0,
-   "link": "http://apartamentymp.pl/"
-  }
- },
- "apartment|varsavia|2027-01-15|2027-01-18": {
-  "searched": "2026-11-10",
-  "at": "2026-11-10T13:52:50+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Fantastic Waw - KP22 Room C",
-   "stars": 0,
-   "rating": 4.3,
-   "reviews": 98,
-   "total_eur": 85.0,
-   "link": "https://www.booking.com/hotel/pl/fantastic-kp22-room-c.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-11695814&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-11695814_grp-2_gendate-20261107"
-  }
- },
  "hotel|tirana|2027-02-05|2027-02-08": {
   "searched": "2026-11-11",
   "at": "2026-11-11T13:06:01+00:00",
@@ -233,6 +189,76 @@
    "reviews": 16,
    "total_eur": 74.0,
    "link": "https://www.google.com/travel/search?q=Maya%20Apartment%20-%20One-Bedroom%20Apartment%20Skopje&hl=it"
+  }
+ },
+ "hotel|tirana|2027-02-19|2027-02-22": {
+  "searched": "2026-11-14",
+  "at": "2026-11-14T12:37:34+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "ALBJONA GUESTHOUSE",
+   "stars": 3,
+   "rating": 4.4,
+   "reviews": 81,
+   "total_eur": 85.0,
+   "link": "https://www.hotelsalbanian.com/albjona-guesthouse/"
+  }
+ },
+ "apartment|tirana|2027-02-19|2027-02-22": {
+  "searched": "2026-11-14",
+  "at": "2026-11-14T12:37:35+00:00",
+  "stay": null
+ },
+ "hotel|malta|2027-01-29|2027-02-01": {
+  "searched": "2026-11-14",
+  "at": "2026-11-14T12:37:37+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "BLOCK Hotel Gozo Malta",
+   "stars": 3,
+   "rating": 4.5,
+   "reviews": 273,
+   "total_eur": 82.0,
+   "link": "https://www.blockgozo.com/"
+  }
+ },
+ "apartment|malta|2027-01-29|2027-02-01": {
+  "searched": "2026-11-14",
+  "at": "2026-11-14T12:37:40+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Birgu Tower - Studio",
+   "stars": 0,
+   "rating": 5.0,
+   "reviews": 16,
+   "total_eur": 129.0,
+   "link": "https://www.google.com/travel/search?q=Birgu%20Tower%20-%20Studio%20Malta&hl=it"
+  }
+ },
+ "hotel|bratislava|2027-01-29|2027-02-01": {
+  "searched": "2026-11-14",
+  "at": "2026-11-14T12:37:42+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Villa Bea",
+   "stars": 3,
+   "rating": 4.4,
+   "reviews": 114,
+   "total_eur": 185.0,
+   "link": "http://www.villabea.sk/"
+  }
+ },
+ "apartment|bratislava|2027-01-29|2027-02-01": {
+  "searched": "2026-11-14",
+  "at": "2026-11-14T12:37:44+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "WHITE APARTMENT, Kraskova 2, BRATISLAVA - Apartment",
+   "stars": 0,
+   "rating": 4.55,
+   "reviews": 16,
+   "total_eur": 158.0,
+   "link": "https://www.google.com/travel/search?q=WHITE%20APARTMENT%2C%20Kraskova%202%2C%20BRATISLAVA%20-%20Apartment%20Bratislava&hl=it"
   }
  }
 }
