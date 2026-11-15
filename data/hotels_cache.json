@@ -1,74 +1,4 @@
 {
- "hotel|tirana|2027-02-05|2027-02-08": {
-  "searched": "2026-11-11",
-  "at": "2026-11-11T13:06:01+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Allure Boutique Hotel",
-   "stars": 4,
-   "rating": 4.3,
-   "reviews": 219,
-   "total_eur": 94.0,
-   "link": "http://www.hotel-allure.al/"
-  }
- },
- "apartment|tirana|2027-02-05|2027-02-08": {
-  "searched": "2026-11-11",
-  "at": "2026-11-11T13:06:03+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Apartment with view - Apartment",
-   "stars": 0,
-   "rating": 5.0,
-   "reviews": 16,
-   "total_eur": 95.0,
-   "link": "https://www.google.com/travel/search?q=Apartment%20with%20view%20-%20Apartment%20Tirana&hl=it"
-  }
- },
- "hotel|malaga|2026-12-11|2026-12-14": {
-  "searched": "2026-11-11",
-  "at": "2026-11-11T13:06:05+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "BLUESEA Calabahía",
-   "stars": 4,
-   "rating": 4.0,
-   "reviews": 1779,
-   "total_eur": 126.0,
-   "link": "https://www.blueseahotels.com/hoteles/costa-del-sol/rincon-de-la-victoria/bluesea-calabahia/?utm_source=google&utm_medium=organic&utm_campaign=GMB&utm_content=BLUESEACalaBahia"
-  }
- },
- "apartment|malaga|2026-12-11|2026-12-14": {
-  "searched": "2026-11-11",
-  "at": "2026-11-11T13:06:07+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Apartamentos Angelita Plaza Beach",
-   "stars": 0,
-   "rating": 4.538475,
-   "reviews": 282,
-   "total_eur": 175.0,
-   "link": "https://deals.vio.com?sig=73aca13c7f952d2641c156f3e69125e1eb497c325f122828ee5aa8797168b9a12d32303331333438363233&turl=https%3A%2F%2Fwww.vio.com%2FHotel%2FSearch%3FhotelId%3D4829626%26utm_source%3Dgha-vr%26utm_campaign%3Dstatic%26openHotelDetails%3D1"
-  }
- },
- "hotel|barcellona el prat|2027-01-22|2027-01-25": {
-  "searched": "2026-11-11",
-  "at": "2026-11-11T13:06:08+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Flora Parc",
-   "stars": 3,
-   "rating": 4.2,
-   "reviews": 1457,
-   "total_eur": 214.0,
-   "link": "https://floraparc.com/"
-  }
- },
- "apartment|barcellona el prat|2027-01-22|2027-01-25": {
-  "searched": "2026-11-11",
-  "at": "2026-11-11T13:06:09+00:00",
-  "stay": null
- },
  "hotel|bucarest baneasa|2027-01-30|2027-02-01": {
   "searched": "2026-11-12",
   "at": "2026-11-12T14:08:13+00:00",
@@ -259,6 +189,84 @@
    "reviews": 16,
    "total_eur": 158.0,
    "link": "https://www.google.com/travel/search?q=WHITE%20APARTMENT%2C%20Kraskova%202%2C%20BRATISLAVA%20-%20Apartment%20Bratislava&hl=it"
+  }
+ },
+ "hotel|tirana|2027-02-12|2027-02-15": {
+  "searched": "2026-11-15",
+  "at": "2026-11-15T13:07:26+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "ALBJONA GUESTHOUSE",
+   "stars": 3,
+   "rating": 4.4,
+   "reviews": 81,
+   "total_eur": 85.0,
+   "link": "https://www.hotelsalbanian.com/albjona-guesthouse/"
+  }
+ },
+ "apartment|tirana|2027-02-12|2027-02-15": {
+  "searched": "2026-11-15",
+  "at": "2026-11-15T13:07:27+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Studio Tirana Center",
+   "stars": 0,
+   "rating": 4.65,
+   "reviews": 77,
+   "total_eur": 90.0,
+   "link": "https://www.google.com/travel/search?q=Studio%20Tirana%20Center%20Tirana&hl=it"
+  }
+ },
+ "hotel|tolosa|2027-01-08|2027-01-11": {
+  "searched": "2026-11-15",
+  "at": "2026-11-15T13:07:30+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "B&B HOTEL Toulouse Cité de l'Espace Gonord",
+   "stars": 3,
+   "rating": 4.0,
+   "reviews": 1544,
+   "total_eur": 162.0,
+   "link": "https://www.hotel-bb.com/fr/hotel/toulouse-cite-de-l-espace-gonord?utm_source=googlemaps&utm_medium=fichehotel&utm_campaign=yext"
+  }
+ },
+ "apartment|tolosa|2027-01-08|2027-01-11": {
+  "searched": "2026-11-15",
+  "at": "2026-11-15T13:07:32+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Les Minimes lumiere 15min gare et canal du midi",
+   "stars": 0,
+   "rating": 4.5,
+   "reviews": 34,
+   "total_eur": 171.0,
+   "link": "https://locations.oc-keys.fr/listings/482337?googleVR=1&utm_source=google&utm_medium=vacation_rentals"
+  }
+ },
+ "hotel|varsavia|2027-01-15|2027-01-18": {
+  "searched": "2026-11-15",
+  "at": "2026-11-15T13:07:34+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "ibis Warszawa Reduta",
+   "stars": 3,
+   "rating": 4.3,
+   "reviews": 6010,
+   "total_eur": 115.0,
+   "link": "https://all.accor.com/lien_externe.svlt?goto=fiche_hotel&code_hotel=7125&merchantid=seo-maps-PL-7125&sourceid=aw-cen&utm_medium=seo%20maps&utm_source=google%20Maps&utm_campaign=seo%20maps"
+  }
+ },
+ "apartment|varsavia|2027-01-15|2027-01-18": {
+  "searched": "2026-11-15",
+  "at": "2026-11-15T13:07:35+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Fantastic Waw - KP22 Room C",
+   "stars": 0,
+   "rating": 4.3,
+   "reviews": 98,
+   "total_eur": 84.0,
+   "link": "https://www.booking.com/hotel/pl/fantastic-kp22-room-c.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-11695814&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-11695814_grp-2_gendate-20261110"
   }
  }
 }
