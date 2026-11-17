@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T14:02:19Z",
+ "updated": "2026-11-17T14:52:51Z",
  "packages": [
   {
    "source": "ryanair",
@@ -430,7 +430,7 @@
    "dest_city": "Parigi",
    "out_date": "2027-01-16",
    "in_date": "2027-01-18",
-   "price_pp": 55.98,
+   "price_pp": 57.48,
    "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-01-16&dateIn=2027-01-18&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=BVA&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-01-16&tpEndDate=2027-01-18&tpOriginIata=NAP&tpDestinationIata=BVA",
    "out_dep": "2027-01-16T11:20:00",
    "out_arr": "2027-01-16T13:50:00",
@@ -449,9 +449,9 @@
     "link": "https://www.hotel-bb.com/fr/hotel/paris-italie-porte-de-choisy?utm_source=googlemaps&utm_medium=fichehotel&utm_campaign=yext"
    },
    "apartment": null,
-   "stay_found": "2026-11-16",
+   "stay_found": "2026-11-17",
    "first_found": "2026-11-16",
-   "found": "2026-11-16"
+   "found": "2026-11-17"
   },
   {
    "source": "wizzair",
@@ -971,9 +971,9 @@
     "total_eur": 90.0,
     "link": "https://www.google.com/travel/search?q=Studio%20Tirana%20Center%20Tirana&hl=it"
    },
-   "stay_found": "2026-11-15",
+   "stay_found": "2026-11-17",
    "first_found": "2026-11-06",
-   "found": "2026-11-15"
+   "found": "2026-11-17"
   },
   {
    "source": "wizzair",
