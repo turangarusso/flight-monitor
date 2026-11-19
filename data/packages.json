@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T14:26:33Z",
+ "updated": "2026-11-19T14:49:15Z",
  "packages": [
   {
    "source": "ryanair",
@@ -503,25 +503,25 @@
    "flag": "🇲🇰",
    "hotel": {
     "kind": "hotel",
-    "name": "HOTEL \"ULTRA STAR\"",
+    "name": "Hotel Leonardo",
     "stars": 3,
     "rating": 4.3,
-    "reviews": 251,
-    "total_eur": 90.0,
-    "link": "https://www.google.com/travel/search?q=HOTEL%20%22ULTRA%20STAR%22%20Skopje&hl=it"
+    "reviews": 207,
+    "total_eur": 76.0,
+    "link": "https://www.google.com/travel/search?q=Hotel%20Leonardo%20Skopje&hl=it"
    },
    "apartment": {
     "kind": "apartment",
-    "name": "Maya Apartment",
+    "name": "Maya Apartment - One-Bedroom Apartment",
     "stars": 0,
-    "rating": 4.65,
-    "reviews": 128,
-    "total_eur": 73.0,
-    "link": "https://www.booking.com/hotel/mk/maya-apartment.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-10365771&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-10365771_grp-3_gendate-20261020"
+    "rating": 5.0,
+    "reviews": 16,
+    "total_eur": 74.0,
+    "link": "https://www.google.com/travel/search?q=Maya%20Apartment%20-%20One-Bedroom%20Apartment%20Skopje&hl=it"
    },
-   "stay_found": "2026-10-26",
+   "stay_found": "2026-11-19",
    "first_found": "2026-10-26",
-   "found": "2026-10-26"
+   "found": "2026-11-19"
   },
   {
    "source": "ryanair",
@@ -717,6 +717,37 @@
    "stay_found": "2026-11-14",
    "first_found": "2026-11-14",
    "found": "2026-11-14"
+  },
+  {
+   "source": "wizzair",
+   "airline": "Wizz Air",
+   "origin": "NAP",
+   "dest": "OTP",
+   "dest_city": "Bucarest Henri Coandă",
+   "out_date": "2027-01-29",
+   "in_date": "2027-02-01",
+   "price_pp": 56.98,
+   "link": "https://wizzair.com/it-it/booking/select-flight/NAP/OTP/2027-01-29/2027-02-01/2/0/0/null",
+   "out_dep": "2027-01-29T07:20:00",
+   "out_arr": "2027-01-29T10:20:00",
+   "in_dep": "2027-02-01T10:45:00",
+   "in_arr": "2027-02-01T13:45:00",
+   "country_code": "RO",
+   "country_name": "Romania",
+   "flag": "🇷🇴",
+   "hotel": {
+    "kind": "hotel",
+    "name": "Vienna House Easy by Wyndham Airport Bucharest",
+    "stars": 4,
+    "rating": 4.4,
+    "reviews": 2693,
+    "total_eur": 182.0,
+    "link": "https://viennahouse.ro/"
+   },
+   "apartment": null,
+   "stay_found": "2026-11-19",
+   "first_found": "2026-11-19",
+   "found": "2026-11-19"
   },
   {
    "source": "ryanair",
@@ -955,12 +986,12 @@
    "flag": "🇦🇱",
    "hotel": {
     "kind": "hotel",
-    "name": "ALBJONA GUESTHOUSE",
-    "stars": 3,
-    "rating": 4.4,
-    "reviews": 81,
-    "total_eur": 85.0,
-    "link": "https://www.hotelsalbanian.com/albjona-guesthouse/"
+    "name": "Bazaar Hotel",
+    "stars": 4,
+    "rating": 4.5,
+    "reviews": 171,
+    "total_eur": 74.0,
+    "link": "https://bazaarhotel.al/"
    },
    "apartment": {
     "kind": "apartment",
@@ -971,9 +1002,9 @@
     "total_eur": 90.0,
     "link": "https://www.google.com/travel/search?q=Studio%20Tirana%20Center%20Tirana&hl=it"
    },
-   "stay_found": "2026-11-18",
+   "stay_found": "2026-11-19",
    "first_found": "2026-11-06",
-   "found": "2026-11-18"
+   "found": "2026-11-19"
   },
   {
    "source": "wizzair",
