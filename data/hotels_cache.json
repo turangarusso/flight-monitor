@@ -1,32 +1,4 @@
 {
- "hotel|parigi|2027-01-16|2027-01-18": {
-  "searched": "2026-11-16",
-  "at": "2026-11-16T14:02:14+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "B&B HOTEL Paris Italie Porte de Choisy",
-   "stars": 3,
-   "rating": 4.2,
-   "reviews": 5758,
-   "total_eur": 120.0,
-   "link": "https://www.hotel-bb.com/fr/hotel/paris-italie-porte-de-choisy?utm_source=googlemaps&utm_medium=fichehotel&utm_campaign=yext"
-  }
- },
- "apartment|parigi|2027-01-16|2027-01-18": {
-  "searched": "2026-11-16",
-  "at": "2026-11-16T14:02:15+00:00",
-  "stay": null
- },
- "hotel|barcellona|2027-01-15|2027-01-18": {
-  "searched": "2026-11-16",
-  "at": "2026-11-16T14:02:18+00:00",
-  "stay": null
- },
- "apartment|barcellona|2027-01-15|2027-01-18": {
-  "searched": "2026-11-16",
-  "at": "2026-11-16T14:02:19+00:00",
-  "stay": null
- },
  "hotel|katowice|2026-12-11|2026-12-14": {
   "searched": "2026-11-18",
   "at": "2026-11-18T14:26:26+00:00",
@@ -147,6 +119,58 @@
    "reviews": 16,
    "total_eur": 74.0,
    "link": "https://www.google.com/travel/search?q=Maya%20Apartment%20-%20One-Bedroom%20Apartment%20Skopje&hl=it"
+  }
+ },
+ "hotel|malta|2027-01-08|2027-01-11": {
+  "searched": "2026-11-21",
+  "at": "2026-11-21T13:53:18+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Pebbles",
+   "stars": 4,
+   "rating": 4.6,
+   "reviews": 2576,
+   "total_eur": 75.0,
+   "link": "http://pebblessanpawl.com.mt/"
+  }
+ },
+ "apartment|malta|2027-01-08|2027-01-11": {
+  "searched": "2026-11-21",
+  "at": "2026-11-21T13:53:20+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Cosy Studio",
+   "stars": 0,
+   "rating": 4.718292,
+   "reviews": 41,
+   "total_eur": 114.0,
+   "link": "https://www.google.com/travel/search?q=Cosy%20Studio%20Malta&hl=it"
+  }
+ },
+ "hotel|bratislava|2027-01-15|2027-01-18": {
+  "searched": "2026-11-21",
+  "at": "2026-11-21T13:53:21+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Hotel Color",
+   "stars": 3,
+   "rating": 4.3,
+   "reviews": 1380,
+   "total_eur": 180.0,
+   "link": "https://www.hotelcolor.sk/"
+  }
+ },
+ "apartment|bratislava|2027-01-15|2027-01-18": {
+  "searched": "2026-11-21",
+  "at": "2026-11-21T13:53:23+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Apartmány Bratislava - Apartment Zahradnicka 11",
+   "stars": 0,
+   "rating": 4.75,
+   "reviews": 16,
+   "total_eur": 168.0,
+   "link": "https://www.google.com/travel/search?q=Apartm%C3%A1ny%20Bratislava%20-%20Apartment%20Zahradnicka%2011%20Bratislava&hl=it"
   }
  }
 }
