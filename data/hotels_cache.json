@@ -1,56 +1,4 @@
 {
- "hotel|katowice|2026-12-11|2026-12-14": {
-  "searched": "2026-11-18",
-  "at": "2026-11-18T14:26:26+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Hotel Great Polonia Quality & Economy Silesian | Noclegi Katowice",
-   "stars": 3,
-   "rating": 4.0,
-   "reviews": 3213,
-   "total_eur": 132.0,
-   "link": "https://www.katowicesilesian.greatpolonia.pl/"
-  }
- },
- "apartment|katowice|2026-12-11|2026-12-14": {
-  "searched": "2026-11-18",
-  "at": "2026-11-18T14:26:29+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Sportowców 18 Studio Silesia",
-   "stars": 0,
-   "rating": 4.7,
-   "reviews": 65,
-   "total_eur": 129.0,
-   "link": "https://www.booking.com/hotel/pl/cop24-comfortable-studio-only-20-minutes-to-cop24.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-4255846&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-4255846_grp-2_gendate-20261115"
-  }
- },
- "hotel|bucarest baneasa|2027-02-27|2027-03-01": {
-  "searched": "2026-11-18",
-  "at": "2026-11-18T14:26:30+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Arc de Triomphe by CityBookings",
-   "stars": 3,
-   "rating": 4.2,
-   "reviews": 590,
-   "total_eur": 94.0,
-   "link": "https://arcdetriomphe.book-onlinenow.net/"
-  }
- },
- "apartment|bucarest baneasa|2027-02-27|2027-03-01": {
-  "searched": "2026-11-18",
-  "at": "2026-11-18T14:26:33+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Spacious Modern 1BR Apartment with Balcony",
-   "stars": 0,
-   "rating": 4.8,
-   "reviews": 65,
-   "total_eur": 151.0,
-   "link": "https://www.roarentals.ro/listings/487941?googleVR=1&utm_source=google&utm_medium=vacation_rentals"
-  }
- },
  "hotel|tirana|2027-02-12|2027-02-15": {
   "searched": "2026-11-19",
   "at": "2026-11-19T14:49:09+00:00",
@@ -171,6 +119,58 @@
    "reviews": 16,
    "total_eur": 168.0,
    "link": "https://www.google.com/travel/search?q=Apartm%C3%A1ny%20Bratislava%20-%20Apartment%20Zahradnicka%2011%20Bratislava&hl=it"
+  }
+ },
+ "hotel|tolosa|2027-01-16|2027-01-18": {
+  "searched": "2026-11-22",
+  "at": "2026-11-22T13:44:31+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "B&B HOTEL Toulouse Cité de l'Espace Gonord",
+   "stars": 3,
+   "rating": 4.0,
+   "reviews": 1548,
+   "total_eur": 100.0,
+   "link": "https://www.hotel-bb.com/fr/hotel/toulouse-cite-de-l-espace-gonord?utm_source=googlemaps&utm_medium=fichehotel&utm_campaign=yext"
+  }
+ },
+ "apartment|tolosa|2027-01-16|2027-01-18": {
+  "searched": "2026-11-22",
+  "at": "2026-11-22T13:44:32+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "36 m2 2-room apartment, parking, fiber internet, near metro, Literie Bultex",
+   "stars": 0,
+   "rating": 4.45,
+   "reviews": 33,
+   "total_eur": 120.0,
+   "link": "https://www.booking.com/hotel/fr/36-m2-2-room-apartment-parking-fiber-internet-near-metro-literie-bultex.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-14211980&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-14211980_grp-0_gendate-20261118"
+  }
+ },
+ "hotel|varsavia|2027-01-22|2027-01-25": {
+  "searched": "2026-11-22",
+  "at": "2026-11-22T13:44:33+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Media Park Apartamenty",
+   "stars": 4,
+   "rating": 4.3,
+   "reviews": 556,
+   "total_eur": 112.0,
+   "link": "http://apartamentymp.pl/"
+  }
+ },
+ "apartment|varsavia|2027-01-22|2027-01-25": {
+  "searched": "2026-11-22",
+  "at": "2026-11-22T13:44:35+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Fantastic Waw - KP22 Room C",
+   "stars": 0,
+   "rating": 4.3,
+   "reviews": 100,
+   "total_eur": 83.0,
+   "link": "https://www.booking.com/hotel/pl/fantastic-kp22-room-c.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-11695814&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-11695814_grp-2_gendate-20261118"
   }
  }
 }
