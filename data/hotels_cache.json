@@ -1,74 +1,4 @@
 {
- "hotel|tirana|2027-02-12|2027-02-15": {
-  "searched": "2026-11-19",
-  "at": "2026-11-19T14:49:09+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Bazaar Hotel",
-   "stars": 4,
-   "rating": 4.5,
-   "reviews": 171,
-   "total_eur": 74.0,
-   "link": "https://bazaarhotel.al/"
-  }
- },
- "apartment|tirana|2027-02-12|2027-02-15": {
-  "searched": "2026-11-19",
-  "at": "2026-11-19T14:49:10+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Studio Tirana Center",
-   "stars": 0,
-   "rating": 4.65,
-   "reviews": 77,
-   "total_eur": 90.0,
-   "link": "https://www.google.com/travel/search?q=Studio%20Tirana%20Center%20Tirana&hl=it"
-  }
- },
- "hotel|bucarest henri coandă|2027-01-29|2027-02-01": {
-  "searched": "2026-11-19",
-  "at": "2026-11-19T14:49:12+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Vienna House Easy by Wyndham Airport Bucharest",
-   "stars": 4,
-   "rating": 4.4,
-   "reviews": 2693,
-   "total_eur": 182.0,
-   "link": "https://viennahouse.ro/"
-  }
- },
- "apartment|bucarest henri coandă|2027-01-29|2027-02-01": {
-  "searched": "2026-11-19",
-  "at": "2026-11-19T14:49:13+00:00",
-  "stay": null
- },
- "hotel|skopje|2027-01-22|2027-01-25": {
-  "searched": "2026-11-19",
-  "at": "2026-11-19T14:49:14+00:00",
-  "stay": {
-   "kind": "hotel",
-   "name": "Hotel Leonardo",
-   "stars": 3,
-   "rating": 4.3,
-   "reviews": 207,
-   "total_eur": 76.0,
-   "link": "https://www.google.com/travel/search?q=Hotel%20Leonardo%20Skopje&hl=it"
-  }
- },
- "apartment|skopje|2027-01-22|2027-01-25": {
-  "searched": "2026-11-19",
-  "at": "2026-11-19T14:49:15+00:00",
-  "stay": {
-   "kind": "apartment",
-   "name": "Maya Apartment - One-Bedroom Apartment",
-   "stars": 0,
-   "rating": 5.0,
-   "reviews": 16,
-   "total_eur": 74.0,
-   "link": "https://www.google.com/travel/search?q=Maya%20Apartment%20-%20One-Bedroom%20Apartment%20Skopje&hl=it"
-  }
- },
  "hotel|malta|2027-01-08|2027-01-11": {
   "searched": "2026-11-21",
   "at": "2026-11-21T13:53:18+00:00",
@@ -171,6 +101,68 @@
    "reviews": 100,
    "total_eur": 83.0,
    "link": "https://www.booking.com/hotel/pl/fantastic-kp22-room-c.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-11695814&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-11695814_grp-2_gendate-20261118"
+  }
+ },
+ "hotel|tirana|2027-02-12|2027-02-15": {
+  "searched": "2026-11-23",
+  "at": "2026-11-23T16:27:17+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "ALBJONA GUESTHOUSE",
+   "stars": 3,
+   "rating": 4.4,
+   "reviews": 81,
+   "total_eur": 85.0,
+   "link": "https://www.hotelsalbanian.com/albjona-guesthouse/"
+  }
+ },
+ "apartment|tirana|2027-02-12|2027-02-15": {
+  "searched": "2026-11-23",
+  "at": "2026-11-23T16:27:18+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "V-Appartment - One-Bedroom Apartment",
+   "stars": 0,
+   "rating": 4.8,
+   "reviews": 16,
+   "total_eur": 78.0,
+   "link": "https://www.google.com/travel/search?q=V-Appartment%20-%20One-Bedroom%20Apartment%20Tirana&hl=it"
+  }
+ },
+ "hotel|barcellona el prat|2027-02-26|2027-03-01": {
+  "searched": "2026-11-23",
+  "at": "2026-11-23T16:27:20+00:00",
+  "stay": null
+ },
+ "apartment|barcellona el prat|2027-02-26|2027-03-01": {
+  "searched": "2026-11-23",
+  "at": "2026-11-23T16:27:21+00:00",
+  "stay": null
+ },
+ "hotel|katowice|2027-01-15|2027-01-18": {
+  "searched": "2026-11-23",
+  "at": "2026-11-23T16:27:24+00:00",
+  "stay": {
+   "kind": "hotel",
+   "name": "Campanile Katowice",
+   "stars": 3,
+   "rating": 4.1,
+   "reviews": 1644,
+   "total_eur": 135.0,
+   "link": "https://katowice.campanile.com/fr-fr/?utm_content=partoo&utm_medium=seo-bgp&utm_source=google"
+  }
+ },
+ "apartment|katowice|2027-01-15|2027-01-18": {
+  "searched": "2026-11-23",
+  "at": "2026-11-23T16:27:25+00:00",
+  "stay": {
+   "kind": "apartment",
+   "name": "Klimatyczne Studio 3B z parkingiem",
+   "stars": 0,
+   "rating": 4.55,
+   "reviews": 155,
+   "total_eur": 103.0,
+   "link": "https://www.booking.com/hotel/pl/gustowna-kawalerka-z-parkingiem.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-10503456&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-10503456_grp-0_gendate-20261118"
   }
  }
 }

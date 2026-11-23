@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T13:44:35Z",
+ "updated": "2026-11-23T16:27:25Z",
  "packages": [
   {
    "source": "ryanair",
@@ -343,6 +343,45 @@
    "stay_found": "2026-11-21",
    "first_found": "2026-11-03",
    "found": "2026-11-21"
+  },
+  {
+   "source": "ryanair",
+   "airline": "Ryanair",
+   "origin": "NAP",
+   "dest": "KTW",
+   "dest_city": "Katowice",
+   "out_date": "2027-01-15",
+   "in_date": "2027-01-18",
+   "price_pp": 50.98,
+   "link": "https://www.ryanair.com/it/it/trip/flights/select?adults=2&teens=0&children=0&infants=0&dateOut=2027-01-15&dateIn=2027-01-18&isConnectedFlight=false&isReturn=true&discount=0&originIata=NAP&destinationIata=KTW&tpAdults=2&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2027-01-15&tpEndDate=2027-01-18&tpOriginIata=NAP&tpDestinationIata=KTW",
+   "out_dep": "2027-01-15T20:50:00",
+   "out_arr": "2027-01-15T22:55:00",
+   "in_dep": "2027-01-18T12:50:00",
+   "in_arr": "2027-01-18T14:55:00",
+   "country_code": "PL",
+   "country_name": "Polonia",
+   "flag": "🇵🇱",
+   "hotel": {
+    "kind": "hotel",
+    "name": "Campanile Katowice",
+    "stars": 3,
+    "rating": 4.1,
+    "reviews": 1644,
+    "total_eur": 135.0,
+    "link": "https://katowice.campanile.com/fr-fr/?utm_content=partoo&utm_medium=seo-bgp&utm_source=google"
+   },
+   "apartment": {
+    "kind": "apartment",
+    "name": "Klimatyczne Studio 3B z parkingiem",
+    "stars": 0,
+    "rating": 4.55,
+    "reviews": 155,
+    "total_eur": 103.0,
+    "link": "https://www.booking.com/hotel/pl/gustowna-kawalerka-z-parkingiem.en-gb.html?aid=2068758&utm_source=seogooglelocal&utm_medium=description&utm_term=hotel-10503456&utm_campaign=en-gb&label=seogooglelocal-link-imagesaow-hotel-10503456_grp-0_gendate-20261118"
+   },
+   "stay_found": "2026-11-23",
+   "first_found": "2026-11-23",
+   "found": "2026-11-23"
   },
   {
    "source": "wizzair",
@@ -1064,25 +1103,25 @@
    "flag": "🇦🇱",
    "hotel": {
     "kind": "hotel",
-    "name": "Bazaar Hotel",
-    "stars": 4,
-    "rating": 4.5,
-    "reviews": 171,
-    "total_eur": 74.0,
-    "link": "https://bazaarhotel.al/"
+    "name": "ALBJONA GUESTHOUSE",
+    "stars": 3,
+    "rating": 4.4,
+    "reviews": 81,
+    "total_eur": 85.0,
+    "link": "https://www.hotelsalbanian.com/albjona-guesthouse/"
    },
    "apartment": {
     "kind": "apartment",
-    "name": "Studio Tirana Center",
+    "name": "V-Appartment - One-Bedroom Apartment",
     "stars": 0,
-    "rating": 4.65,
-    "reviews": 77,
-    "total_eur": 90.0,
-    "link": "https://www.google.com/travel/search?q=Studio%20Tirana%20Center%20Tirana&hl=it"
+    "rating": 4.8,
+    "reviews": 16,
+    "total_eur": 78.0,
+    "link": "https://www.google.com/travel/search?q=V-Appartment%20-%20One-Bedroom%20Apartment%20Tirana&hl=it"
    },
-   "stay_found": "2026-11-22",
+   "stay_found": "2026-11-23",
    "first_found": "2026-11-06",
-   "found": "2026-11-22"
+   "found": "2026-11-23"
   },
   {
    "source": "wizzair",
